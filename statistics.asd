@@ -4,8 +4,8 @@
 (defsystem :statistics
   :name "Statistics functions"
   :version     "1.0.0"
-  :license     :MS-PL
-  :author      "Larry Hunter"
+  :license     :MIT
+  :author      "Larry Hunter <Larry.Hunter@CUAnschutz.edu>"
   :maintainer  "Steve Nunez <steve@symbolics.tech>"
   :long-name   "Statistical routines"
   :description "A set of statistical functions"

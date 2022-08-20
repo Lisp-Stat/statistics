@@ -1,5 +1,3 @@
-
-
 ;;; Statistical functions in Common Lisp.  Version 1.05 Aug 14, 2022
 ;;;
 ;;; This code is copyright (c) 2000, 2001, 2002, 2005, 2022 by Lawrence Hunter
@@ -7,7 +5,7 @@
 
 ;;; Thanks to Paul Cohen for the original CLASP package.  Thanks also to bug
 ;;; reports from Rob St. Amant and Lee Ayres, and several bug fixes from
-;;; Robert Goldman. 
+;;; Robert Goldman.
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify it
 ;;; under the terms of the MIT License (see LICENSE file).
@@ -99,7 +97,7 @@
            #:binomial-probability-ci #:poisson-mu-ci #:normal-mean-ci
            #:normal-mean-ci-on-sequence #:normal-variance-ci
            #:normal-variance-ci-on-sequence #:normal-sd-ci
-           #:normal-sd-ci-on-sequence #:z-test #:z-test-on-sequence 
+           #:normal-sd-ci-on-sequence #:z-test #:z-test-on-sequence
            #:t-test-one-sample #:t-test-one-sample-on-sequence
            #:t-test-paired #:t-test-paired-on-sequences #:t-test-two-sample
            #:t-test-two-sample-on-sequences #:chi-square-test-one-sample
@@ -201,7 +199,7 @@
 
 (defmacro underflow-goes-to-zero (&body body)
   "Protects against floating point underflow errors and sets the value to 0.0 instead."
-  `(handler-case 
+  `(handler-case
        (progn ,@body)
        (floating-point-underflow (condition)
 	(declare (ignore condition))
@@ -215,8 +213,8 @@
 ;;;  Descriptive statistics
 ;;;
 
-;; MEAN 
-;; Rosner 10 
+;; MEAN
+;; Rosner 10
 
 (defun mean (sequence)
   (test-variables (sequence :numseq))
@@ -233,7 +231,7 @@
 ;; Rosner 14
 ;; returns two values: a list of the modes and the number of times they
 ;; occur.   Rob St. Amant <stamant@csc.ncsu.edu> suggested using a hash
-;; table instead of an alist, and Lee Ayres <ayres@acm.org> noted that 
+;; table instead of an alist, and Lee Ayres <ayres@acm.org> noted that
 ;; my revision failed to handle multiple modes properly.
 
 (defun mode (sequence)
@@ -281,7 +279,7 @@
               (aref sorted-vect (1- k)))
            2)
         (aref sorted-vect floor-k))))
-      
+
 ;; VARIANCE
 ;; Rosner 21
 
@@ -332,15 +330,15 @@
 ;;; Binomial and Poisson distributions
 ;;;
 
-;; BIONOMIAL-PROBABILITY 
+;; BIONOMIAL-PROBABILITY
 ;; exact: Rosner 93, approximate 105
 
 ;; P(X=k) for X a binomial random variable with parameters n & p.
 ;; Binomial expectations for seeing k events in N trials, each having
-;; probability p.  Use the Poisson approximation if N>100 and P<0.01. 
+;; probability p.  Use the Poisson approximation if N>100 and P<0.01.
 
 (defun binomial-probability (n k p)
-  (test-variables (n :posint) (p :prob) 
+  (test-variables (n :posint) (p :prob)
                   ("K must be between 0 and N (inclusive)" :test (and (>= k 0) (<= k n))))
   (if (and (> n 100) (< p 0.01))
       (poisson-probability (* n p) k)
@@ -409,7 +407,7 @@
       (let ((mu (coerce mu 'double-float))
             (k (coerce k 'double-float)))
         (- 1d0 (gamma-incomplete k mu)))))
-  
+
 
 ;; POISSON-GE-PROBABILITY
 ;; Probability of X or more events when expected is mu.
@@ -456,7 +454,7 @@
 ;; Z
 ;; The inverse normal function, P(X<Zu) = u where X is distributed as the
 ;; standard normal.  Uses binary search.
-;; Rosner 128. 
+;; Rosner 128.
 
 (defun z (percentile &key (epsilon 1d-15))
   (test-variables (percentile :prob))
@@ -469,7 +467,7 @@
         (if (< result target)
             (setq min guess)
             (setq max guess))))))
-            
+
 ;; T-DISTRIBUTION
 ;; Rosner 178
 ;; Returns the point which is the indicated percentile in the T distribution
@@ -494,7 +492,7 @@
                        (- 1 percentile)))
 
 ;; Chi-square-cdf computes the left hand tail area under the chi square
-;; distribution under dof degrees of freedom up to X. 
+;; distribution under dof degrees of freedom up to X.
 
 (defun chi-square-cdf (x dof)
   "Adopted from CLASP 1.4.3, http://eksl-www.cs.umass.edu/clasp.html"
@@ -503,7 +501,7 @@
       (gamma-incomplete (* 0.5 dof) (* 0.5 x))
     (declare (ignore ignore))
     cdf))
-   
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;
 ;;;  Confidence intervals
@@ -550,14 +548,14 @@
    (find-critical-value
     #'(lambda (mu) (poisson-cumulative-probability mu x))
     (/ alpha 2))))
-                 
+
 
 ;; NORMAL-MEAN-CI
 ;; Confidence interval for the mean of a normal distribution
 ;; Rosner 180
 
 ;; The 1-alpha percent confidence interval on the mean of a normal
-;; distribution with parameters mean, sd & n. 
+;; distribution with parameters mean, sd & n.
 
 (defun normal-mean-ci (mean sd n alpha)
   (test-variables (mean number) (sd :posnum) (n :posint) (alpha :prob))
@@ -572,7 +570,7 @@
 
 (defun normal-mean-ci-on-sequence (sequence alpha)
   (test-variables (alpha :prob)) ; sequence tested by mean-sd-n
-  (multiple-value-call #'normal-mean-ci (mean-sd-n sequence) alpha)) 
+  (multiple-value-call #'normal-mean-ci (mean-sd-n sequence) alpha))
 
 ;; NORMAL-VARIANCE-CI
 ;; Rosner 190
@@ -668,7 +666,7 @@
 
 ;; The significance of a paired t test for the means of two normal
 ;; distributions in a longitudinal study.  D-bar is the mean difference, sd
-;; is the standard deviation of the differences, N is the number of pairs. 
+;; is the standard deviation of the differences, N is the number of pairs.
 
 (defun t-test-paired (d-bar sd n &key (tails :both))
   (test-variables (d-bar number) (sd :posnum) (n :posint))
@@ -690,7 +688,7 @@
      (mean-sd-n (map 'list #'- before after)) :tails tails))
 
 ;; T-TEST-TWO-SAMPLE
-;; Rosner  282, 294, 297 
+;; Rosner  282, 294, 297
 
 ;; The significance of the difference of two means (x-bar1 and x-bar2) with
 ;; standard deviations sd1 and sd2, and sample sizes n1 and n2 respectively.
@@ -700,7 +698,7 @@
 ;; are equal.  If the variances are equal, then we use the two sample t test
 ;; for equal variances.  If they are not equal, we use the Satterthwaite
 ;; method, which has good type I error properties (at the loss of some
-;; power).  
+;; power).
 
 (defun t-test-two-sample (x-bar1 sd1 n1 x-bar2 sd2 n2 &key
                           (variances-equal? :test)
@@ -730,7 +728,7 @@
     (t-significance t-statistic dof :tails tails)))
 
 
-  
+
 ;; T-TEST-TWO-SAMPLE-ON-SEQUENCES
 ;; Same as above, but providing the sequences rather than the summaries.
 
@@ -768,7 +766,7 @@
     (ecase tails
       (:negative cdf)
       (:positive (- 1 cdf))
-      (:both (if (<= variance sigma-squared) 
+      (:both (if (<= variance sigma-squared)
                  (* 2 cdf)
                  (* 2 (- 1 cdf)))))))
 
@@ -778,7 +776,7 @@
 ;; The significance of a one sample test for the equality of an observed
 ;; probability p-hat to an expected probability p under a binomial
 ;; distribution with N observations.  Use the normal theory approximation if
-;; n*p*(1-p) > 10 (unless the exact flag is true). 
+;; n*p*(1-p) > 10 (unless the exact flag is true).
 
 (defun binomial-test-one-sample (p-hat n p &key (tails :both) (exact? nil))
   (test-variables (p-hat :prob) (n :posint) (p :prob))
@@ -803,7 +801,7 @@
 
 ;; Are the observed probabilities of an event (p-hat1 and p-hat2) in N1/N2
 ;; trials different? The normal theory method implemented here.  The exact
-;; test is Fisher's contingency table method, below. 
+;; test is Fisher's contingency table method, below.
 
 (defun binomial-test-two-sample (p-hat1 n1 p-hat2 n2 &key (tails :both)
                                  (exact? nil))
@@ -822,7 +820,7 @@
                 (aref contingency-table 1 0) (* p-hat2 n2)
                 (aref contingency-table 1 1) (- 1 (* p-hat2 n2)))
           (fisher-exact-test contingency-table :tails tails)))))
-               
+
 ;; FISHER-EXACT-TEST
 ;; Rosner 371
 ;; Fisher's exact test.  Gives a p value for a particular 2x2 contingency table
@@ -851,9 +849,9 @@
 
         ;; rearrange so that the first row and column marginals are
         ;; smallest.  Only need to change first margins and a.
-    
+
         (cond ((and (< row-margin2 row-margin1) (< column-margin2 column-margin1))
-               (psetq a d 
+               (psetq a d
                       row-margin1 row-margin2
                       column-margin1 column-margin2))
               ((< row-margin2 row-margin1)
@@ -928,7 +926,7 @@
 ;; Rosner 335-7.
 ;; Really just a special case of the binomial one sample test with p = 1/2.
 ;; The normal theory version has a correction factor to make it a better
-;; approximation. 
+;; approximation.
 
 (defun sign-test (plus-count minus-count &key (exact? nil) (tails :both))
   (test-variables (plus-count :posint) (minus-count :posint))
@@ -981,9 +979,9 @@
 
     (unless (member tails '(:positive :negative :both))
       (error "tails must be one of :positive, :negative or :both, not ~a" tails))
-    
+
     ; add avg-rank to the sorted values
-    
+
     (dolist (value distinct-values)
       (let ((first (position value sorted-list :key #'first))
             (last (position value sorted-list :key #'first :from-end t)))
@@ -1064,8 +1062,8 @@
                                (aref expected-values i j)))
                     (aref expected-values i j)))))
     (- 1 (chi-square-cdf x2 (* (1- rows) (1- columns))))))
-                 
-            
+
+
 ;; CHI-SQUARE-TEST-FOR-TREND
 ;; Rosner 398
 
@@ -1095,7 +1093,7 @@
                                                              ns scores)))
                                  n))))
          (x2 (/ (square a) b))
-         (significance (- 1 (chi-square-cdf (float x2) 1)))) 
+         (significance (- 1 (chi-square-cdf (float x2) 1))))
     (when (< (* p-bar q-bar n) 5)
       (error "This test is only applicable when N * p-bar * q-bar >= 5"))
     (format t "~%The trend is ~a, p = ~f"
@@ -1145,10 +1143,10 @@
                                        (/ alpha 2)
                                        alpha))))))
          (n1 (round-up (/ (* (+ variance1 (/ variance2 sample-ratio)) z-term)
-                          delta2)))) 
+                          delta2))))
     (values n1 (round-up (* sample-ratio n1)))))
 
-     
+
 ;; T-TEST-PAIRED-SSE
 ;; Rosner 311
 
@@ -1166,7 +1164,7 @@
                             (z (- 1 (if (eql tails :both)
                                         (/ alpha 2)
                                         alpha))))))
-              (square difference-mu))))                                                              
+              (square difference-mu))))
 
 
 ;; BINOMIAL-TEST-ONE-SAMPLE-SSE
@@ -1182,7 +1180,7 @@
   (test-variables (p-estimated :prob) (p-null :prob) (alpha :prob) (1-beta :prob))
   (let ((q-null (- 1 p-null))
         (q-estimated (- 1 p-estimated)))
-    (round-up 
+    (round-up
      (/ (* p-null q-null
            (square (+ (z (- 1 (if (eql tails :both) (/ alpha 2) alpha)))
                       (* (z 1-beta)
@@ -1196,7 +1194,7 @@
 ;; The number of subjects needed to test if two binomial probabilities are
 ;; different at a given significance alpha and power 1-beta.  The sample
 ;; sizes can be unequal; the p2 sample is sample-sse-ratio * the size of
-;; the p1 sample.  It can be a one tailed or two tailed test.  
+;; the p1 sample.  It can be a one tailed or two tailed test.
 
 (defun binomial-test-two-sample-sse (p1 p2 &key (alpha 0.05)
                                                (sample-ratio 1)
@@ -1210,14 +1208,14 @@
          (q-bar (- 1 p-bar))
          (z-alpha (z (- 1 (if (eql tails :both) (/ alpha 2) alpha))))
          (z-beta (z 1-beta))
-         (n1 (round-up 
+         (n1 (round-up
               (/ (square (+ (* (sqrt (* p-bar q-bar (1+ (/ sample-ratio))))
                                z-alpha)
                             (* (sqrt (+ (* p1 q1) (/ (* p2 q2) sample-ratio)))
                                z-beta)))
                  (square delta)))))
     (values n1 (round-up (* sample-ratio n1)))))
-    
+
 
 ;; BINOMIAL-TEST-PAIRED-SSE
 ;; Rosner 387
@@ -1236,12 +1234,12 @@
         (z-beta (z 1-beta)))
     (round-up (/ (square (+ z-alpha (* 2 z-beta (sqrt (* pa qa)))))
                  (* 2 (square (- pa 1/2)) pd)))))
-                                                                   
+
 ;; CORRELATION-SSE
 ;; Rosner 463
 ;;
 ;; Returns the size of a sample necessary to find a correlation of expected
-;; value rho with significance alpha and power 1-beta. 
+;; value rho with significance alpha and power 1-beta.
 
 (defun correlation-sse (rho &key (alpha 0.05) (1-beta 0.95))
   (test-variables (rho :prob) (alpha :prob) (1-beta :prob))
@@ -1260,7 +1258,7 @@
 ;; Computes the regression equation for a least squares fit of a line to a
 ;; sequence of points (each a list of two numbers, e.g. '((1.0 0.1) (2.0 0.2)))
 ;; and report the intercept, slope, correlation coefficient r, R^2, and the
-;; significance of the difference of the slope from 0. 
+;; significance of the difference of the slope from 0.
 
 (defun linear-regression (points)
   (test-variables (points sequence))
@@ -1315,7 +1313,7 @@
       (:both (* 2 (if (<= lambda 0) (phi lambda) (- 1 (phi lambda)))))
       (:positive (- 1 (phi lambda)))
       (:negative (phi lambda)))))
-         
+
 
 (defun correlation-test-two-sample-on-sequences (points1 points2 &key (tails :both))
   (test-variables (points1 sequence) (points2 sequence))
@@ -1332,7 +1330,7 @@
 ;; variables when one or both are either ordinal or have a distribution that
 ;; is far from normal.   It takes a list of points (same format as
 ;; linear-regression) and returns the spearman rank correlation coefficient
-;; and its significance. 
+;; and its significance.
 
 (defun spearman-rank-correlation (points)
   (test-variables (points sequence))
@@ -1424,7 +1422,7 @@ function in section 13.4."
 ;; RANDOM-SAMPLE
 ;; Return a random sample of size N from sequence, without replacement.  If
 ;; N is equal to or greater than the length of the sequence, return the
-;; entire sequence. 
+;; entire sequence.
 
 (defun random-sample (n sequence)
   (test-variables (n integer) (sequence sequence))
@@ -1448,7 +1446,7 @@ function in section 13.4."
   (test-variables (mean number) (sd :posnum))
   (let ((random-standard (z (random 1d0))))
     (+ mean (* sd random-standard))))
-                              
+
 
 ;; BIN-AND-COUNT
 
@@ -1468,13 +1466,13 @@ function in section 13.4."
 ;; FISHER-Z-TRANSFORM
 ;; Rosner 458
 ;; Transforms the correlation coefficient to an approximately normal
-;; distribution. 
+;; distribution.
 
 
 (defun fisher-z-transform (r)
   (test-variables (r :prob))
   (* 1/2 (log (/ (1+ r) (- 1 r)))))
-  
+
 ;; PERMUTATIONS
 ;; How many ways to take n things taken k at a time, when order matters
 ;; Rosner 88
@@ -1490,8 +1488,8 @@ function in section 13.4."
 ;; How may ways to take n things taken k at a time, when order doesn't matter
 ;; Rosner 90
 
-(defun choose (n k) 
-  (test-variables (n :posint) 
+(defun choose (n k)
+  (test-variables (n :posint)
              ("K must be between 0 and N (inclusive)" :test (and (>= k 0) (<= k n))))
   (/ (factorial n) (* (factorial k) (factorial (- n k)))))
 
@@ -1506,7 +1504,7 @@ function in section 13.4."
 
 ;; ROUND-FLOAT
 ;;
-;; Rounds a floating point number to a specified number of digits precision. 
+;; Rounds a floating point number to a specified number of digits precision.
 
 
 (defun round-float (x &key (precision 5))
@@ -1564,7 +1562,7 @@ function in section 13.4."
 
 ;; Average rank calculation for non-parametric tests.  Ranks are 1 based,
 ;; but lisp is 0 based, so add 1!
-         
+
 (defun average-rank (value sorted-values)
   (let ((first (position value sorted-values))
         (last (position value sorted-values :from-end t)))
@@ -1606,7 +1604,7 @@ function in section 13.4."
   (let ((erf (gamma-incomplete 0.5d0 (square (coerce x 'double-float)))))
     (if (>= x 0.0d0) erf (- erf))))
 
-;; Bug fix from rpgoldman@siftech.com.  Have to coerce an to a double-float, not a float. 
+;; Bug fix from rpgoldman@siftech.com.  Have to coerce an to a double-float, not a float.
 
 (defun gamma-incomplete (a x)
   "Adopted from CLASP 1.4.3, http://eksl-www.cs.umass.edu/clasp.html"
@@ -1800,7 +1798,7 @@ function in section 13.4."
       (when (or (< x 0d0) (> x 1d0))
 	 (error "x must be between 0d0 and 1d0:  ~f" x))
       ;; bt is the factors in front of the continued fraction
-      (let ((bt (if (or (= x 0d0) (= x 1d0))	    
+      (let ((bt (if (or (= x 0d0) (= x 1d0))
 		    0d0
 		    (exp (+ (gamma-ln (+ a b))
 			    (- (gamma-ln a))
@@ -1809,7 +1807,7 @@ function in section 13.4."
 			    (* b (log (- 1d0 x))))))))
 	 (if (< x (/ (+ a 1d0) (+ a b 2.0)))
 	     ;; use continued fraction directly
-	     (/ (* bt (betacf a b x)) a) 
+	     (/ (* bt (betacf a b x)) a)
 	     ;; use continued fraction after making the symmetry transformation
 	     (- 1d0 (/ (* bt (betacf b a (- 1d0 x))) b))))))
 
