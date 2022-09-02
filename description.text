@@ -1,2 +1,7 @@
-Origin: Larry Hunter cl-statistics
+This is Larry Hunters cl-statistics library.  It is a single file
+system with no dependencies.  The formulas and methods used are
+largely taken from Bernard Rosner, *Fundamentals of Biostatistics*,
+5th edition.  "Rosner x" is a page number.  Some numeric functions
+were taken from CLASP, a 1994 common lisp package that implemented
+some of the statistical functions from "Numeric recipes in C".
 
