@@ -78,10 +78,13 @@ These functions cover sample moments in detail, and are accurate.  They include 
 These were written by Larry Hunter, based on the methods described in Bernard Rosner's book, *Fundamentals of Biostatistics* 5th Edition, along with some from the [CLASP](https://www.cs.cmu.edu/afs/cs/project/ai-repository/ai/lang/lisp/code/math/clasp/0.html) system.  They cover a wide range of statistical applications.
 
 ### gwk-statistics
-These are from Gary Warren King, and also partially based on CLASP.  It is well written, and the functions have excellent documentation.  The major reason we don't include it by default is because it uses an older ecosystem of libraries that duplicate what we have not (for example, numerical utilities, alexandria).  If you want to use these, you'll need to uncomment the appropiate code in the ASDF and `pkgdcl.lisp` files.
+These are from Gary Warren King, and also partially based on CLASP.  It is well written, and the functions have excellent documentation.  The major reason we don't include it by default is because it uses an older ecosystem of libraries that duplicate more widely used system (for example, numerical utilities, alexandria).  If you want to use these, you'll need to uncomment the appropriate code in the ASDF and `pkgdcl.lisp` files.
 
 ### Accuracy
-LH and GWK statistics compute quantiles, CDF, PDF, etc. using routines from CLASP, that in turn are based on algorithms from Numerical Recipes.  These are known to be accurate to only about four decimal places.   This is probably accurate enough for many stistical problem, however should you need greater accuracy look at the [distributions](https://github.com/Lisp-Stat/distributions) system.  The computations there are based on [special-functions](https://github.com/Lisp-Stat/special-functions), which has accuracy around 15 digits.  Unfortunately documentation of distributions and the 'wrapping' here are incomplete, so you'll need to know the pattern, e.g. pdf-gamma, cdf-gamma, etc., which is described in the link above.
+LH and GWK statistics compute quantiles, CDF, PDF, etc. using routines from CLASP, that in turn are based on algorithms from Numerical Recipes.  These are known to be accurate to only about four decimal places.   This is probably accurate enough for many statistical problem, however should you need greater accuracy look at the [distributions](https://github.com/Lisp-Stat/distributions) system.  The computations there are based on [special-functions](https://github.com/Lisp-Stat/special-functions), which has accuracy around 15 digits.  Unfortunately documentation of distributions and the 'wrapping' of them here are incomplete, so you'll need to know the pattern, e.g. pdf-gamma, cdf-gamma, etc., which is described in the link above.
+
+### Versions
+Because this system is likely to change rapidly, we have adopted a system of versioning propsed in [defpackage+](https://github.com/rpav/defpackage-plus#versioning).  This is also the system `alexandria` uses where a version number is appended to the API.  So, `statistics-1` is our current package name.  `statistics-2` will be the next and so on.  If you don't like these names, you can always change it locally using a [package local nickname](https://lispcookbook.github.io/cl-cookbook/packages.html#package-local-nicknames-pln).
 
 
 <!-- GETTING STARTED -->
@@ -137,7 +140,7 @@ analysis.  You can load that with:
 
 ## LH-Stat Functions
 
-These abreviations are used in function and variable names:
+These abbreviations are used in function and variable names:
 | abbreviation | meaning |
 | --- | --- |
 | ci  | confidence interval          |
@@ -297,7 +300,7 @@ provision contained herein.  In no event shall EKSL be liable for any
 special, indirect or consequential damages whatsoever resulting from loss
 of use, data or profits, whether in an action of contract, negligence or
 other tortuous action, arising out of or in connection with the use or
-performance of this software, even if EKSL is advised of the possiblity of
+performance of this software, even if EKSL is advised of the possibility of
 such damages.
 
 
