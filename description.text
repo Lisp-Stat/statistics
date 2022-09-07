@@ -1,7 +1,15 @@
-This is Larry Hunters cl-statistics library.  It is a single file
-system with no dependencies.  The formulas and methods used are
-largely taken from Bernard Rosner, *Fundamentals of Biostatistics*,
-5th edition.  "Rosner x" is a page number.  Some numeric functions
-were taken from CLASP, a 1994 common lisp package that implemented
-some of the statistical functions from "Numeric recipes in C".
+This system is a consolidation of three Common Lisp statistics libraries:
 
+- Tamas Papp's library, focusing on central moments
+- Larry Hungers general statistical library
+- Gary Warren King's (GWK) general statistical library, cl-mathstats
+
+As of Q3 2022, CL-MATHSTATS is usable with Lisp-Stat, but not
+incorporated.  This is due to it being rather deeply embedded into its
+own ecosystem of utilities libraries (metatilities-base and
+cl-containers and the lift test framework) that have in some cases
+been superseded by alexandria, anaphora or numerical-utilities.  In
+short, we recommend using CL-MATHSTATS when you need to, recognising
+that you'll be hauling in a parallel system of math, statistics and
+utilities.  Long term, we're working to port CL-MATHSTATS on a
+case-by-case basis.

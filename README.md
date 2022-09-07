@@ -20,7 +20,7 @@
   <h3 align="center">Lisp-Stat Statistics</h3>
 
   <p align="center">
-	Functions for computing various statistics
+	A consolidation of Common Lisp statistics libraries
 	<br />
     <a href="https://lisp-stat.dev/docs/"><strong>Explore the docs »</strong></a>
     <br />
@@ -45,6 +45,7 @@
 	<li><a href="#installation">Installation</a></li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#functions">Functions</a></li>
+	<li><a href="#roadmap">Roadmap</a></li>
 	<li><a href="#resources">Resources</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -57,13 +58,31 @@
 <!-- ABOUT THE PROJECT -->
 ## About the Project
 
-This is Larry Hunters cl-statistics library.  It is a single file
-system with no dependencies.  The formulas and methods used are
-largely taken from Bernard Rosner, *Fundamentals of Biostatistics*,
-5th edition.  "Rosner x" is a page number.  Some numeric functions
-were taken from CLASP, a 1994 common lisp package that implemented
-some of the statistical functions from "Numeric recipes in C". For
-CLASP functions, see copyright notice below.
+There are three statistics libraries that can be considered relatively complete and well written:
+
+- The statistics library from numerical-utilities
+- Larry Hunter's cl-statistics
+- Gary Warren King's cl-mathstats
+
+There are a few challenges in using these as independent systems on projects though:
+
+- There is a good amount of overlap.  Everyone implements, for example `mean` (as does alexandria, cephes, and others)
+- In the case of `mean`, `variance`, etc., the functions deal only with samples, not distributions
+
+This library brings these three systems under a single 'umbrella', and adds a few missing ones.  To do this we use Tim Bradshaw's [conduit-packages](https://github.com/tfeb/conduit-packages).  For the few functions that require dispatch on type (sample data vs. a distribution), we use `typecase` because of its simplicity and not needing another system.  There's a slight performance hit here in the case of run-time determination of types, but until it's a problem prefer it.  Some alternatives considered for dispatch was https://github.com/pcostanza/filtered-functions.
+
+### nu-statistics
+These functions cover sample moments in detail, and are accurate.  They include up to forth moments, and are well suited to the work of an econometrist (and were written by one).
+
+### cl-statistics
+These were written by Larry Hunter, based on the methods described in Bernard Rosner's book, *Fundamentals of Biostatistics* 5th Edition, along with some from the [CLASP](https://www.cs.cmu.edu/afs/cs/project/ai-repository/ai/lang/lisp/code/math/clasp/0.html) system.  They cover a wide range of statistical applications.
+
+### gwk-statistics
+These are from Gary Warren King, and also partially based on CLASP.  It is well written, and the functions have excellent documentation.  The major reason we don't include it by default is because it uses an older ecosystem of libraries that duplicate what we have not (for example, numerical utilities, alexandria).  If you want to use these, you'll need to uncomment the appropiate code in the ASDF and `pkgdcl.lisp` files.
+
+### Accuracy
+LH and GWK statistics compute quantiles, CDF, PDF, etc. using routines from CLASP, that in turn are based on algorithms from Numerical Recipes.  These are known to be accurate to only about four decimal places.   This is probably accurate enough for many stistical problem, however should you need greater accuracy look at the [distributions](https://github.com/Lisp-Stat/distributions) system.  The computations there are based on [special-functions](https://github.com/Lisp-Stat/special-functions), which has accuracy around 15 digits.  Unfortunately documentation of distributions and the 'wrapping' here are incomplete, so you'll need to know the pattern, e.g. pdf-gamma, cdf-gamma, etc., which is described in the link above.
+
 
 <!-- GETTING STARTED -->
 ## Installation
@@ -98,7 +117,7 @@ Create a data frame of weather data:
 ```
 and take the mean maximum temperature:
 ```lisp
-LS-USER> (statistics:mean sg-weather:max-temps)
+LS-USER> (statistics-1:mean sg-weather:max-temps)
 ```
 
 For more examples, please refer to the [Documentation](https://lisp-stat.dev/docs/).
@@ -107,8 +126,16 @@ You can use a [package local
 nickname](https://lispcookbook.github.io/cl-cookbook/packages.html#package-local-nicknames-pln)
 to give the package a shorter name, e.g. "stats" if you like.
 
+Often times all you'll need is lh-stats for general statistical
+analysis.  You can load that with:
+```
+(asdf:load-system :statistics/lh)
+```
 
-## Functions
+**NB** You can expect to see many warnings when loading lh-stats.  These are expected and nothing to worry about.
+
+
+## LH-Stat Functions
 
 These abreviations are used in function and variable names:
 | abbreviation | meaning |
@@ -225,6 +252,9 @@ These abreviations are used in function and variable names:
 - round-float
 
 
+<!-- ROADMAP -->
+## Roadmap
+gwk-stats has many useful functions. We'd like to port them to use the Lisp-Stat ecosystem of utilities.
 
 
 ## Resources
@@ -241,9 +271,11 @@ information.
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**. Please see [CONTRIBUTING](CONTRIBUTING.md) for details on the code of conduct and the process for submitting pull requests.
 
 <!-- LICENSE -->
-## License
+## Licenses
 
-Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
+Lisp-Stat: Microsoft Public License. See [LICENSE](LICENSE)
+LH Stats: MIT License. See [LH-LICENSE](LH-LICENSE)
+GWK-Stats: BSD-3-Clause. See [GWK-LICENSE](https://github.com/gwkkwg/cl-mathstats/blob/master/COPYING)
 
 ## CLASP Copyright
 Copyright (c) 1990 - 1994 University of Massachusetts

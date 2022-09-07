@@ -1,0 +1,57 @@
+This is Larry Hunters statistics library.  It is a single file
+system with no dependencies.  The formulas and methods used are
+largely taken from Bernard Rosner, *Fundamentals of Biostatistics*,
+5th edition.  "Rosner x" is a page number.  Some numeric functions
+were taken from CLASP, a 1994 common lisp package that implemented
+some of the statistical functions from "Numeric recipes in C".
+
+Functions provided:
+
+Descriptive statistics
+ Mean, median, mode, geometric mean, range, percentile, variance,
+ standard-deviation (sd), coefficient-of-variation,
+ standard-error-of-the-mean
+
+Distributional functions
+ Poisson & Binomial
+  binomial-probability, binomial-cumulative-probability,
+  binomial-ge-probability, poisson-probability,
+  poisson-cumulative-probability, poisson-ge-probability, Normal
+  normal-pdf, convert-to-standard-normal, phi, z, t-distribution,
+  chi-square, chi-square-cdf
+
+Confidence Intervals
+
+ binomial-probability-ci, poisson-mu-ci, normal-mean-ci,
+ normal-mean-ci-on-sequences, normal-variance-ci,
+ normal-variance-ci-on-sequence, normal-sd-ci
+
+Hypothesis tests (parametric)
+ z-test, z-test-on-sequence, t-test-one-sample,
+ t-test-one-sample-on-sequence, t-test-paired,
+ t-test-paired-on-sequences, t-test-two-sample,
+ t-test-two-sample-on-sequences, chi-square-test-one-sample, f-test,
+ binomial-test-one-sample, binomial-test-two-sample, fisher-exact-test,
+ mcnemars-test, poisson-test-one-sample
+
+Hypothesis tests (non-parametric)
+ sign-test, sign-test-on-sequence, wilcoxon-signed-rank-test,
+ chi-square-test-rxc, chi-square-test-for-trend
+
+Sample size estimates
+ t-test-one-sample-sse, t-test-two-sample-sse
+ t-test-paired-sse, binomial-test-one-sample-sse,
+ binomial-test-two-sample-sse,
+ binomial-test-paired-sse, correlation-sse
+
+Correlation and Regression
+ linear-regression, correlation-coefficient,
+ correlation-test-two-sample, spearman-rank-correlation
+
+Significance test functions
+ t-significance, f-significance (chi square significance is calculated
+ from chi-square-cdf in various ways depending on the problem).
+
+Utilities
+ random-sample, random-pick, bin-and-count, fishers-z-transform,
+ mean-sd-n, square, choose, permutations, round-float

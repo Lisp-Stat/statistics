@@ -1,0 +1,3670 @@
+\input texinfo
+
+@c statistics.texi --- Reference manual
+
+@c Copyright (C) 2019-2022 Steve Nunez
+
+@c This file is part of STATISTICS.
+
+@c This program is distributed under the terms of the Microsoft Public
+@c License.
+
+
+@c Commentary:
+
+@c Generated automatically by Declt version 4.0 beta 2 "William Riker"
+@c on Wed Sep 07 15:47:38 2022 GMT+8.
+
+
+@c ====================================================================
+@c Header
+@c ====================================================================
+@c %**start of header
+@setfilename statistics.info
+@settitle The STATISTICS Reference Manual
+@afourpaper
+@documentencoding UTF-8
+@c %**end of header
+
+
+
+@c ====================================================================
+@c Format Specific Tweaks
+@c ====================================================================
+@tex
+%% Declt uses several Unicode characters to "reveal" blanks. This
+%% works fine in HTML or Info output, but TeX will have problems with
+%% these. The code below translates those characters to something that
+%% TeX can handle.
+
+%% U+23B5 (Bottom Square Bracket), used to reveal white spaces, is
+%% translated to its Computer Modern teletype version.
+\DeclareUnicodeCharacter{23B5}{{\tt\char'040}}
+
+%% U+21B5 (Downwards Arrow With Corner Leftwards), used to reveal
+%% carriage returns, is translated to \hookleftarrow in math mode.
+\DeclareUnicodeCharacter{21B5}{\ensuremath\hookleftarrow}
+
+%% U+21E5 (Rightwards Arrow To Bar), used to reveal tabs, is
+%% translated to something that looks similar, based on a rightarrow
+%% and a vertical bar from the math extension font.
+\DeclareUnicodeCharacter{21E5}{%
+  \ensuremath{\rightarrow\kern-.5em\mathchar\"130C}}
+
+
+%% Declt uses several Unicode characters to replace "fragile" ones in
+%% anchor names and references. These characters are chosen to resemble
+%% the original ones, without interfering with Info syntax. In TeX
+%% however, we can switch them back to the original versions, because
+%% cross-references are done differently. In theory, I think we could do
+%% something similar for HTML output (again, only the Info syntax poses
+%% problems), but I don't know how to do something similar to what's
+%% below.
+
+%% U+2024 (One Dot Leader) replaces periods.
+\DeclareUnicodeCharacter{2024}{.}
+
+%% U+2236 (Ratio) replaces colons.
+\DeclareUnicodeCharacter{2236}{:}
+
+%% U+2768 (Medium Left Parenthesis Ornament) replaces left parenthesis.
+\DeclareUnicodeCharacter{2768}{(}
+
+%% U+2769 (Medium Right Parenthesis Ornament) replaces right parenthesis.
+\DeclareUnicodeCharacter{2769}{)}
+
+%% U+214B (Turned Ampersand) replaces ampersands.
+\DeclareUnicodeCharacter{214B}{&}
+
+%% U+2216 (Set Minus) replaces backslashes.
+\DeclareUnicodeCharacter{2216}{\char"5C}
+
+%% The following ones are already defined in texinfo.tex so we have nothing
+%% more to do:
+%% U+201A (Single Low-9 Quotation Mark) replaces commas.
+%% U+2205 (Empty Set) replaces empty symbol names.
+
+@end tex
+
+
+
+@c ====================================================================
+@c Settings
+@c ====================================================================
+@setchapternewpage odd
+@documentdescription
+The STATISTICS Reference Manual, version 1.0.0.
+@end documentdescription
+
+
+
+@c ====================================================================
+@c New Commands
+@c ====================================================================
+
+@c ---------------
+@c Indexing macros
+@c ---------------
+
+@c Packages
+@macro packageindex{name}
+@tpindex \name\
+@tpindex @r{Package, }\name\
+@end macro
+
+@c Systems
+@macro systemindex{name}
+@tpindex \name\
+@tpindex @r{System, }\name\
+@end macro
+
+@c Modules
+@macro moduleindex{name}
+@tpindex @t{\name\}
+@tpindex Module, @t{\name\}
+@end macro
+
+@c Files
+@macro fileindex{name}
+@tpindex @t{\name\}
+@tpindex File, @t{\name\}
+@end macro
+
+@c The following macros are meant to be used within @defxxx environments.
+@c Texinfo performs half the indexing job and we do the other half.
+
+@c Constants
+@macro constantsubindex{name}
+@vindex @r{Constant, }\name\
+@end macro
+
+@c Special variables
+@macro specialsubindex{name}
+@vindex @r{Special Variable, }\name\
+@end macro
+
+@c Symbol macros
+@macro symbolmacrosubindex{name}
+@vindex @r{Symbol Macro, }\name\
+@end macro
+
+@c Slots
+@macro slotsubindex{name}
+@vindex @r{Slot, }\name\
+@end macro
+
+@c Macros
+@macro macrosubindex{name}
+@findex @r{Macro, }\name\
+@end macro
+
+@c Compiler Macros
+@macro compilermacrosubindex{name}
+@findex @r{Compiler Macro, }\name\
+@end macro
+
+@c Functions
+@macro functionsubindex{name}
+@findex @r{Function, }\name\
+@end macro
+
+@c Methods
+@macro methodsubindex{name}
+@findex @r{Method, }\name\
+@end macro
+
+@c Generic Functions
+@macro genericsubindex{name}
+@findex @r{Generic Function, }\name\
+@end macro
+
+@c Setf Expanders
+@macro expandersubindex{name}
+@findex @r{Setf Expander, }\name\
+@end macro
+
+@c Method Combinations
+@macro combinationsubindex{name}
+@findex @r{Method Combination, }\name\
+@end macro
+
+@c Conditions
+@macro conditionsubindex{name}
+@tpindex @r{Condition, }\name\
+@end macro
+
+@c Structures
+@macro structuresubindex{name}
+@tpindex @r{Structure, }\name\
+@end macro
+
+@c Types
+@macro typesubindex{name}
+@tpindex @r{Type, }\name\
+@end macro
+
+@c Classes
+@macro classsubindex{name}
+@tpindex @r{Class, }\name\
+@end macro
+
+
+
+@c ====================================================================
+@c Info Category and Directory
+@c ====================================================================
+@dircategory Common Lisp
+@direntry
+* STATISTICS Reference Manual: (statistics). The STATISTICS Reference Manual.
+@end direntry
+
+
+
+@c ====================================================================
+@c Copying
+@c ====================================================================
+@copying
+@quotation
+Copyright @copyright{} 2019-2022 Steve Nunez
+
+Permission is granted to make and distribute verbatim copies of this
+manual provided the copyright notice and this permission notice are
+preserved on all copies.
+
+@ignore
+Permission is granted to process this file through TeX and print the
+results, provided the printed document carries a copying permission
+notice identical to this one except for the removal of this paragraph
+(this paragraph not being relevant to the printed manual).
+
+@end ignore
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided also that the
+section entitled ``Copying'' is included exactly as in the original.
+
+Permission is granted to copy and distribute translations of this manual
+into another language, under the above conditions for modified versions,
+except that this permission notice may be translated as well.
+@end quotation
+@end copying
+
+
+
+@c ====================================================================
+@c Title Page
+@c ====================================================================
+@titlepage
+@title The STATISTICS Reference Manual
+@subtitle Consolidated Common Lisp statistical functions, version 1.0.0
+
+@author Steve Nunez <@email{steve@atchar{}symbolics.tech}>
+
+@page
+@quotation
+This manual was generated automatically by Declt 4.0b2.
+@end quotation
+@vskip 0pt plus 1filll
+@insertcopying
+@end titlepage
+
+
+
+@c ====================================================================
+@c Table of Contents
+@c ====================================================================
+@contents
+
+
+
+@c ====================================================================
+@c Top
+@c ====================================================================
+@ifnottex
+@node Top, Copying, (dir), (dir)
+@top The STATISTICS Reference Manual
+This is the STATISTICS Reference Manual, version 1.0.0,
+generated automatically by Declt version 4.0b2.
+
+@menu
+* Copying:: The Microsoft Public License
+* Systems:: The systems documentation
+* Files:: The files documentation
+* Packages:: The packages documentation
+* Definitions:: The symbols documentation
+* Indexes:: Concepts, functions, variables and data types
+@end menu
+
+@insertcopying
+@end ifnottex
+
+
+
+@c ====================================================================
+@c Copying
+@c ====================================================================
+@node Copying, Systems, Top, Top
+@unnumbered Copying
+@quotation
+This program is distributed under the terms of the Microsoft Public
+License.
+@end quotation
+
+
+
+@c ====================================================================
+@c Systems
+@c ====================================================================
+@node Systems, Files, Copying, Top
+@chapter Systems
+The main system appears first, followed by any subsystem dependency.
+
+@menu
+* The statistics system::
+@end menu
+
+
+@c ---------------------
+@c The statistics system
+@c ---------------------
+@node The statistics system, , Systems, Systems
+@section @t{statistics}
+@anchor{❨1❩}@c
+@systemindex{statistics}@c
+A consolidated system of statistical functions
+@table @strong
+@item Long Name
+Consolidated Common Lisp statistical functions
+@item Author
+Steve Nunez <@email{steve@atchar{}symbolics.tech}>
+@item Home Page
+@uref{https://lisp-stat.dev/}
+@item Source Control
+@t{(GIT https://github.com/Lisp-Stat/statistics.git)}
+@item Bug Tracker
+@uref{https://github.com/Lisp-Stat/statistics/issues}
+@item License
+MS-PL
+@item Long Description
+This system is a consolidation of three Common Lisp statistics libraries:
+
+- Tamas Papp's library@comma{} focusing on central moments@*
+- Larry Hungers general statistical library@*
+- Gary Warren King's (GWK) general statistical library@comma{} cl-mathstats@*
+
+As of Q3 2022@comma{} CL-MATHSTATS is usable with Lisp-Stat@comma{} but not
+incorporated.  This is due to it being rather deeply embedded into its
+own ecosystem of utilities libraries (metatilities-base and
+cl-containers and the lift test framework) that have in some cases
+been superseded by alexandria@comma{} anaphora or numerical-utilities.  In
+short@comma{} we recommend using CL-MATHSTATS when you need to@comma{} recognising
+that you'll be hauling in a parallel system of math@comma{} statistics and
+utilities.  Long term@comma{} we're working to port CL-MATHSTATS on a
+case-by-case basis.
+@item Version
+1.0.0
+@item Dependencies
+@itemize @bullet
+@item
+@t{anaphora}@: (system).
+@item
+@t{alexandria}@: (system).
+@item
+@t{distributions}@: (system).
+@item
+@t{let-plus}@: (system).
+@item
+@t{num-utils}@: (system).
+@item
+@t{org.tfeb.conduit-packages}@: (system).
+@end itemize
+@item Source
+@ref{❨2❩, , @t{statistics.asd}}.
+@item Child Components
+@itemize @bullet
+@item
+@ref{❨3❩, , @t{license}}@: (file).
+@item
+@ref{❨4❩, , @t{lh-statistics.lisp}}@: (file).
+@item
+@ref{❨5❩, , @t{nu-statistics.lisp}}@: (file).
+@item
+@ref{❨6❩, , @t{ls-statistics.lisp}}@: (file).
+@item
+@ref{❨7❩, , @t{pkgdcl.lisp}}@: (file).
+@end itemize
+@end table
+
+
+
+@c ====================================================================
+@c Files
+@c ====================================================================
+@node Files, Packages, Systems, Top
+@chapter Files
+Files are sorted by type and then listed depth-first from the systems
+components trees.
+
+@menu
+* Lisp files::
+* Static files::
+@end menu
+
+
+@c ----------
+@c Lisp files
+@c ----------
+@node Lisp files, Static files, Files, Files
+@section Lisp
+@menu
+* The statistics/statistics․asd file::
+* The statistics/lh-statistics․lisp file::
+* The statistics/nu-statistics․lisp file::
+* The statistics/ls-statistics․lisp file::
+* The statistics/pkgdcl․lisp file::
+@end menu
+
+@node The statistics/statistics․asd file, The statistics/lh-statistics․lisp file, Lisp files, Lisp files
+@subsection @t{statistics/statistics.asd}
+@anchor{❨2❩}@c
+@fileindex{statistics.asd}@c
+@table @strong
+@item Source
+@ref{❨2❩, , @t{statistics.asd}}.
+@item Parent Component
+@ref{❨1❩, , @t{statistics}}@: (system).
+@item ASDF Systems
+@ref{❨1❩, , @t{statistics}}.
+@end table
+
+@node The statistics/lh-statistics․lisp file, The statistics/nu-statistics․lisp file, The statistics/statistics․asd file, Lisp files
+@subsection @t{statistics/lh-statistics.lisp}
+@anchor{❨4❩}@c
+@fileindex{lh-statistics.lisp}@c
+@table @strong
+@item Source
+@ref{❨2❩, , @t{statistics.asd}}.
+@item Parent Component
+@ref{❨1❩, , @t{statistics}}@: (system).
+@item Packages
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Public Interface
+@itemize @bullet
+@item
+@ref{❨61❩, , @t{bin-and-count}}@: (function).
+@item
+@ref{❨63❩, , @t{binomial-cumulative-probability}}@: (function).
+@item
+@ref{❨80❩, , @t{binomial-ge-probability}}@: (function).
+@item
+@ref{❨82❩, , @t{binomial-probability}}@: (function).
+@item
+@ref{❨52❩, , @t{binomial-probability-ci}}@: (function).
+@item
+@ref{❨36❩, , @t{binomial-test-one-sample}}@: (function).
+@item
+@ref{❨16❩, , @t{binomial-test-one-sample-sse}}@: (function).
+@item
+@ref{❨35❩, , @t{binomial-test-paired-sse}}@: (function).
+@item
+@ref{❨85❩, , @t{binomial-test-two-sample}}@: (function).
+@item
+@ref{❨90❩, , @t{binomial-test-two-sample-sse}}@: (function).
+@item
+@ref{❨60❩, , @t{chi-square}}@: (function).
+@item
+@ref{❨79❩, , @t{chi-square-cdf}}@: (function).
+@item
+@ref{❨13❩, , @t{chi-square-test-for-trend}}@: (function).
+@item
+@ref{❨12❩, , @t{chi-square-test-one-sample}}@: (function).
+@item
+@ref{❨71❩, , @t{chi-square-test-rxc}}@: (function).
+@item
+@ref{❨54❩, , @t{choose}}@: (function).
+@item
+@ref{❨51❩, , @t{coefficient-of-variation}}@: (function).
+@item
+@ref{❨70❩, , @t{convert-to-standard-normal}}@: (function).
+@item
+@ref{❨55❩, , @t{correlation-coefficient}}@: (function).
+@item
+@ref{❨87❩, , @t{correlation-sse}}@: (function).
+@item
+@ref{❨23❩, , @t{correlation-test-two-sample}}@: (function).
+@item
+@ref{❨32❩, , @t{correlation-test-two-sample-on-sequences}}@: (function).
+@item
+@ref{❨67❩, , @t{f-significance}}@: (function).
+@item
+@ref{❨30❩, , @t{f-test}}@: (function).
+@item
+@ref{❨33❩, , @t{false-discovery-correction}}@: (function).
+@item
+@ref{❨21❩, , @t{fisher-exact-test}}@: (function).
+@item
+@ref{❨56❩, , @t{fisher-z-transform}}@: (function).
+@item
+@ref{❨26❩, , @t{geometric-mean}}@: (function).
+@item
+@ref{❨86❩, , @t{linear-regression}}@: (function).
+@item
+@ref{❨64❩, , @t{mcnemars-test}}@: (function).
+@item
+@ref{❨69❩, , @t{mean}}@: (function).
+@item
+@ref{❨58❩, , @t{mean-sd-n}}@: (function).
+@item
+@ref{❨49❩, , @t{median}}@: (function).
+@item
+@ref{❨41❩, , @t{mode}}@: (function).
+@item
+@ref{❨37❩, , @t{normal-mean-ci}}@: (function).
+@item
+@ref{❨17❩, , @t{normal-mean-ci-on-sequence}}@: (function).
+@item
+@ref{❨77❩, , @t{normal-pdf}}@: (function).
+@item
+@ref{❨44❩, , @t{normal-sd-ci}}@: (function).
+@item
+@ref{❨53❩, , @t{normal-sd-ci-on-sequence}}@: (function).
+@item
+@ref{❨20❩, , @t{normal-variance-ci}}@: (function).
+@item
+@ref{❨28❩, , @t{normal-variance-ci-on-sequence}}@: (function).
+@item
+@ref{❨76❩, , @t{percentile}}@: (function).
+@item
+@ref{❨48❩, , @t{permutations}}@: (function).
+@item
+@ref{❨59❩, , @t{phi}}@: (function).
+@item
+@ref{❨50❩, , @t{poisson-cumulative-probability}}@: (function).
+@item
+@ref{❨57❩, , @t{poisson-ge-probability}}@: (function).
+@item
+@ref{❨34❩, , @t{poisson-mu-ci}}@: (function).
+@item
+@ref{❨84❩, , @t{poisson-probability}}@: (function).
+@item
+@ref{❨73❩, , @t{poisson-test-one-sample}}@: (function).
+@item
+@ref{❨27❩, , @t{random-normal}}@: (function).
+@item
+@ref{❨39❩, , @t{random-pick}}@: (function).
+@item
+@ref{❨75❩, , @t{random-sample}}@: (function).
+@item
+@ref{❨83❩, , @t{round-float}}@: (function).
+@item
+@ref{❨22❩, , @t{sample-range}}@: (function).
+@item
+@ref{❨74❩, , @t{sd}}@: (function).
+@item
+@ref{❨43❩, , @t{sign-test}}@: (function).
+@item
+@ref{❨66❩, , @t{sign-test-on-sequences}}@: (function).
+@item
+@ref{❨46❩, , @t{spearman-rank-correlation}}@: (function).
+@item
+@ref{❨15❩, , @t{square}}@: (macro).
+@item
+@ref{❨89❩, , @t{standard-deviation}}@: (function).
+@item
+@ref{❨38❩, , @t{standard-error-of-the-mean}}@: (function).
+@item
+@ref{❨62❩, , @t{t-distribution}}@: (function).
+@item
+@ref{❨81❩, , @t{t-significance}}@: (function).
+@item
+@ref{❨29❩, , @t{t-test-one-sample}}@: (function).
+@item
+@ref{❨68❩, , @t{t-test-one-sample-on-sequence}}@: (function).
+@item
+@ref{❨40❩, , @t{t-test-one-sample-sse}}@: (function).
+@item
+@ref{❨18❩, , @t{t-test-paired}}@: (function).
+@item
+@ref{❨45❩, , @t{t-test-paired-on-sequences}}@: (function).
+@item
+@ref{❨14❩, , @t{t-test-paired-sse}}@: (function).
+@item
+@ref{❨25❩, , @t{t-test-two-sample}}@: (function).
+@item
+@ref{❨72❩, , @t{t-test-two-sample-on-sequences}}@: (function).
+@item
+@ref{❨78❩, , @t{t-test-two-sample-sse}}@: (function).
+@item
+@ref{❨47❩, , @t{test-variables}}@: (macro).
+@item
+@ref{❨24❩, , @t{variance}}@: (function).
+@item
+@ref{❨31❩, , @t{wilcoxon-signed-rank-test}}@: (function).
+@item
+@ref{❨65❩, , @t{wilcoxon-signed-rank-test-on-sequences}}@: (function).
+@item
+@ref{❨42❩, , @t{z}}@: (function).
+@item
+@ref{❨19❩, , @t{z-test}}@: (function).
+@item
+@ref{❨88❩, , @t{z-test-on-sequence}}@: (function).
+@end itemize
+@item Internals
+@itemize @bullet
+@item
+@ref{❨91❩, , @t{average-rank}}@: (function).
+@item
+@ref{❨102❩, , @t{beta-incomplete}}@: (function).
+@item
+@ref{❨94❩, , @t{binomial-le-probability}}@: (function).
+@item
+@ref{❨96❩, , @t{error-function}}@: (function).
+@item
+@ref{❨93❩, , @t{error-function-complement}}@: (function).
+@item
+@ref{❨100❩, , @t{factorial}}@: (function).
+@item
+@ref{❨99❩, , @t{find-critical-value}}@: (function).
+@item
+@ref{❨98❩, , @t{gamma-incomplete}}@: (function).
+@item
+@ref{❨97❩, , @t{gamma-ln}}@: (function).
+@item
+@ref{❨92❩, , @t{round-up}}@: (function).
+@item
+@ref{❨95❩, , @t{safe-exp}}@: (function).
+@item
+@ref{❨101❩, , @t{sign}}@: (function).
+@item
+@ref{❨103❩, , @t{underflow-goes-to-zero}}@: (macro).
+@end itemize
+@end table
+
+@node The statistics/nu-statistics․lisp file, The statistics/ls-statistics․lisp file, The statistics/lh-statistics․lisp file, Lisp files
+@subsection @t{statistics/nu-statistics.lisp}
+@anchor{❨5❩}@c
+@fileindex{nu-statistics.lisp}@c
+@table @strong
+@item Source
+@ref{❨2❩, , @t{statistics.asd}}.
+@item Parent Component
+@ref{❨1❩, , @t{statistics}}@: (system).
+@item Packages
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Public Interface
+@itemize @bullet
+@item
+@ref{❨163❩, , @t{*central-sample-moments-default-degree*}}@: (special variable).
+@item
+@ref{❨129❩, , @t{add}}@: (generic function).
+@item
+@ref{❨241❩, , @t{as-alist}}@: (method).
+@item
+@ref{❨168❩, , @t{central-m2}}@: (generic function).
+@item
+@ref{❨134❩, , @t{central-m3}}@: (generic function).
+@item
+@ref{❨118❩, , @t{central-m4}}@: (generic function).
+@item
+@ref{❨146❩, , @t{central-sample-moments}}@: (generic function).
+@item
+@ref{❨150❩, , @t{central-sample-moments}}@: (structure).
+@item
+@ref{❨141❩, , @t{central-sample-moments-degree}}@: (function).
+@item
+@ref{❨122❩, , @t{cross-tabulate}}@: (function).
+@item
+@ref{❨123❩, , @t{empirical-quantile}}@: (function).
+@item
+@ref{❨142❩, , @t{empirical-quantile-probabilities}}@: (function).
+@item
+@ref{❨124❩, , @t{empty-accumulator}}@: (condition).
+@item
+@ref{❨174❩, , @t{ensure-sorted-reals}}@: (generic function).
+@item
+@ref{❨155❩, , @t{ensure-sorted-vector}}@: (function).
+@item
+@ref{❨143❩, , @t{information-not-collected-in-accumulator}}@: (condition).
+@item
+@ref{❨160❩, , @t{kurtosis}}@: (generic function).
+@item
+@ref{❨156❩, , @t{make-sparse-counter}}@: (function).
+@item
+@ref{❨171❩, , @t{mean}}@: (generic function).
+@item
+@ref{❨115❩, , @t{median}}@: (generic function).
+@item
+@ref{❨164❩, , @t{not-enough-elements-in-accumulator}}@: (condition).
+@item
+@ref{❨245❩, , @t{num=}}@: (method).
+@item
+@ref{❨111❩, , @t{pool}}@: (function).
+@item
+@ref{❨235❩, , @t{print-object}}@: (method).
+@item
+@ref{❨240❩, , @t{print-object}}@: (method).
+@item
+@ref{❨137❩, , @t{quantile}}@: (generic function).
+@item
+@ref{❨157❩, , @t{quantiles}}@: (generic function).
+@item
+@ref{❨125❩, , @t{sd}}@: (generic function).
+@item
+@ref{❨165❩, , @t{skewness}}@: (generic function).
+@item
+@ref{❨104❩, , @t{sorted-reals}}@: (structure).
+@item
+@ref{❨121❩, , @t{sorted-reals-elements}}@: (function).
+@item
+@ref{❨127❩, , @t{sparse-counter}}@: (structure).
+@item
+@ref{❨107❩, , @t{sparse-counter-count}}@: (function).
+@item
+@ref{❨144❩, , @t{sparse-counter-table}}@: (reader).
+@item
+@ref{❨178❩, , @t{tabulate}}@: (function).
+@item
+@ref{❨108❩, , @t{tally}}@: (generic function).
+@item
+@ref{❨112❩, , @t{variance}}@: (generic function).
+@item
+@ref{❨145❩, , @t{weighted-quantiles}}@: (function).
+@end itemize
+@item Internals
+@itemize @bullet
+@item
+@ref{❨213❩, , @t{@ampchar{}sorted-reals}}@: (macro).
+@item
+@ref{❨202❩, , @t{@ampchar{}sorted-reals-r/o}}@: (macro).
+@item
+@ref{❨194❩, , @t{central-sample-moments-m}}@: (reader).
+@item
+@ref{❨195❩, , @t{(setf central-sample-moments-m)}}@: (writer).
+@item
+@ref{❨204❩, , @t{central-sample-moments-p}}@: (function).
+@item
+@ref{❨191❩, , @t{central-sample-moments-s2}}@: (reader).
+@item
+@ref{❨192❩, , @t{(setf central-sample-moments-s2)}}@: (writer).
+@item
+@ref{❨189❩, , @t{central-sample-moments-s3}}@: (reader).
+@item
+@ref{❨190❩, , @t{(setf central-sample-moments-s3)}}@: (writer).
+@item
+@ref{❨187❩, , @t{central-sample-moments-s4}}@: (reader).
+@item
+@ref{❨188❩, , @t{(setf central-sample-moments-s4)}}@: (writer).
+@item
+@ref{❨206❩, , @t{central-sample-moments-w}}@: (function).
+@item
+@ref{❨207❩, , @t{(setf central-sample-moments-w)}}@: (function).
+@item
+@ref{❨197❩, , @t{copy-central-sample-moments}}@: (function).
+@item
+@ref{❨215❩, , @t{copy-sorted-reals}}@: (function).
+@item
+@ref{❨203❩, , @t{copy-sparse-counter}}@: (function).
+@item
+@ref{❨184❩, , @t{copy-tally-mixin}}@: (function).
+@item
+@ref{❨183❩, , @t{define-central-sample-moment}}@: (macro).
+@item
+@ref{❨208❩, , @t{make-central-sample-moments}}@: (function).
+@item
+@ref{❨210❩, , @t{make-sorted-reals}}@: (function).
+@item
+@ref{❨205❩, , @t{make-sparse-counter%}}@: (function).
+@item
+@ref{❨200❩, , @t{make-tally-mixin}}@: (function).
+@item
+@ref{❨181❩, , @t{pool2}}@: (generic function).
+@item
+@ref{❨216❩, , @t{sort-reals}}@: (function).
+@item
+@ref{❨179❩, , @t{sorted-reals-ordered-elements}}@: (reader).
+@item
+@ref{❨180❩, , @t{(setf sorted-reals-ordered-elements)}}@: (writer).
+@item
+@ref{❨193❩, , @t{sorted-reals-p}}@: (function).
+@item
+@ref{❨211❩, , @t{sorted-reals-unordered-elements}}@: (reader).
+@item
+@ref{❨212❩, , @t{(setf sorted-reals-unordered-elements)}}@: (writer).
+@item
+@ref{❨214❩, , @t{sparse-counter-p}}@: (function).
+@item
+@ref{❨198❩, , @t{tally-mixin}}@: (structure).
+@item
+@ref{❨209❩, , @t{tally-mixin-p}}@: (function).
+@item
+@ref{❨185❩, , @t{tally-mixin-w}}@: (reader).
+@item
+@ref{❨186❩, , @t{(setf tally-mixin-w)}}@: (writer).
+@item
+@ref{❨196❩, , @t{weighted-empirical-quantile}}@: (function).
+@item
+@ref{❨201❩, , @t{weighted-quantile-p-table}}@: (function).
+@end itemize
+@end table
+
+@node The statistics/ls-statistics․lisp file, The statistics/pkgdcl․lisp file, The statistics/nu-statistics․lisp file, Lisp files
+@subsection @t{statistics/ls-statistics.lisp}
+@anchor{❨6❩}@c
+@fileindex{ls-statistics.lisp}@c
+@table @strong
+@item Source
+@ref{❨2❩, , @t{statistics.asd}}.
+@item Parent Component
+@ref{❨1❩, , @t{statistics}}@: (system).
+@item Packages
+@ref{❨11❩, , @t{ls.statistics}}.
+@item Public Interface
+@itemize @bullet
+@item
+@ref{❨218❩, , @t{fivenum}}@: (function).
+@item
+@ref{❨219❩, , @t{interquartile-range}}@: (function).
+@item
+@ref{❨220❩, , @t{mean}}@: (function).
+@item
+@ref{❨217❩, , @t{variance}}@: (function).
+@end itemize
+@end table
+
+@node The statistics/pkgdcl․lisp file, , The statistics/ls-statistics․lisp file, Lisp files
+@subsection @t{statistics/pkgdcl.lisp}
+@anchor{❨7❩}@c
+@fileindex{pkgdcl.lisp}@c
+@table @strong
+@item Source
+@ref{❨2❩, , @t{statistics.asd}}.
+@item Parent Component
+@ref{❨1❩, , @t{statistics}}@: (system).
+@item Packages
+@ref{❨10❩, , @t{statistics-1}}.
+@end table
+
+
+@c ------------
+@c Static files
+@c ------------
+@node Static files, , Lisp files, Files
+@section Static
+@menu
+* The statistics/license file::
+@end menu
+
+@node The statistics/license file, , Static files, Static files
+@subsection @t{statistics/license}
+@anchor{❨3❩}@c
+@fileindex{license}@c
+@table @strong
+@item Source
+@ref{❨2❩, , @t{statistics.asd}}.
+@item Parent Component
+@ref{❨1❩, , @t{statistics}}@: (system).
+@end table
+
+
+
+@c ====================================================================
+@c Packages
+@c ====================================================================
+@node Packages, Definitions, Files, Top
+@chapter Packages
+Packages are listed by definition order.
+
+@menu
+* The lh․statistics package::
+* The nu․statistics package::
+* The statistics-1 package::
+* The ls․statistics package::
+@end menu
+
+
+@c -------------------------
+@c The lh.statistics package
+@c -------------------------
+@node The lh․statistics package, The nu․statistics package, Packages, Packages
+@section @t{lh.statistics}
+@anchor{❨8❩}@c
+@packageindex{lh.statistics}@c
+The formulas and methods used are largely taken from Bernard Rosner@comma{} *Fundamentals of Biostatistics* 5th Edition.  'Rosner x' is a page number.  Some numeric functions were taken from CLASP@comma{} a 1994 common lisp package that implemented some of the statistical functions from *Numeric recipes in C* For CLASP functions@comma{} see copyright notice below.
+
+These abreviations used in function and variable names:@*
+   ci = confidence interval@*
+   cdf = cumulative density function@*
+   ge = greater than or equal to@*
+   le = less than or equal to@*
+   pdf = probability density function@*
+   sd = standard deviation@*
+   rxc = rows by columns@*
+   sse = sample size estimate
+@table @strong
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@item Use List
+@t{common-lisp}.
+@item Public Interface
+@itemize @bullet
+@item
+@ref{❨61❩, , @t{bin-and-count}}@: (function).
+@item
+@ref{❨63❩, , @t{binomial-cumulative-probability}}@: (function).
+@item
+@ref{❨80❩, , @t{binomial-ge-probability}}@: (function).
+@item
+@ref{❨82❩, , @t{binomial-probability}}@: (function).
+@item
+@ref{❨52❩, , @t{binomial-probability-ci}}@: (function).
+@item
+@ref{❨36❩, , @t{binomial-test-one-sample}}@: (function).
+@item
+@ref{❨16❩, , @t{binomial-test-one-sample-sse}}@: (function).
+@item
+@ref{❨35❩, , @t{binomial-test-paired-sse}}@: (function).
+@item
+@ref{❨85❩, , @t{binomial-test-two-sample}}@: (function).
+@item
+@ref{❨90❩, , @t{binomial-test-two-sample-sse}}@: (function).
+@item
+@ref{❨60❩, , @t{chi-square}}@: (function).
+@item
+@ref{❨79❩, , @t{chi-square-cdf}}@: (function).
+@item
+@ref{❨13❩, , @t{chi-square-test-for-trend}}@: (function).
+@item
+@ref{❨12❩, , @t{chi-square-test-one-sample}}@: (function).
+@item
+@ref{❨71❩, , @t{chi-square-test-rxc}}@: (function).
+@item
+@ref{❨54❩, , @t{choose}}@: (function).
+@item
+@ref{❨51❩, , @t{coefficient-of-variation}}@: (function).
+@item
+@ref{❨70❩, , @t{convert-to-standard-normal}}@: (function).
+@item
+@ref{❨55❩, , @t{correlation-coefficient}}@: (function).
+@item
+@ref{❨87❩, , @t{correlation-sse}}@: (function).
+@item
+@ref{❨23❩, , @t{correlation-test-two-sample}}@: (function).
+@item
+@ref{❨32❩, , @t{correlation-test-two-sample-on-sequences}}@: (function).
+@item
+@ref{❨67❩, , @t{f-significance}}@: (function).
+@item
+@ref{❨30❩, , @t{f-test}}@: (function).
+@item
+@ref{❨33❩, , @t{false-discovery-correction}}@: (function).
+@item
+@ref{❨21❩, , @t{fisher-exact-test}}@: (function).
+@item
+@ref{❨56❩, , @t{fisher-z-transform}}@: (function).
+@item
+@ref{❨26❩, , @t{geometric-mean}}@: (function).
+@item
+@ref{❨86❩, , @t{linear-regression}}@: (function).
+@item
+@ref{❨64❩, , @t{mcnemars-test}}@: (function).
+@item
+@ref{❨69❩, , @t{mean}}@: (function).
+@item
+@ref{❨58❩, , @t{mean-sd-n}}@: (function).
+@item
+@ref{❨49❩, , @t{median}}@: (function).
+@item
+@ref{❨41❩, , @t{mode}}@: (function).
+@item
+@ref{❨37❩, , @t{normal-mean-ci}}@: (function).
+@item
+@ref{❨17❩, , @t{normal-mean-ci-on-sequence}}@: (function).
+@item
+@ref{❨77❩, , @t{normal-pdf}}@: (function).
+@item
+@ref{❨44❩, , @t{normal-sd-ci}}@: (function).
+@item
+@ref{❨53❩, , @t{normal-sd-ci-on-sequence}}@: (function).
+@item
+@ref{❨20❩, , @t{normal-variance-ci}}@: (function).
+@item
+@ref{❨28❩, , @t{normal-variance-ci-on-sequence}}@: (function).
+@item
+@ref{❨76❩, , @t{percentile}}@: (function).
+@item
+@ref{❨48❩, , @t{permutations}}@: (function).
+@item
+@ref{❨59❩, , @t{phi}}@: (function).
+@item
+@ref{❨50❩, , @t{poisson-cumulative-probability}}@: (function).
+@item
+@ref{❨57❩, , @t{poisson-ge-probability}}@: (function).
+@item
+@ref{❨34❩, , @t{poisson-mu-ci}}@: (function).
+@item
+@ref{❨84❩, , @t{poisson-probability}}@: (function).
+@item
+@ref{❨73❩, , @t{poisson-test-one-sample}}@: (function).
+@item
+@ref{❨27❩, , @t{random-normal}}@: (function).
+@item
+@ref{❨39❩, , @t{random-pick}}@: (function).
+@item
+@ref{❨75❩, , @t{random-sample}}@: (function).
+@item
+@ref{❨83❩, , @t{round-float}}@: (function).
+@item
+@ref{❨22❩, , @t{sample-range}}@: (function).
+@item
+@ref{❨74❩, , @t{sd}}@: (function).
+@item
+@ref{❨43❩, , @t{sign-test}}@: (function).
+@item
+@ref{❨66❩, , @t{sign-test-on-sequences}}@: (function).
+@item
+@ref{❨46❩, , @t{spearman-rank-correlation}}@: (function).
+@item
+@ref{❨15❩, , @t{square}}@: (macro).
+@item
+@ref{❨89❩, , @t{standard-deviation}}@: (function).
+@item
+@ref{❨38❩, , @t{standard-error-of-the-mean}}@: (function).
+@item
+@ref{❨62❩, , @t{t-distribution}}@: (function).
+@item
+@ref{❨81❩, , @t{t-significance}}@: (function).
+@item
+@ref{❨29❩, , @t{t-test-one-sample}}@: (function).
+@item
+@ref{❨68❩, , @t{t-test-one-sample-on-sequence}}@: (function).
+@item
+@ref{❨40❩, , @t{t-test-one-sample-sse}}@: (function).
+@item
+@ref{❨18❩, , @t{t-test-paired}}@: (function).
+@item
+@ref{❨45❩, , @t{t-test-paired-on-sequences}}@: (function).
+@item
+@ref{❨14❩, , @t{t-test-paired-sse}}@: (function).
+@item
+@ref{❨25❩, , @t{t-test-two-sample}}@: (function).
+@item
+@ref{❨72❩, , @t{t-test-two-sample-on-sequences}}@: (function).
+@item
+@ref{❨78❩, , @t{t-test-two-sample-sse}}@: (function).
+@item
+@ref{❨47❩, , @t{test-variables}}@: (macro).
+@item
+@ref{❨24❩, , @t{variance}}@: (function).
+@item
+@ref{❨31❩, , @t{wilcoxon-signed-rank-test}}@: (function).
+@item
+@ref{❨65❩, , @t{wilcoxon-signed-rank-test-on-sequences}}@: (function).
+@item
+@ref{❨42❩, , @t{z}}@: (function).
+@item
+@ref{❨19❩, , @t{z-test}}@: (function).
+@item
+@ref{❨88❩, , @t{z-test-on-sequence}}@: (function).
+@end itemize
+@item Internals
+@itemize @bullet
+@item
+@ref{❨91❩, , @t{average-rank}}@: (function).
+@item
+@ref{❨102❩, , @t{beta-incomplete}}@: (function).
+@item
+@ref{❨94❩, , @t{binomial-le-probability}}@: (function).
+@item
+@ref{❨96❩, , @t{error-function}}@: (function).
+@item
+@ref{❨93❩, , @t{error-function-complement}}@: (function).
+@item
+@ref{❨100❩, , @t{factorial}}@: (function).
+@item
+@ref{❨99❩, , @t{find-critical-value}}@: (function).
+@item
+@ref{❨98❩, , @t{gamma-incomplete}}@: (function).
+@item
+@ref{❨97❩, , @t{gamma-ln}}@: (function).
+@item
+@ref{❨92❩, , @t{round-up}}@: (function).
+@item
+@ref{❨95❩, , @t{safe-exp}}@: (function).
+@item
+@ref{❨101❩, , @t{sign}}@: (function).
+@item
+@ref{❨103❩, , @t{underflow-goes-to-zero}}@: (macro).
+@end itemize
+@end table
+
+
+@c -------------------------
+@c The nu.statistics package
+@c -------------------------
+@node The nu․statistics package, The statistics-1 package, The lh․statistics package, Packages
+@section @t{nu.statistics}
+@anchor{❨9❩}@c
+@packageindex{nu.statistics}@c
+@table @strong
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@item Use List
+@itemize @bullet
+@item
+@t{alexandria}.
+@item
+@t{anaphora}.
+@item
+@t{common-lisp}.
+@item
+@t{let-plus}.
+@item
+@t{num-utils.arithmetic}.
+@item
+@t{num-utils.num=}.
+@item
+@t{num-utils.utilities}.
+@end itemize
+@item Public Interface
+@itemize @bullet
+@item
+@ref{❨163❩, , @t{*central-sample-moments-default-degree*}}@: (special variable).
+@item
+@ref{❨129❩, , @t{add}}@: (generic function).
+@item
+@ref{❨168❩, , @t{central-m2}}@: (generic function).
+@item
+@ref{❨134❩, , @t{central-m3}}@: (generic function).
+@item
+@ref{❨118❩, , @t{central-m4}}@: (generic function).
+@item
+@ref{❨146❩, , @t{central-sample-moments}}@: (generic function).
+@item
+@ref{❨150❩, , @t{central-sample-moments}}@: (structure).
+@item
+@ref{❨141❩, , @t{central-sample-moments-degree}}@: (function).
+@item
+@ref{❨122❩, , @t{cross-tabulate}}@: (function).
+@item
+@ref{❨123❩, , @t{empirical-quantile}}@: (function).
+@item
+@ref{❨142❩, , @t{empirical-quantile-probabilities}}@: (function).
+@item
+@ref{❨124❩, , @t{empty-accumulator}}@: (condition).
+@item
+@ref{❨174❩, , @t{ensure-sorted-reals}}@: (generic function).
+@item
+@ref{❨155❩, , @t{ensure-sorted-vector}}@: (function).
+@item
+@ref{❨143❩, , @t{information-not-collected-in-accumulator}}@: (condition).
+@item
+@ref{❨160❩, , @t{kurtosis}}@: (generic function).
+@item
+@ref{❨156❩, , @t{make-sparse-counter}}@: (function).
+@item
+@ref{❨171❩, , @t{mean}}@: (generic function).
+@item
+@ref{❨115❩, , @t{median}}@: (generic function).
+@item
+@ref{❨164❩, , @t{not-enough-elements-in-accumulator}}@: (condition).
+@item
+@ref{❨111❩, , @t{pool}}@: (function).
+@item
+@ref{❨137❩, , @t{quantile}}@: (generic function).
+@item
+@ref{❨157❩, , @t{quantiles}}@: (generic function).
+@item
+@ref{❨125❩, , @t{sd}}@: (generic function).
+@item
+@ref{❨165❩, , @t{skewness}}@: (generic function).
+@item
+@ref{❨104❩, , @t{sorted-reals}}@: (structure).
+@item
+@ref{❨121❩, , @t{sorted-reals-elements}}@: (function).
+@item
+@ref{❨127❩, , @t{sparse-counter}}@: (structure).
+@item
+@ref{❨107❩, , @t{sparse-counter-count}}@: (function).
+@item
+@ref{❨144❩, , @t{sparse-counter-table}}@: (reader).
+@item
+@ref{❨178❩, , @t{tabulate}}@: (function).
+@item
+@ref{❨108❩, , @t{tally}}@: (generic function).
+@item
+@ref{❨112❩, , @t{variance}}@: (generic function).
+@item
+@ref{❨145❩, , @t{weighted-quantiles}}@: (function).
+@end itemize
+@item Internals
+@itemize @bullet
+@item
+@ref{❨213❩, , @t{@ampchar{}sorted-reals}}@: (macro).
+@item
+@ref{❨202❩, , @t{@ampchar{}sorted-reals-r/o}}@: (macro).
+@item
+@ref{❨194❩, , @t{central-sample-moments-m}}@: (reader).
+@item
+@ref{❨195❩, , @t{(setf central-sample-moments-m)}}@: (writer).
+@item
+@ref{❨204❩, , @t{central-sample-moments-p}}@: (function).
+@item
+@ref{❨191❩, , @t{central-sample-moments-s2}}@: (reader).
+@item
+@ref{❨192❩, , @t{(setf central-sample-moments-s2)}}@: (writer).
+@item
+@ref{❨189❩, , @t{central-sample-moments-s3}}@: (reader).
+@item
+@ref{❨190❩, , @t{(setf central-sample-moments-s3)}}@: (writer).
+@item
+@ref{❨187❩, , @t{central-sample-moments-s4}}@: (reader).
+@item
+@ref{❨188❩, , @t{(setf central-sample-moments-s4)}}@: (writer).
+@item
+@ref{❨206❩, , @t{central-sample-moments-w}}@: (function).
+@item
+@ref{❨207❩, , @t{(setf central-sample-moments-w)}}@: (function).
+@item
+@ref{❨197❩, , @t{copy-central-sample-moments}}@: (function).
+@item
+@ref{❨215❩, , @t{copy-sorted-reals}}@: (function).
+@item
+@ref{❨203❩, , @t{copy-sparse-counter}}@: (function).
+@item
+@ref{❨184❩, , @t{copy-tally-mixin}}@: (function).
+@item
+@ref{❨183❩, , @t{define-central-sample-moment}}@: (macro).
+@item
+@ref{❨208❩, , @t{make-central-sample-moments}}@: (function).
+@item
+@ref{❨210❩, , @t{make-sorted-reals}}@: (function).
+@item
+@ref{❨205❩, , @t{make-sparse-counter%}}@: (function).
+@item
+@ref{❨200❩, , @t{make-tally-mixin}}@: (function).
+@item
+@ref{❨181❩, , @t{pool2}}@: (generic function).
+@item
+@ref{❨216❩, , @t{sort-reals}}@: (function).
+@item
+@ref{❨179❩, , @t{sorted-reals-ordered-elements}}@: (reader).
+@item
+@ref{❨180❩, , @t{(setf sorted-reals-ordered-elements)}}@: (writer).
+@item
+@ref{❨193❩, , @t{sorted-reals-p}}@: (function).
+@item
+@ref{❨211❩, , @t{sorted-reals-unordered-elements}}@: (reader).
+@item
+@ref{❨212❩, , @t{(setf sorted-reals-unordered-elements)}}@: (writer).
+@item
+@ref{❨214❩, , @t{sparse-counter-p}}@: (function).
+@item
+@ref{❨198❩, , @t{tally-mixin}}@: (structure).
+@item
+@ref{❨209❩, , @t{tally-mixin-p}}@: (function).
+@item
+@ref{❨185❩, , @t{tally-mixin-w}}@: (reader).
+@item
+@ref{❨186❩, , @t{(setf tally-mixin-w)}}@: (writer).
+@item
+@ref{❨196❩, , @t{weighted-empirical-quantile}}@: (function).
+@item
+@ref{❨201❩, , @t{weighted-quantile-p-table}}@: (function).
+@end itemize
+@end table
+
+
+@c ------------------------
+@c The statistics-1 package
+@c ------------------------
+@node The statistics-1 package, The ls․statistics package, The nu․statistics package, Packages
+@section @t{statistics-1}
+@anchor{❨10❩}@c
+@packageindex{statistics-1}@c
+@table @strong
+@item Source
+@ref{❨7❩, , @t{pkgdcl.lisp}}.
+@end table
+
+
+@c -------------------------
+@c The ls.statistics package
+@c -------------------------
+@node The ls․statistics package, , The statistics-1 package, Packages
+@section @t{ls.statistics}
+@anchor{❨11❩}@c
+@packageindex{ls.statistics}@c
+@table @strong
+@item Source
+@ref{❨6❩, , @t{ls-statistics.lisp}}.
+@item Use List
+@t{common-lisp}.
+@item Public Interface
+@itemize @bullet
+@item
+@ref{❨218❩, , @t{fivenum}}@: (function).
+@item
+@ref{❨219❩, , @t{interquartile-range}}@: (function).
+@item
+@ref{❨220❩, , @t{mean}}@: (function).
+@item
+@ref{❨217❩, , @t{variance}}@: (function).
+@end itemize
+@end table
+
+
+
+@c ====================================================================
+@c Definitions
+@c ====================================================================
+@node Definitions, Indexes, Packages, Top
+@chapter Definitions
+Definitions are sorted by export status, category, package, and then by
+lexicographic order.
+
+@menu
+* Public Interface::
+* Internals::
+@end menu
+
+
+@c ----------------
+@c Public Interface
+@c ----------------
+@node Public Interface, Internals, Definitions, Definitions
+@section Public Interface
+@menu
+* Public special variables::
+* Public macros::
+* Public ordinary functions::
+* Public generic functions::
+* Public standalone methods::
+* Public conditions::
+* Public structures::
+@end menu
+
+@node Public special variables, Public macros, Public Interface, Public Interface
+@subsection Special variables
+@defvr {Special Variable} {*central-sample-moments-default-degree*}
+@anchor{❨163❩}@c
+@specialsubindex{*central-sample-moments-default-degree*}@c
+Default degree for (weighted) central sample moments.
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@end table
+@end defvr
+
+@node Public macros, Public ordinary functions, Public special variables, Public Interface
+@subsection Macros
+@deffn {Macro} {square} (x)
+@anchor{❨15❩}@c
+@macrosubindex{square}@c
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Macro} {test-variables} (&rest args)
+@anchor{❨47❩}@c
+@macrosubindex{test-variables}@c
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+
+@node Public ordinary functions, Public generic functions, Public macros, Public Interface
+@subsection Ordinary functions
+@deffn {Function} {bin-and-count} (sequence n)
+@anchor{❨61❩}@c
+@functionsubindex{bin-and-count}@c
+Make N equal width bins and count the number of elements of sequence that belong in each.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {binomial-cumulative-probability} (n k p)
+@anchor{❨63❩}@c
+@functionsubindex{binomial-cumulative-probability}@c
+Return P(X<k) for X a binomial random variable with parameters n @ampchar{} p. Bionomial expecations for fewer than k events in N trials@comma{} each having probability p.  This is also known as probability mass function (PMF)@comma{} the probability of getting exactly k successes in n independent Bernoulli trials.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {binomial-ge-probability} (n k p)
+@anchor{❨80❩}@c
+@functionsubindex{binomial-ge-probability}@c
+The probability of k or more occurances in N events@comma{} each with probability p.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {binomial-probability} (n k p)
+@anchor{❨82❩}@c
+@functionsubindex{binomial-probability}@c
+Return P(X=k) for X a binomial random variable with parameters n @ampchar{} p.  Binomial expectations for seeing k events in N trials@comma{} each having probability p.  Use the Poisson approximation if N>100 and P<0.01.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {binomial-probability-ci} (n p alpha &key exact?)
+@anchor{❨52❩}@c
+@functionsubindex{binomial-probability-ci}@c
+Confidence intervals on a binomial probability.  If a binomial probability of p has been observed in N trials@comma{} what is the 1-alpha confidence interval around p?  Approximate (using normal theory approximation) when npq >= 10 unless told otherwise
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {binomial-test-one-sample} (p-hat n p &key tails exact?)
+@anchor{❨36❩}@c
+@functionsubindex{binomial-test-one-sample}@c
+The significance of a one sample test for the equality of an observed probability p-hat to an expected probability p under a binomial distribution with N observations.  Use the normal theory approximation if n*p*(1-p) > 10 (unless the exact flag is true).
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {binomial-test-one-sample-sse} (p-estimated p-null &key alpha 1-beta tails)
+@anchor{❨16❩}@c
+@functionsubindex{binomial-test-one-sample-sse}@c
+Returns the number of subjects needed to test whether an observed probability is significantly different from a particular binomial null hypothesis with a significance alpha and a power 1-beta.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {binomial-test-paired-sse} (pd pa &key alpha 1-beta tails)
+@anchor{❨35❩}@c
+@functionsubindex{binomial-test-paired-sse}@c
+Sample size estimate for the McNemar (discordant pairs) test.  Pd is the projected proportion of discordant pairs among all pairs@comma{} and Pa is the projected proportion of type A pairs among discordant pairs.  alpha@comma{} 1-beta and tails are as above.  Returns the number of individuals necessary; that is twice the number of matched pairs necessary.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {binomial-test-two-sample} (p-hat1 n1 p-hat2 n2 &key tails exact?)
+@anchor{❨85❩}@c
+@functionsubindex{binomial-test-two-sample}@c
+Are the observed probabilities of an event (p-hat1 and p-hat2) in N1/N2 trials different? The normal theory method implemented here.  The exact test is Fisher's contingency table method@comma{} below.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {binomial-test-two-sample-sse} (p1 p2 &key alpha sample-ratio 1-beta tails)
+@anchor{❨90❩}@c
+@functionsubindex{binomial-test-two-sample-sse}@c
+The number of subjects needed to test if two binomial probabilities are different at a given significance alpha and power 1-beta.  The sample sizes can be unequal; the p2 sample is sample-sse-ratio * the size of the p1 sample.  It can be a one tailed or two tailed test.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {central-sample-moments-degree} (central-sample-moments)
+@anchor{❨141❩}@c
+@functionsubindex{central-sample-moments-degree}@c
+Return the degree of CENTRAL-SAMPLE-MOMENTS.
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {chi-square} (dof percentile)
+@anchor{❨60❩}@c
+@functionsubindex{chi-square}@c
+;; Returns the point which is the indicated percentile in the Chi Square distribution with dof degrees of freedom.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {chi-square-cdf} (x dof)
+@anchor{❨79❩}@c
+@functionsubindex{chi-square-cdf}@c
+ Chi-square-cdf computes the left hand tail area under the chi square distribution under dof degrees of freedom up to X.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {chi-square-test-for-trend} (row1-counts row2-counts &optional scores)
+@anchor{❨13❩}@c
+@functionsubindex{chi-square-test-for-trend}@c
+This test works on a 2xk table and assesses if there is an increasing or decreasing trend.  Arguments are equal sized lists counts.  Optionally@comma{} provide a list of scores@comma{} which represent some numeric attribute of the group.  If not provided@comma{} scores are assumed to be 1 to k.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {chi-square-test-one-sample} (variance n sigma-squared &key tails)
+@anchor{❨12❩}@c
+@functionsubindex{chi-square-test-one-sample}@c
+The significance of a one sample Chi square test for the variance of a normal distribution.  Variance is the observed variance@comma{} N is the number of observations@comma{} and sigma-squared is the test variance.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {chi-square-test-rxc} (contingency-table)
+@anchor{❨71❩}@c
+@functionsubindex{chi-square-test-rxc}@c
+Takes contingency-table@comma{} an RxC array@comma{} and returns the significance of the relationship between the row variable and the column variable.  Any difference in proportion will cause this test to be significant -- consider using the test for trend instead if you are looking for a consistent change.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {choose} (n k)
+@anchor{❨54❩}@c
+@functionsubindex{choose}@c
+How may ways to take n things taken k at a time@comma{} when order doesn't matter
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {coefficient-of-variation} (sequence)
+@anchor{❨51❩}@c
+@functionsubindex{coefficient-of-variation}@c
+Return coefficient of variation
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {convert-to-standard-normal} (x mu sigma)
+@anchor{❨70❩}@c
+@functionsubindex{convert-to-standard-normal}@c
+Convert X from a Normal distribution with mean mu and variance sigma to standard normal
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {correlation-coefficient} (points)
+@anchor{❨55❩}@c
+@functionsubindex{correlation-coefficient}@c
+Pearson correlation
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {correlation-sse} (rho &key alpha 1-beta)
+@anchor{❨87❩}@c
+@functionsubindex{correlation-sse}@c
+Returns the size of a sample necessary to find a correlation of expected value rho with significance alpha and power 1-beta.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {correlation-test-two-sample} (r1 n1 r2 n2 &key tails)
+@anchor{❨23❩}@c
+@functionsubindex{correlation-test-two-sample}@c
+Test if two correlation coefficients are different.  Users Fisher's Z test.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {correlation-test-two-sample-on-sequences} (points1 points2 &key tails)
+@anchor{❨32❩}@c
+@functionsubindex{correlation-test-two-sample-on-sequences}@c
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {cross-tabulate} (sequence1 sequence2 &key test)
+@anchor{❨122❩}@c
+@functionsubindex{cross-tabulate}@c
+Cross-tabulate two sequences (using a SPARSE-COUNTER with the given TEST).  TEST is used to compare conses.
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {empirical-quantile} (sorted-vector q)
+@anchor{❨123❩}@c
+@functionsubindex{empirical-quantile}@c
+Return the empirical quantile of a vector of real numbers@comma{} sorted in ascending order (not checked).  Uses a 0.5 correction.
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {empirical-quantile-probabilities} (n)
+@anchor{❨142❩}@c
+@functionsubindex{empirical-quantile-probabilities}@c
+Probabilities that correspond to the empirical quantiles of a vector of length N.  That is to say@comma{}
+
+ (== (quantiles sample (empirical-quantile-probabilities (length sample)))@*
+     sample)@*
+
+for any vector SAMPLE.
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {ensure-sorted-vector} (object)
+@anchor{❨155❩}@c
+@functionsubindex{ensure-sorted-vector}@c
+Return the elements of OBJECT as a vector (or reals) sorted in ascending order.
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {f-significance} (f-statistic numerator-dof denominator-dof &optional one-tailed-p)
+@anchor{❨67❩}@c
+@functionsubindex{f-significance}@c
+Adopted from CLASP@comma{} but changed to handle F < 1 correctly in the
+one-tailed case.  The `f-statistic' must be a positive number.  The degrees
+of freedom arguments must be positive integers.  The `one-tailed-p' argument
+is treated as a boolean.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {f-test} (variance1 n1 variance2 n2 &key tails)
+@anchor{❨30❩}@c
+@functionsubindex{f-test}@c
+F test for the equality of two variances
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {false-discovery-correction} (p-values &key rate)
+@anchor{❨33❩}@c
+@functionsubindex{false-discovery-correction}@c
+A multiple testing correction that is less conservative than Bonferroni. Takes a list of p-values and a false discovery rate@comma{} and returns the number of p-values that are likely to be good enough to reject the null at that rate.  Returns a second value which is the p-value cutoff.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {fisher-exact-test} (contingency-table &key tails)
+@anchor{❨21❩}@c
+@functionsubindex{fisher-exact-test}@c
+Fisher's exact test.  Gives a p value for a particular 2x2 contingency table
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {fisher-z-transform} (r)
+@anchor{❨56❩}@c
+@functionsubindex{fisher-z-transform}@c
+Transforms the correlation coefficient to an approximately normal distribution.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {fivenum} (x &key tukey)
+@anchor{❨218❩}@c
+@functionsubindex{fivenum}@c
+By default@comma{} returns the five number summary (min@comma{} 1st quartile@comma{} median@comma{} 3rd quartile@comma{} max) of the elements X.
+   If the keyword :tukey is set to a non-nil value@comma{} Tukey's fivenum summary is computed instead.
+@table @strong
+@item Package
+@ref{❨11❩, , @t{ls.statistics}}.
+@item Source
+@ref{❨6❩, , @t{ls-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {geometric-mean} (sequence &optional base)
+@anchor{❨26❩}@c
+@functionsubindex{geometric-mean}@c
+Returns the geometric mean of SEQUENCE@*
+The geometric mean is a mean or average@comma{} which indicates the central tendency or typical value of a set of numbers by using the product of their values (as opposed to the arithmetic mean which uses their sum)
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {interquartile-range} (x)
+@anchor{❨219❩}@c
+@functionsubindex{interquartile-range}@c
+Returns the interquartile range of the elements of X.
+@table @strong
+@item Package
+@ref{❨11❩, , @t{ls.statistics}}.
+@item Source
+@ref{❨6❩, , @t{ls-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {linear-regression} (points)
+@anchor{❨86❩}@c
+@functionsubindex{linear-regression}@c
+Computes the regression equation for a least squares fit of a line to a sequence of points (each a list of two numbers@comma{} e.g. '((1.0 0.1) (2.0 0.2))) and report the intercept@comma{} slope@comma{} correlation coefficient r@comma{} R^2@comma{} and the significance of the difference of the slope from 0.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {make-sparse-counter} (&key test)
+@anchor{❨156❩}@c
+@functionsubindex{make-sparse-counter}@c
+Create a sparse counter.  Elements are compared with TEST (should be accepted by HASH-TABLE).
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {mcnemars-test} (a-discordant-count b-discordant-count &key exact?)
+@anchor{❨64❩}@c
+@functionsubindex{mcnemars-test}@c
+McNemar's test for correlated proportions@comma{} used for longitudinal studies. Look only at the number of discordant pairs (one treatment is effective and the other is not).  If the two treatments are A and B@comma{} a-discordant-count is the number where A worked and B did not@comma{} and b-discordant-count is the number where B worked and A did not.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {mean} (sequence)
+@anchor{❨69❩}@c
+@functionsubindex{mean}@c
+Returns the mean of SEQUENCE
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {mean} (object &key weights)
+@anchor{❨220❩}@c
+@functionsubindex{mean}@c
+Return the mean of OBJECT. OBJECT must be either a sequence of numbers@comma{} a sequence of BOOLEAN or a DISTRIBUTION object.@*
+
+A sequence of BOOLEAN is converted to a BIT-VECTOR and the mean of it returned.  This gives you the ratio of TRUE/FALSE values in the sequence (which is most often interpreted as a probability).
+
+For samples (numeric-vectors)@comma{} normalized by the weight-1 (and thus unbiased if certain assumptions hold@comma{} eg weights that count frequencies.
+@table @strong
+@item Package
+@ref{❨11❩, , @t{ls.statistics}}.
+@item Source
+@ref{❨6❩, , @t{ls-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {mean-sd-n} (sequence)
+@anchor{❨58❩}@c
+@functionsubindex{mean-sd-n}@c
+A combined calculation that is often useful.  Takes a sequence and returns three values: mean@comma{} standard deviation and N.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {median} (sequence)
+@anchor{❨49❩}@c
+@functionsubindex{median}@c
+Returns the median of SEQUENCE
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {mode} (sequence)
+@anchor{❨41❩}@c
+@functionsubindex{mode}@c
+Returns two values: a list of the modes and the number of times they occur
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {normal-mean-ci} (mean sd n alpha)
+@anchor{❨37❩}@c
+@functionsubindex{normal-mean-ci}@c
+Confidence interval for the mean of a normal distribution.@*
+
+The 1-alpha percent confidence interval on the mean of a normal distribution with parameters mean@comma{} sd @ampchar{} n.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {normal-mean-ci-on-sequence} (sequence alpha)
+@anchor{❨17❩}@c
+@functionsubindex{normal-mean-ci-on-sequence}@c
+The 1-alpha confidence interval on the mean of a sequence of numbers drawn from a Normal distribution.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {normal-pdf} (x mu sigma)
+@anchor{❨77❩}@c
+@functionsubindex{normal-pdf}@c
+The probability density function (PDF) for a normal distribution with mean mu and variance sigma at point x.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {normal-sd-ci} (sd n alpha)
+@anchor{❨44❩}@c
+@functionsubindex{normal-sd-ci}@c
+The 1-alpha confidence interval on the standard deviation of a sequence of numbers drawn from a Normal distribution.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {normal-sd-ci-on-sequence} (sequence alpha)
+@anchor{❨53❩}@c
+@functionsubindex{normal-sd-ci-on-sequence}@c
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {normal-variance-ci} (variance n alpha)
+@anchor{❨20❩}@c
+@functionsubindex{normal-variance-ci}@c
+The 1-alpha confidence interval on the variance of a sequence of numbers drawn from a Normal distribution.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {normal-variance-ci-on-sequence} (sequence alpha)
+@anchor{❨28❩}@c
+@functionsubindex{normal-variance-ci-on-sequence}@c
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {percentile} (sequence percent)
+@anchor{❨76❩}@c
+@functionsubindex{percentile}@c
+Return an element from SEQUENCE at percentile PERCENT
+This function is also known as quantile.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {permutations} (n k)
+@anchor{❨48❩}@c
+@functionsubindex{permutations}@c
+How many ways to take n things taken k at a time@comma{} when order matters
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {phi} (x)
+@anchor{❨59❩}@c
+@functionsubindex{phi}@c
+the CDF of standard normal distribution
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {poisson-cumulative-probability} (mu k)
+@anchor{❨50❩}@c
+@functionsubindex{poisson-cumulative-probability}@c
+Probability of seeing fewer than K events over a time period when the expected number events over that time is mu.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {poisson-ge-probability} (mu x)
+@anchor{❨57❩}@c
+@functionsubindex{poisson-ge-probability}@c
+Probability of X or more events when expected is mu.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {poisson-mu-ci} (x alpha)
+@anchor{❨34❩}@c
+@functionsubindex{poisson-mu-ci}@c
+Confidence interval for the Poisson parameter mu@*
+
+Given x observations in a unit of time@comma{} what is the 1-alpha confidence interval on the Poisson parameter mu (= lambda*T)?@*
+
+Since find-critical-value assumes that the function is monotonic increasing@comma{} adjust the value we are looking for taking advantage of reflectiveness
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {poisson-probability} (mu k)
+@anchor{❨84❩}@c
+@functionsubindex{poisson-probability}@c
+Probability of seeing k events over a time period when the expected number of events over that time is mu.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {poisson-test-one-sample} (observed mu &key tails approximate?)
+@anchor{❨73❩}@c
+@functionsubindex{poisson-test-one-sample}@c
+The significance of a one sample test for the equality of an observed number of events (observed) and an expected number mu under the poisson distribution.  Normal theory approximation is not that great@comma{} so don't use it unless told.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {pool} (&rest accumulators)
+@anchor{❨111❩}@c
+@functionsubindex{pool}@c
+Pool ACCUMULATORS.
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {random-normal} (&key mean sd)
+@anchor{❨27❩}@c
+@functionsubindex{random-normal}@c
+Returns a random number with mean and standard-distribution as specified.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {random-pick} (sequence)
+@anchor{❨39❩}@c
+@functionsubindex{random-pick}@c
+Random selection from sequence
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {random-sample} (n sequence)
+@anchor{❨75❩}@c
+@functionsubindex{random-sample}@c
+Return a random sample of size N from sequence@comma{} without replacement.  If N is equal to or greater than the length of the sequence@comma{} return the entire sequence.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {round-float} (x &key precision)
+@anchor{❨83❩}@c
+@functionsubindex{round-float}@c
+Rounds a floating point number to a specified number of digits precision.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {sample-range} (sequence)
+@anchor{❨22❩}@c
+@functionsubindex{sample-range}@c
+Return the difference between the largest and smallest values in SEQUENCE
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {sd} (sequence)
+@anchor{❨74❩}@c
+@functionsubindex{sd}@c
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {sign-test} (plus-count minus-count &key exact? tails)
+@anchor{❨43❩}@c
+@functionsubindex{sign-test}@c
+Really just a special case of the binomial one sample test with p = 1/2. The normal theory version has a correction factor to make it a better approximation.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {sign-test-on-sequences} (sequence1 sequence2 &key exact? tails)
+@anchor{❨66❩}@c
+@functionsubindex{sign-test-on-sequences}@c
+Same as SIGN-TEST@comma{} but takes two sequences and tests whether the entries in one are different (greater or less) than the other.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {sorted-reals-elements} (sorted-reals)
+@anchor{❨121❩}@c
+@functionsubindex{sorted-reals-elements}@c
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {sparse-counter-count} (sparse-counter object)
+@anchor{❨107❩}@c
+@functionsubindex{sparse-counter-count}@c
+Return the count for OBJECT.
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Reader} {sparse-counter-table} (instance)
+@anchor{❨144❩}@c
+@functionsubindex{sparse-counter-table}@c
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@item Target Slot
+@ref{❨128❩, , @t{table}}.
+@end table
+@end deffn
+@deffn {Function} {spearman-rank-correlation} (points)
+@anchor{❨46❩}@c
+@functionsubindex{spearman-rank-correlation}@c
+Spearman rank correlation computes the relationship between a pair of variables when one or both are either ordinal or have a distribution that is far from normal.  It takes a list of points (same format as linear-regression) and returns the spearman rank correlation coefficient and its significance.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {standard-deviation} (sequence)
+@anchor{❨89❩}@c
+@functionsubindex{standard-deviation}@c
+Return the standard deviation of SEQUENCE
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {standard-error-of-the-mean} (sequence)
+@anchor{❨38❩}@c
+@functionsubindex{standard-error-of-the-mean}@c
+Return the estimated standard deviation obtained from a set of sample means from repeated samples
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {t-distribution} (dof percentile)
+@anchor{❨62❩}@c
+@functionsubindex{t-distribution}@c
+Returns the point which is the indicated percentile in the T distribution with dof degrees of freedom
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {t-significance} (t-statistic dof &key tails)
+@anchor{❨81❩}@c
+@functionsubindex{t-significance}@c
+Adopted from CLASP 1.4.3@comma{} http://eksl-www.cs.umass.edu/clasp.html
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {t-test-one-sample} (x-bar sd n mu &key tails)
+@anchor{❨29❩}@c
+@functionsubindex{t-test-one-sample}@c
+The significance of a one sample T test for the mean of a normal distribution with unknown variance.  X-bar is the observed mean@comma{} sd is the observed standard deviation@comma{} N is the number of observations and mu is the test mean.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {t-test-one-sample-on-sequence} (sequence mu &key tails)
+@anchor{❨68❩}@c
+@functionsubindex{t-test-one-sample-on-sequence}@c
+The significance of a one sample T test for the mean of a normal sequence of numbers with unknown variance.  X-bar is the observed mean@comma{} sd is the observed standard deviation@comma{} N is the number of observations and mu is the test mean.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {t-test-one-sample-sse} (mu mu-null variance &key alpha 1-beta tails)
+@anchor{❨40❩}@c
+@functionsubindex{t-test-one-sample-sse}@c
+Returns the number of subjects needed to test whether the mean of a normally distributed sample mu is different from a null hypothesis mean mu-null and variance variance@comma{} with alpha@comma{} 1-beta and tails as specified.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {t-test-paired} (d-bar sd n &key tails)
+@anchor{❨18❩}@c
+@functionsubindex{t-test-paired}@c
+The significance of a paired t test for the means of two normal distributions in a longitudinal study.  D-bar is the mean difference@comma{} sd is the standard deviation of the differences@comma{} N is the number of pairs.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {t-test-paired-on-sequences} (before after &key tails)
+@anchor{❨45❩}@c
+@functionsubindex{t-test-paired-on-sequences}@c
+The significance of a paired t test for means of two normal distributions in a longitudinal study.  Before is a sequence of before values@comma{} after is the sequence of paired after values (which must be the same length as the before sequence).
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {t-test-paired-sse} (difference-mu difference-variance &key alpha 1-beta tails)
+@anchor{❨14❩}@c
+@functionsubindex{t-test-paired-sse}@c
+Returns the number of subjects needed to test whether the differences with mean difference-mu and variance difference-variance@comma{} with alpha@comma{} 1-beta and tails as specified.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {t-test-two-sample} (x-bar1 sd1 n1 x-bar2 sd2 n2 &key variances-equal? variance-significance-cutoff tails)
+@anchor{❨25❩}@c
+@functionsubindex{t-test-two-sample}@c
+The significance of the difference of two means (x-bar1 and x-bar2) with standard deviations sd1 and sd2@comma{} and sample sizes n1 and n2 respectively. The form of the two sample t test depends on whether the sample variances are equal or not.   If the variable variances-equal? is :test@comma{} then we use an F test and the variance-significance-cutoff to determine if they are equal.  If the variances are equal@comma{} then we use the two sample t test for equal variances.  If they are not equal@comma{} we use the Satterthwaite method@comma{} which has good type I error properties (at the loss of some power).
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {t-test-two-sample-on-sequences} (sequence1 sequence2 &key variance-significance-cutoff tails)
+@anchor{❨72❩}@c
+@functionsubindex{t-test-two-sample-on-sequences}@c
+The significance of the difference of two means of SEQUENCE1 and SEQUENCE2 with standard deviations sd1 and sd2@comma{} and sample sizes n1 and n2 respectively. The form of the two sample t test depends on whether the sample variances are equal or not.   If the variable variances-equal? is :test@comma{} then we use an F test and the variance-significance-cutoff to determine if they are equal.  If the variances are equal@comma{} then we use the two sample t test for equal variances.  If they are not equal@comma{} we use the Satterthwaite method.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {t-test-two-sample-sse} (mu1 variance1 mu2 variance2 &key sample-ratio alpha 1-beta tails)
+@anchor{❨78❩}@c
+@functionsubindex{t-test-two-sample-sse}@c
+Returns the number of subjects needed to test whether the mean mu1 of a normally distributed sample (with variance variance1) is different from a second sample with mean mu2 and variance variance2@comma{} with alpha@comma{} 1-beta and tails as specified.  It is also possible to set a sample size ratio of sample 1 to sample 2.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {tabulate} (sequence &key test)
+@anchor{❨178❩}@c
+@functionsubindex{tabulate}@c
+Tabulate a sequence (using a SPARSE-COUNTER with the given TEST).
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {variance} (sequence)
+@anchor{❨24❩}@c
+@functionsubindex{variance}@c
+Return variance of SEQUENCE
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {variance} (object &key weights biased?)
+@anchor{❨217❩}@c
+@functionsubindex{variance}@c
+Variance of OBJECT.  For samples@comma{} normalized by the weight-1 (and thus unbiased if certain assumptions hold@comma{} e.g. weights that count frequencies).@*
+
+Note that alexandria's default for variance will return biased variance.  We change that here for consistency.  If you want a biased variance use alexandria:variance directly.
+@table @strong
+@item Package
+@ref{❨11❩, , @t{ls.statistics}}.
+@item Source
+@ref{❨6❩, , @t{ls-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {weighted-quantiles} (values weights qs)
+@anchor{❨145❩}@c
+@functionsubindex{weighted-quantiles}@c
+Calculate quantiles QS of weighted observations.  Uses a 0.5 correction.
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {wilcoxon-signed-rank-test} (differences &optional tails)
+@anchor{❨31❩}@c
+@functionsubindex{wilcoxon-signed-rank-test}@c
+A test on the ranking of positive and negative differences (are the positive differences significantly larger/smaller than the negative ones). Assumes a continuous and symmetric distribution of differences@comma{} although not a normal one.  This is the normal theory approximation@comma{} which is only valid when N > 15. This test is equivalent to the Mann-Whitney test.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {wilcoxon-signed-rank-test-on-sequences} (sequence1 sequence2 &optional tails)
+@anchor{❨65❩}@c
+@functionsubindex{wilcoxon-signed-rank-test-on-sequences}@c
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {z} (percentile &key epsilon)
+@anchor{❨42❩}@c
+@functionsubindex{z}@c
+The inverse normal function@comma{} P(X<Zu) = u where X is distributed as the standard normal.  Uses binary search.(
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {z-test} (x-bar n &key mu sigma tails)
+@anchor{❨19❩}@c
+@functionsubindex{z-test}@c
+The significance of a one sample Z test for the mean of a normal distribution with known variance.  mu is the null hypothesis mean@comma{} x-bar is the observed mean@comma{} sigma is the standard deviation and N is the number of observations.  If tails is :both@comma{} the significance of a difference between x-bar and mu.  If tails is :positive@comma{} the significance of x-bar is greater than mu@comma{} and if tails is :negative@comma{} the significance of x-bar being less than mu.  Returns a p value.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {z-test-on-sequence} (sequence &key mu sigma tails)
+@anchor{❨88❩}@c
+@functionsubindex{z-test-on-sequence}@c
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+
+@node Public generic functions, Public standalone methods, Public ordinary functions, Public Interface
+@subsection Generic functions
+@deffn {Generic Function} {add} (accumulator object &key weight)
+@anchor{❨129❩}@c
+@genericsubindex{add}@c
+Add OBJECT to ACCUMULATOR.  Return OBJECT.  NILs are ignored by the accumulator@comma{} unless a specialized method decides otherwise.  Keywords may be used to specify additional information (eg weight).
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@item Methods
+@deffn {Method} {add} ((accumulator @ref{❨127❩, , @t{sparse-counter}}) object &key weight)
+@anchor{❨130❩}@c
+@methodsubindex{add}@c
+Increments the count of OBJECT in SPARSE-COUNTER@comma{} optionally with a weight
+@table @strong
+@end table
+@end deffn
+@deffn {Method} {add} ((accumulator @ref{❨104❩, , @t{sorted-reals}}) object &key)
+@anchor{❨131❩}@c
+@methodsubindex{add}@c
+@table @strong
+@end table
+@end deffn
+@deffn {Method} {add} ((moments @ref{❨150❩, , @t{central-sample-moments}}) (y @t{real}) &key weight)
+@anchor{❨132❩}@c
+@methodsubindex{add}@c
+@table @strong
+@end table
+@end deffn
+@deffn {Method} {add} (accumulator (object @t{null}) &key)
+@anchor{❨133❩}@c
+@methodsubindex{add}@c
+@table @strong
+@end table
+@end deffn
+@end table
+@end deffn
+@deffn {Generic Function} {central-m2} (object &key weights)
+@anchor{❨168❩}@c
+@genericsubindex{central-m2}@c
+Second central moment.  For samples@comma{} normalized by the total weight (and thus not the unbiased estimator@comma{} see VARIANCE).
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@item Methods
+@deffn {Method} {central-m2} (object &key weights)
+@anchor{❨169❩}@c
+@methodsubindex{central-m2}@c
+@table @strong
+@end table
+@end deffn
+@deffn {Method} {central-m2} ((object @ref{❨150❩, , @t{central-sample-moments}}) &key weights)
+@anchor{❨170❩}@c
+@methodsubindex{central-m2}@c
+@table @strong
+@end table
+@end deffn
+@end table
+@end deffn
+@deffn {Generic Function} {central-m3} (object &key weights)
+@anchor{❨134❩}@c
+@genericsubindex{central-m3}@c
+Third central moment.
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@item Methods
+@deffn {Method} {central-m3} (object &key weights)
+@anchor{❨135❩}@c
+@methodsubindex{central-m3}@c
+@table @strong
+@end table
+@end deffn
+@deffn {Method} {central-m3} ((object @ref{❨150❩, , @t{central-sample-moments}}) &key weights)
+@anchor{❨136❩}@c
+@methodsubindex{central-m3}@c
+@table @strong
+@end table
+@end deffn
+@end table
+@end deffn
+@deffn {Generic Function} {central-m4} (object &key weights)
+@anchor{❨118❩}@c
+@genericsubindex{central-m4}@c
+Fourth central moment.
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@item Methods
+@deffn {Method} {central-m4} (object &key weights)
+@anchor{❨119❩}@c
+@methodsubindex{central-m4}@c
+@table @strong
+@end table
+@end deffn
+@deffn {Method} {central-m4} ((object @ref{❨150❩, , @t{central-sample-moments}}) &key weights)
+@anchor{❨120❩}@c
+@methodsubindex{central-m4}@c
+@table @strong
+@end table
+@end deffn
+@end table
+@end deffn
+@deffn {Generic Function} {central-sample-moments} (object &key degree weights)
+@anchor{❨146❩}@c
+@genericsubindex{central-sample-moments}@c
+Return a CENTRAL-SAMPLE-MOMENTS object that allows the calculation of the central sample moments of OBJECT up to the given DEGREE.
+
+When WEIGHTS are given@comma{} they need to be a sequence of matching length.
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@item Methods
+@deffn {Method} {central-sample-moments} ((object @t{null}) &key degree weights)
+@anchor{❨147❩}@c
+@methodsubindex{central-sample-moments}@c
+@table @strong
+@end table
+@end deffn
+@deffn {Method} {central-sample-moments} ((moments @ref{❨150❩, , @t{central-sample-moments}}) &key degree weights)
+@anchor{❨148❩}@c
+@methodsubindex{central-sample-moments}@c
+@table @strong
+@end table
+@end deffn
+@deffn {Method} {central-sample-moments} ((sequence @t{sequence}) &key degree weights)
+@anchor{❨149❩}@c
+@methodsubindex{central-sample-moments}@c
+@table @strong
+@end table
+@end deffn
+@end table
+@end deffn
+@deffn {Generic Function} {ensure-sorted-reals} (object)
+@anchor{❨174❩}@c
+@genericsubindex{ensure-sorted-reals}@c
+Return the contents of OBJECT as a SORTED-REALS.
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@item Methods
+@deffn {Method} {ensure-sorted-reals} ((sorted-reals @ref{❨104❩, , @t{sorted-reals}}))
+@anchor{❨175❩}@c
+@methodsubindex{ensure-sorted-reals}@c
+@table @strong
+@end table
+@end deffn
+@deffn {Method} {ensure-sorted-reals} ((array @t{array}))
+@anchor{❨176❩}@c
+@methodsubindex{ensure-sorted-reals}@c
+@table @strong
+@end table
+@end deffn
+@deffn {Method} {ensure-sorted-reals} ((list @t{list}))
+@anchor{❨177❩}@c
+@methodsubindex{ensure-sorted-reals}@c
+@table @strong
+@end table
+@end deffn
+@end table
+@end deffn
+@deffn {Generic Function} {kurtosis} (object &key weights)
+@anchor{❨160❩}@c
+@genericsubindex{kurtosis}@c
+Kurtosis FIXME talk about bias@comma{} maybe implement unbiased?
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@item Methods
+@deffn {Method} {kurtosis} (object &key weights)
+@anchor{❨161❩}@c
+@methodsubindex{kurtosis}@c
+@table @strong
+@end table
+@end deffn
+@deffn {Method} {kurtosis} ((object @ref{❨150❩, , @t{central-sample-moments}}) &key weights)
+@anchor{❨162❩}@c
+@methodsubindex{kurtosis}@c
+@table @strong
+@end table
+@end deffn
+@end table
+@end deffn
+@deffn {Generic Function} {mean} (object &key weights)
+@anchor{❨171❩}@c
+@genericsubindex{mean}@c
+The mean of elements in OBJECT.
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@item Methods
+@deffn {Method} {mean} (object &key weights)
+@anchor{❨172❩}@c
+@methodsubindex{mean}@c
+@table @strong
+@end table
+@end deffn
+@deffn {Method} {mean} ((object @ref{❨150❩, , @t{central-sample-moments}}) &key weights)
+@anchor{❨173❩}@c
+@methodsubindex{mean}@c
+@table @strong
+@end table
+@end deffn
+@end table
+@end deffn
+@deffn {Generic Function} {median} (object)
+@anchor{❨115❩}@c
+@genericsubindex{median}@c
+Median of OBJECT.
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@item Methods
+@deffn {Method} {median} ((sample @t{sequence}))
+@anchor{❨116❩}@c
+@methodsubindex{median}@c
+Returns median of SAMPLE.  SAMPLE must be a sequence of real numbers.
+@table @strong
+@end table
+@end deffn
+@deffn {Method} {median} (object)
+@anchor{❨117❩}@c
+@methodsubindex{median}@c
+@table @strong
+@end table
+@end deffn
+@end table
+@end deffn
+@deffn {Generic Function} {quantile} (object q)
+@anchor{❨137❩}@c
+@genericsubindex{quantile}@c
+Return an element at quantile Q.  May be an interpolation or an approximation@comma{} depending on OBJECT and Q.  NOTE: Extensions should define methods for QUANTILES@comma{} not QUANTILE.
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@item Methods
+@deffn {Method} {quantile} ((object @t{sequence}) q)
+@anchor{❨138❩}@c
+@methodsubindex{quantile}@c
+@table @strong
+@end table
+@end deffn
+@deffn {Method} {quantile} ((object @t{r-univariate}) q)
+@anchor{❨139❩}@c
+@methodsubindex{quantile}@c
+@table @strong
+@end table
+@end deffn
+@deffn {Method} {quantile} (object q)
+@anchor{❨140❩}@c
+@methodsubindex{quantile}@c
+@table @strong
+@end table
+@end deffn
+@end table
+@end deffn
+@deffn {Generic Function} {quantiles} (object qs)
+@anchor{❨157❩}@c
+@genericsubindex{quantiles}@c
+Multiple quantiles (see QUANTILE).  NOTE: Extensions should define methods for QUANTILES@comma{} not QUANTILE.
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@item Methods
+@deffn {Method} {quantiles} ((object @t{sequence}) qs)
+@anchor{❨158❩}@c
+@methodsubindex{quantiles}@c
+@table @strong
+@end table
+@end deffn
+@deffn {Method} {quantiles} ((accumulator @ref{❨104❩, , @t{sorted-reals}}) q)
+@anchor{❨159❩}@c
+@methodsubindex{quantiles}@c
+@table @strong
+@end table
+@end deffn
+@end table
+@end deffn
+@deffn {Generic Function} {sd} (object &key weights)
+@anchor{❨125❩}@c
+@genericsubindex{sd}@c
+Standard deviation.  For samples@comma{} the square root of the unbiased estimator (see VARIANCE).
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@item Methods
+@deffn {Method} {sd} (object &key weights)
+@anchor{❨126❩}@c
+@methodsubindex{sd}@c
+@table @strong
+@end table
+@end deffn
+@end table
+@end deffn
+@deffn {Generic Function} {skewness} (object &key weights)
+@anchor{❨165❩}@c
+@genericsubindex{skewness}@c
+Skewness FIXME talk about bias@comma{} maybe implement unbiased?
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@item Methods
+@deffn {Method} {skewness} (object &key weights)
+@anchor{❨166❩}@c
+@methodsubindex{skewness}@c
+@table @strong
+@end table
+@end deffn
+@deffn {Method} {skewness} ((object @ref{❨150❩, , @t{central-sample-moments}}) &key weights)
+@anchor{❨167❩}@c
+@methodsubindex{skewness}@c
+@table @strong
+@end table
+@end deffn
+@end table
+@end deffn
+@deffn {Generic Function} {tally} (accumulator)
+@anchor{❨108❩}@c
+@genericsubindex{tally}@c
+The total weight of elements in ACCUMULATOR.
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@item Methods
+@deffn {Method} {tally} ((accumulator @ref{❨127❩, , @t{sparse-counter}}))
+@anchor{❨109❩}@c
+@methodsubindex{tally}@c
+Return the total 'weight' of the accumulator
+@table @strong
+@end table
+@end deffn
+@deffn {Method} {tally} ((accumulator @ref{❨198❩, , @t{tally-mixin}}))
+@anchor{❨110❩}@c
+@methodsubindex{tally}@c
+@table @strong
+@end table
+@end deffn
+@end table
+@end deffn
+@deffn {Generic Function} {variance} (object &key weights)
+@anchor{❨112❩}@c
+@genericsubindex{variance}@c
+Variance of OBJECT.  For samples@comma{} normalized by the weight-1 (and thus unbiased if certain assumptions hold@comma{} eg weights that count frequencies).
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@item Methods
+@deffn {Method} {variance} (object &key weights)
+@anchor{❨113❩}@c
+@methodsubindex{variance}@c
+@table @strong
+@end table
+@end deffn
+@deffn {Method} {variance} ((object @ref{❨150❩, , @t{central-sample-moments}}) &key weights)
+@anchor{❨114❩}@c
+@methodsubindex{variance}@c
+@table @strong
+@end table
+@end deffn
+@end table
+@end deffn
+
+@node Public standalone methods, Public conditions, Public generic functions, Public Interface
+@subsection Standalone methods
+@deffn {Method} {as-alist} ((object @ref{❨127❩, , @t{sparse-counter}}))
+@anchor{❨241❩}@c
+@methodsubindex{as-alist}@c
+Return (OBJECT . COUNT) pairs as an alist.
+@table @strong
+@item Package
+@t{num-utils.utilities}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Method} {num=} ((a @ref{❨150❩, , @t{central-sample-moments}}) (b @ref{❨150❩, , @t{central-sample-moments}}) &optional tolerance)
+@anchor{❨245❩}@c
+@methodsubindex{num=}@c
+@table @strong
+@item Package
+@t{num-utils.num=}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Method} {print-object} ((acc @ref{❨104❩, , @t{sorted-reals}}) stream)
+@anchor{❨235❩}@c
+@methodsubindex{print-object}@c
+@table @strong
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Method} {print-object} ((sparse-counter @ref{❨127❩, , @t{sparse-counter}}) stream)
+@anchor{❨240❩}@c
+@methodsubindex{print-object}@c
+@table @strong
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@end table
+@end deffn
+
+@node Public conditions, Public structures, Public standalone methods, Public Interface
+@subsection Conditions
+@deftp {Condition} {empty-accumulator}
+@anchor{❨124❩}@c
+@conditionsubindex{empty-accumulator}@c
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@item Direct superclasses
+@t{error}.
+@end table
+@end deftp
+@deftp {Condition} {information-not-collected-in-accumulator}
+@anchor{❨143❩}@c
+@conditionsubindex{information-not-collected-in-accumulator}@c
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@item Direct superclasses
+@t{error}.
+@end table
+@end deftp
+@deftp {Condition} {not-enough-elements-in-accumulator}
+@anchor{❨164❩}@c
+@conditionsubindex{not-enough-elements-in-accumulator}@c
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@item Direct superclasses
+@t{error}.
+@end table
+@end deftp
+
+@node Public structures, , Public conditions, Public Interface
+@subsection Structures
+@deftp {Structure} {central-sample-moments}
+@anchor{❨150❩}@c
+@structuresubindex{central-sample-moments}@c
+Central sample moments calculated on-line/single-pass.@*
+
+   M   weighted mean@*
+   S2  weighted sum of squared deviations from the mean@comma{} not calculated when NIL
+   S3  weighted sum of cubed deviations from the mean@comma{} not calculated when NIL
+   S4  weighted sum of 4th power deviations from the mean@comma{} not calculated when NIL
+
+Allows on-line@comma{} numerically stable calculation of moments.  See
+cite@lbracechar{}bennett2009numerically@rbracechar{} and cite@lbracechar{}pebay2008formulas@rbracechar{} for the description
+of the algorithm.  M_2@comma{} ...@comma{} M_4 in the paper are s2@comma{} ...@comma{} s4 in the code.
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@item Direct superclasses
+@ref{❨198❩, , @t{tally-mixin}}.
+@item Direct methods
+@itemize @bullet
+@item
+@ref{❨132❩, , @t{add}}.
+@item
+@ref{❨170❩, , @t{central-m2}}.
+@item
+@ref{❨136❩, , @t{central-m3}}.
+@item
+@ref{❨120❩, , @t{central-m4}}.
+@item
+@ref{❨148❩, , @t{central-sample-moments}}.
+@item
+@ref{❨162❩, , @t{kurtosis}}.
+@item
+@ref{❨173❩, , @t{mean}}.
+@item
+@ref{❨245❩, , @t{num=}}.
+@item
+@ref{❨182❩, , @t{pool2}}.
+@item
+@ref{❨167❩, , @t{skewness}}.
+@item
+@ref{❨114❩, , @t{variance}}.
+@end itemize
+@item Direct slots
+@defvr {Slot} {m}
+@anchor{❨151❩}@c
+@slotsubindex{m}@c
+@table @strong
+@item Type
+@t{real}
+@item Initform
+@t{0.0d0}
+@item Readers
+@ref{❨194❩, , @t{central-sample-moments-m}}.
+@item Writers
+@ref{❨195❩, , @t{(setf central-sample-moments-m)}}.
+@end table
+@end defvr
+@defvr {Slot} {s2}
+@anchor{❨152❩}@c
+@slotsubindex{s2}@c
+@table @strong
+@item Type
+@t{(or (real 0) null)}
+@item Initform
+@t{0.0d0}
+@item Readers
+@ref{❨191❩, , @t{central-sample-moments-s2}}.
+@item Writers
+@ref{❨192❩, , @t{(setf central-sample-moments-s2)}}.
+@end table
+@end defvr
+@defvr {Slot} {s3}
+@anchor{❨153❩}@c
+@slotsubindex{s3}@c
+@table @strong
+@item Type
+@t{(or real null)}
+@item Initform
+@t{0.0d0}
+@item Readers
+@ref{❨189❩, , @t{central-sample-moments-s3}}.
+@item Writers
+@ref{❨190❩, , @t{(setf central-sample-moments-s3)}}.
+@end table
+@end defvr
+@defvr {Slot} {s4}
+@anchor{❨154❩}@c
+@slotsubindex{s4}@c
+@table @strong
+@item Type
+@t{(or (real 0) null)}
+@item Initform
+@t{0.0d0}
+@item Readers
+@ref{❨187❩, , @t{central-sample-moments-s4}}.
+@item Writers
+@ref{❨188❩, , @t{(setf central-sample-moments-s4)}}.
+@end table
+@end defvr
+@end table
+@end deftp
+@deftp {Structure} {sorted-reals}
+@anchor{❨104❩}@c
+@structuresubindex{sorted-reals}@c
+Accumulator which sorts elements.  ELEMENTS return the sorted elements.
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@item Direct superclasses
+@t{structure-object}.
+@item Direct methods
+@itemize @bullet
+@item
+@ref{❨131❩, , @t{add}}.
+@item
+@ref{❨175❩, , @t{ensure-sorted-reals}}.
+@item
+@ref{❨235❩, , @t{print-object}}.
+@item
+@ref{❨159❩, , @t{quantiles}}.
+@end itemize
+@item Direct slots
+@defvr {Slot} {ordered-elements}
+@anchor{❨105❩}@c
+@slotsubindex{ordered-elements}@c
+@table @strong
+@item Type
+@t{vector}
+@item Initform
+@t{@hashchar{}()}
+@item Readers
+@ref{❨179❩, , @t{sorted-reals-ordered-elements}}.
+@item Writers
+@ref{❨180❩, , @t{(setf sorted-reals-ordered-elements)}}.
+@end table
+@end defvr
+@defvr {Slot} {unordered-elements}
+@anchor{❨106❩}@c
+@slotsubindex{unordered-elements}@c
+@table @strong
+@item Type
+@t{list}
+@item Readers
+@ref{❨211❩, , @t{sorted-reals-unordered-elements}}.
+@item Writers
+@ref{❨212❩, , @t{(setf sorted-reals-unordered-elements)}}.
+@end table
+@end defvr
+@end table
+@end deftp
+@deftp {Structure} {sparse-counter}
+@anchor{❨127❩}@c
+@structuresubindex{sparse-counter}@c
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@item Direct superclasses
+@t{structure-object}.
+@item Direct methods
+@itemize @bullet
+@item
+@ref{❨130❩, , @t{add}}.
+@item
+@ref{❨241❩, , @t{as-alist}}.
+@item
+@ref{❨240❩, , @t{print-object}}.
+@item
+@ref{❨109❩, , @t{tally}}.
+@end itemize
+@item Direct slots
+@defvr {Slot} {table}
+@anchor{❨128❩}@c
+@slotsubindex{table}@c
+@table @strong
+@item Type
+@t{hash-table}
+@item Readers
+@ref{❨144❩, , @t{sparse-counter-table}}.
+@item Writers
+@i{This slot is read-only.}
+@end table
+@end defvr
+@end table
+@end deftp
+
+
+@c ---------
+@c Internals
+@c ---------
+@node Internals, , Public Interface, Definitions
+@section Internals
+@menu
+* Private macros::
+* Private ordinary functions::
+* Private generic functions::
+* Private structures::
+@end menu
+
+@node Private macros, Private ordinary functions, Internals, Internals
+@subsection Macros
+@deffn {Macro} {@ampchar{}sorted-reals} (ordered-elements unordered-elements)
+@anchor{❨213❩}@c
+@macrosubindex{@ampchar{}sorted-reals}@c
+LET+ form for slots of the structure SORTED-REALS.
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Macro} {@ampchar{}sorted-reals-r/o} (ordered-elements unordered-elements)
+@anchor{❨202❩}@c
+@macrosubindex{@ampchar{}sorted-reals-r/o}@c
+LET+ form for slots of the structure SORTED-REALS.  Read-only.
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Macro} {define-central-sample-moment} (function (variable degree) &body body)
+@anchor{❨183❩}@c
+@macrosubindex{define-central-sample-moment}@c
+FIXME documentation@comma{} factor out general part
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Macro} {underflow-goes-to-zero} (&body body)
+@anchor{❨103❩}@c
+@macrosubindex{underflow-goes-to-zero}@c
+Protects against floating point underflow errors and sets the value to 0.0 instead.
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+
+@node Private ordinary functions, Private generic functions, Private macros, Internals
+@subsection Ordinary functions
+@deffn {Function} {average-rank} (value sorted-values)
+@anchor{❨91❩}@c
+@functionsubindex{average-rank}@c
+Average rank calculation for non-parametric tests.  Ranks are 1 based@comma{} but lisp is 0 based@comma{} so add 1!
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {beta-incomplete} (a b x)
+@anchor{❨102❩}@c
+@functionsubindex{beta-incomplete}@c
+Adopted from CLASP 1.4.3@comma{} http://eksl-www.cs.umass.edu/clasp.html
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {binomial-le-probability} (n k p)
+@anchor{❨94❩}@c
+@functionsubindex{binomial-le-probability}@c
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Reader} {central-sample-moments-m} (instance)
+@anchor{❨194❩}@c
+@functionsubindex{central-sample-moments-m}@c
+@deffnx {Writer} {(setf central-sample-moments-m)} (instance)
+@anchor{❨195❩}@c
+@functionsubindex{(setf central-sample-moments-m)}@c
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@item Target Slot
+@ref{❨151❩, , @t{m}}.
+@end table
+@end deffn
+@deffn {Function} {central-sample-moments-p} (object)
+@anchor{❨204❩}@c
+@functionsubindex{central-sample-moments-p}@c
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Reader} {central-sample-moments-s2} (instance)
+@anchor{❨191❩}@c
+@functionsubindex{central-sample-moments-s2}@c
+@deffnx {Writer} {(setf central-sample-moments-s2)} (instance)
+@anchor{❨192❩}@c
+@functionsubindex{(setf central-sample-moments-s2)}@c
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@item Target Slot
+@ref{❨152❩, , @t{s2}}.
+@end table
+@end deffn
+@deffn {Reader} {central-sample-moments-s3} (instance)
+@anchor{❨189❩}@c
+@functionsubindex{central-sample-moments-s3}@c
+@deffnx {Writer} {(setf central-sample-moments-s3)} (instance)
+@anchor{❨190❩}@c
+@functionsubindex{(setf central-sample-moments-s3)}@c
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@item Target Slot
+@ref{❨153❩, , @t{s3}}.
+@end table
+@end deffn
+@deffn {Reader} {central-sample-moments-s4} (instance)
+@anchor{❨187❩}@c
+@functionsubindex{central-sample-moments-s4}@c
+@deffnx {Writer} {(setf central-sample-moments-s4)} (instance)
+@anchor{❨188❩}@c
+@functionsubindex{(setf central-sample-moments-s4)}@c
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@item Target Slot
+@ref{❨154❩, , @t{s4}}.
+@end table
+@end deffn
+@deffn {Function} {central-sample-moments-w} (instance)
+@anchor{❨206❩}@c
+@functionsubindex{central-sample-moments-w}@c
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {(setf central-sample-moments-w)} (instance)
+@anchor{❨207❩}@c
+@functionsubindex{(setf central-sample-moments-w)}@c
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {copy-central-sample-moments} (instance)
+@anchor{❨197❩}@c
+@functionsubindex{copy-central-sample-moments}@c
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {copy-sorted-reals} (instance)
+@anchor{❨215❩}@c
+@functionsubindex{copy-sorted-reals}@c
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {copy-sparse-counter} (instance)
+@anchor{❨203❩}@c
+@functionsubindex{copy-sparse-counter}@c
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {copy-tally-mixin} (instance)
+@anchor{❨184❩}@c
+@functionsubindex{copy-tally-mixin}@c
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {error-function} (x)
+@anchor{❨96❩}@c
+@functionsubindex{error-function}@c
+Adopted from CLASP 1.4.3@comma{} http://eksl-www.cs.umass.edu/clasp.html
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {error-function-complement} (x)
+@anchor{❨93❩}@c
+@functionsubindex{error-function-complement}@c
+Adopted from CLASP 1.4.3@comma{} http://eksl-www.cs.umass.edu/clasp.html
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {factorial} (number)
+@anchor{❨100❩}@c
+@functionsubindex{factorial}@c
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {find-critical-value} (p-function p-value &optional x-tolerance y-tolerance)
+@anchor{❨99❩}@c
+@functionsubindex{find-critical-value}@c
+Adopted from CLASP 1.4.3@comma{} http://eksl-www.cs.umass.edu/clasp.html
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {gamma-incomplete} (a x)
+@anchor{❨98❩}@c
+@functionsubindex{gamma-incomplete}@c
+Adopted from CLASP 1.4.3@comma{} http://eksl-www.cs.umass.edu/clasp.html
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {gamma-ln} (x)
+@anchor{❨97❩}@c
+@functionsubindex{gamma-ln}@c
+Adopted from CLASP 1.4.3@comma{} http://eksl-www.cs.umass.edu/clasp.html
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {make-central-sample-moments} (&key w m s2 s3 s4)
+@anchor{❨208❩}@c
+@functionsubindex{make-central-sample-moments}@c
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {make-sorted-reals} (&key ordered-elements unordered-elements)
+@anchor{❨210❩}@c
+@functionsubindex{make-sorted-reals}@c
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {make-sparse-counter%} (&key table)
+@anchor{❨205❩}@c
+@functionsubindex{make-sparse-counter%}@c
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {make-tally-mixin} (&key w)
+@anchor{❨200❩}@c
+@functionsubindex{make-tally-mixin}@c
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {round-up} (x)
+@anchor{❨92❩}@c
+@functionsubindex{round-up}@c
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {safe-exp} (x)
+@anchor{❨95❩}@c
+@functionsubindex{safe-exp}@c
+Eliminates floating point underflow for the exponential function.
+Instead@comma{} it just returns 0.0d0
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {sign} (x)
+@anchor{❨101❩}@c
+@functionsubindex{sign}@c
+@table @strong
+@item Package
+@ref{❨8❩, , @t{lh.statistics}}.
+@item Source
+@ref{❨4❩, , @t{lh-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {sort-reals} (sequence)
+@anchor{❨216❩}@c
+@functionsubindex{sort-reals}@c
+Return a SORTED-REALS structure.
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Reader} {sorted-reals-ordered-elements} (instance)
+@anchor{❨179❩}@c
+@functionsubindex{sorted-reals-ordered-elements}@c
+@deffnx {Writer} {(setf sorted-reals-ordered-elements)} (instance)
+@anchor{❨180❩}@c
+@functionsubindex{(setf sorted-reals-ordered-elements)}@c
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@item Target Slot
+@ref{❨105❩, , @t{ordered-elements}}.
+@end table
+@end deffn
+@deffn {Function} {sorted-reals-p} (object)
+@anchor{❨193❩}@c
+@functionsubindex{sorted-reals-p}@c
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Reader} {sorted-reals-unordered-elements} (instance)
+@anchor{❨211❩}@c
+@functionsubindex{sorted-reals-unordered-elements}@c
+@deffnx {Writer} {(setf sorted-reals-unordered-elements)} (instance)
+@anchor{❨212❩}@c
+@functionsubindex{(setf sorted-reals-unordered-elements)}@c
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@item Target Slot
+@ref{❨106❩, , @t{unordered-elements}}.
+@end table
+@end deffn
+@deffn {Function} {sparse-counter-p} (object)
+@anchor{❨214❩}@c
+@functionsubindex{sparse-counter-p}@c
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {tally-mixin-p} (object)
+@anchor{❨209❩}@c
+@functionsubindex{tally-mixin-p}@c
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Reader} {tally-mixin-w} (instance)
+@anchor{❨185❩}@c
+@functionsubindex{tally-mixin-w}@c
+@deffnx {Writer} {(setf tally-mixin-w)} (instance)
+@anchor{❨186❩}@c
+@functionsubindex{(setf tally-mixin-w)}@c
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@item Target Slot
+@ref{❨199❩, , @t{w}}.
+@end table
+@end deffn
+@deffn {Function} {weighted-empirical-quantile} (sorted-reals p-table q)
+@anchor{❨196❩}@c
+@functionsubindex{weighted-empirical-quantile}@c
+Return the empirical quantile of a vector of real numbers@comma{} sorted in ascending order (not checked).  Uses a 0.5 correction.
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@end table
+@end deffn
+@deffn {Function} {weighted-quantile-p-table} (weights)
+@anchor{❨201❩}@c
+@functionsubindex{weighted-quantile-p-table}@c
+Return table of probability brackets for weighted quantile calculations.@comma{} built from the weights (which should be positive reals@comma{} not checked).  Uses a 0.5 correction.
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@end table
+@end deffn
+
+@node Private generic functions, Private structures, Private ordinary functions, Internals
+@subsection Generic functions
+@deffn {Generic Function} {pool2} (accumulator1 accumulator2)
+@anchor{❨181❩}@c
+@genericsubindex{pool2}@c
+Pool two accumulators.  When they are of a different type@comma{} the resulting accumulator will be downgraded to the level afforded by the information available in the accumulators.
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@item Methods
+@deffn {Method} {pool2} ((moments-a @ref{❨150❩, , @t{central-sample-moments}}) (moments-b @ref{❨150❩, , @t{central-sample-moments}}))
+@anchor{❨182❩}@c
+@methodsubindex{pool2}@c
+@table @strong
+@end table
+@end deffn
+@end table
+@end deffn
+
+@node Private structures, , Private generic functions, Internals
+@subsection Structures
+@deftp {Structure} {tally-mixin}
+@anchor{❨198❩}@c
+@structuresubindex{tally-mixin}@c
+Mixin structure that contains a tally.  Not exported.  W is the total weight.
+@table @strong
+@item Package
+@ref{❨9❩, , @t{nu.statistics}}.
+@item Source
+@ref{❨5❩, , @t{nu-statistics.lisp}}.
+@item Direct superclasses
+@t{structure-object}.
+@item Direct subclasses
+@ref{❨150❩, , @t{central-sample-moments}}.
+@item Direct methods
+@ref{❨110❩, , @t{tally}}.
+@item Direct slots
+@defvr {Slot} {w}
+@anchor{❨199❩}@c
+@slotsubindex{w}@c
+@table @strong
+@item Type
+@t{(real 0)}
+@item Initform
+@t{0}
+@item Readers
+@ref{❨185❩, , @t{tally-mixin-w}}.
+@item Writers
+@ref{❨186❩, , @t{(setf tally-mixin-w)}}.
+@end table
+@end defvr
+@end table
+@end deftp
+
+
+
+@c ====================================================================
+@c Indexes
+@c ====================================================================
+@node Indexes, , Definitions, Top
+@appendix Indexes
+@menu
+* Concept index::
+* Function index::
+* Variable index::
+* Data type index::
+@end menu
+
+
+@c -------------
+@c Concept index
+@c -------------
+@node Concept index, Function index, Indexes, Indexes
+@appendixsec Concepts
+@printindex cp
+
+@page
+
+
+@c --------------
+@c Function index
+@c --------------
+@node Function index, Variable index, Concept index, Indexes
+@appendixsec Functions
+@printindex fn
+
+@page
+
+
+@c --------------
+@c Variable index
+@c --------------
+@node Variable index, Data type index, Function index, Indexes
+@appendixsec Variables
+@printindex vr
+
+@page
+
+
+@c ---------------
+@c Data type index
+@c ---------------
+@node Data type index, , Variable index, Indexes
+@appendixsec Data types
+@printindex tp
+
+@bye
+
+@c statistics.texi ends here

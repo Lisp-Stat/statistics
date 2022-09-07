@@ -1,0 +1,3356 @@
+This is statistics.info, produced by makeinfo version 6.8 from
+statistics.texi.
+
+     Copyright © 2019-2022 Steve Nunez
+
+     Permission is granted to make and distribute verbatim copies of
+     this manual provided the copyright notice and this permission
+     notice are preserved on all copies.
+
+     Permission is granted to copy and distribute modified versions of
+     this manual under the conditions for verbatim copying, provided
+     also that the section entitled “Copying” is included exactly as in
+     the original.
+
+     Permission is granted to copy and distribute translations of this
+     manual into another language, under the above conditions for
+     modified versions, except that this permission notice may be
+     translated as well.
+INFO-DIR-SECTION Common Lisp
+START-INFO-DIR-ENTRY
+* STATISTICS Reference Manual: (statistics). The STATISTICS Reference Manual.
+END-INFO-DIR-ENTRY
+
+
+File: statistics.info,  Node: Top,  Next: Copying,  Prev: (dir),  Up: (dir)
+
+The STATISTICS Reference Manual
+*******************************
+
+This is the STATISTICS Reference Manual, version 1.0.0, generated
+automatically by Declt version 4.0b2.
+
+* Menu:
+
+* Copying:: The Microsoft Public License
+* Systems:: The systems documentation
+* Files:: The files documentation
+* Packages:: The packages documentation
+* Definitions:: The symbols documentation
+* Indexes:: Concepts, functions, variables and data types
+
+     Copyright © 2019-2022 Steve Nunez
+
+     Permission is granted to make and distribute verbatim copies of
+     this manual provided the copyright notice and this permission
+     notice are preserved on all copies.
+
+     Permission is granted to copy and distribute modified versions of
+     this manual under the conditions for verbatim copying, provided
+     also that the section entitled “Copying” is included exactly as in
+     the original.
+
+     Permission is granted to copy and distribute translations of this
+     manual into another language, under the above conditions for
+     modified versions, except that this permission notice may be
+     translated as well.
+
+
+File: statistics.info,  Node: Copying,  Next: Systems,  Prev: Top,  Up: Top
+
+Copying
+*******
+
+     This program is distributed under the terms of the Microsoft Public
+     License.
+
+
+File: statistics.info,  Node: Systems,  Next: Files,  Prev: Copying,  Up: Top
+
+1 Systems
+*********
+
+The main system appears first, followed by any subsystem dependency.
+
+* Menu:
+
+* The statistics system::
+
+
+File: statistics.info,  Node: The statistics system,  Prev: Systems,  Up: Systems
+
+1.1 statistics
+==============
+
+A consolidated system of statistical functions
+*Long Name*
+     Consolidated Common Lisp statistical functions
+*Author*
+     Steve Nunez <<steve@symbolics.tech>>
+*Home Page*
+     <https://lisp-stat.dev/>
+*Source Control*
+     (GIT https://github.com/Lisp-Stat/statistics.git)
+*Bug Tracker*
+     <https://github.com/Lisp-Stat/statistics/issues>
+*License*
+     MS-PL
+*Long Description*
+     This system is a consolidation of three Common Lisp statistics
+     libraries:
+
+     - Tamas Papp’s library, focusing on central moments
+     - Larry Hungers general statistical library
+     - Gary Warren King’s (GWK) general statistical library,
+     cl-mathstats
+
+     As of Q3 2022, CL-MATHSTATS is usable with Lisp-Stat, but not
+     incorporated.  This is due to it being rather deeply embedded into
+     its own ecosystem of utilities libraries (metatilities-base and
+     cl-containers and the lift test framework) that have in some cases
+     been superseded by alexandria, anaphora or numerical-utilities.  In
+     short, we recommend using CL-MATHSTATS when you need to,
+     recognising that you’ll be hauling in a parallel system of math,
+     statistics and utilities.  Long term, we’re working to port
+     CL-MATHSTATS on a case-by-case basis.
+*Version*
+     1.0.0
+*Dependencies*
+        • anaphora (system).
+        • alexandria (system).
+        • distributions (system).
+        • let-plus (system).
+        • num-utils (system).
+        • org.tfeb.conduit-packages (system).
+*Source*
+     *note statistics.asd: ❨2❩.
+*Child Components*
+        • *note license: ❨3❩. (file).
+        • *note lh-statistics.lisp: ❨4❩. (file).
+        • *note nu-statistics.lisp: ❨5❩. (file).
+        • *note ls-statistics.lisp: ❨6❩. (file).
+        • *note pkgdcl.lisp: ❨7❩. (file).
+
+
+File: statistics.info,  Node: Files,  Next: Packages,  Prev: Systems,  Up: Top
+
+2 Files
+*******
+
+Files are sorted by type and then listed depth-first from the systems
+components trees.
+
+* Menu:
+
+* Lisp files::
+* Static files::
+
+
+File: statistics.info,  Node: Lisp files,  Next: Static files,  Prev: Files,  Up: Files
+
+2.1 Lisp
+========
+
+* Menu:
+
+* The statistics/statistics․asd file::
+* The statistics/lh-statistics․lisp file::
+* The statistics/nu-statistics․lisp file::
+* The statistics/ls-statistics․lisp file::
+* The statistics/pkgdcl․lisp file::
+
+
+File: statistics.info,  Node: The statistics/statistics․asd file,  Next: The statistics/lh-statistics․lisp file,  Prev: Lisp files,  Up: Lisp files
+
+2.1.1 statistics/statistics.asd
+-------------------------------
+
+*Source*
+     *note statistics.asd: ❨2❩.
+*Parent Component*
+     *note statistics: ❨1❩. (system).
+*ASDF Systems*
+     *note statistics: ❨1❩.
+
+
+File: statistics.info,  Node: The statistics/lh-statistics․lisp file,  Next: The statistics/nu-statistics․lisp file,  Prev: The statistics/statistics․asd file,  Up: Lisp files
+
+2.1.2 statistics/lh-statistics.lisp
+-----------------------------------
+
+*Source*
+     *note statistics.asd: ❨2❩.
+*Parent Component*
+     *note statistics: ❨1❩. (system).
+*Packages*
+     *note lh.statistics: ❨8❩.
+*Public Interface*
+        • *note bin-and-count: ❨61❩. (function).
+        • *note binomial-cumulative-probability: ❨63❩. (function).
+        • *note binomial-ge-probability: ❨80❩. (function).
+        • *note binomial-probability: ❨82❩. (function).
+        • *note binomial-probability-ci: ❨52❩. (function).
+        • *note binomial-test-one-sample: ❨36❩. (function).
+        • *note binomial-test-one-sample-sse: ❨16❩. (function).
+        • *note binomial-test-paired-sse: ❨35❩. (function).
+        • *note binomial-test-two-sample: ❨85❩. (function).
+        • *note binomial-test-two-sample-sse: ❨90❩. (function).
+        • *note chi-square: ❨60❩. (function).
+        • *note chi-square-cdf: ❨79❩. (function).
+        • *note chi-square-test-for-trend: ❨13❩. (function).
+        • *note chi-square-test-one-sample: ❨12❩. (function).
+        • *note chi-square-test-rxc: ❨71❩. (function).
+        • *note choose: ❨54❩. (function).
+        • *note coefficient-of-variation: ❨51❩. (function).
+        • *note convert-to-standard-normal: ❨70❩. (function).
+        • *note correlation-coefficient: ❨55❩. (function).
+        • *note correlation-sse: ❨87❩. (function).
+        • *note correlation-test-two-sample: ❨23❩. (function).
+        • *note correlation-test-two-sample-on-sequences: ❨32❩.
+          (function).
+        • *note f-significance: ❨67❩. (function).
+        • *note f-test: ❨30❩. (function).
+        • *note false-discovery-correction: ❨33❩. (function).
+        • *note fisher-exact-test: ❨21❩. (function).
+        • *note fisher-z-transform: ❨56❩. (function).
+        • *note geometric-mean: ❨26❩. (function).
+        • *note linear-regression: ❨86❩. (function).
+        • *note mcnemars-test: ❨64❩. (function).
+        • *note mean: ❨69❩. (function).
+        • *note mean-sd-n: ❨58❩. (function).
+        • *note median: ❨49❩. (function).
+        • *note mode: ❨41❩. (function).
+        • *note normal-mean-ci: ❨37❩. (function).
+        • *note normal-mean-ci-on-sequence: ❨17❩. (function).
+        • *note normal-pdf: ❨77❩. (function).
+        • *note normal-sd-ci: ❨44❩. (function).
+        • *note normal-sd-ci-on-sequence: ❨53❩. (function).
+        • *note normal-variance-ci: ❨20❩. (function).
+        • *note normal-variance-ci-on-sequence: ❨28❩. (function).
+        • *note percentile: ❨76❩. (function).
+        • *note permutations: ❨48❩. (function).
+        • *note phi: ❨59❩. (function).
+        • *note poisson-cumulative-probability: ❨50❩. (function).
+        • *note poisson-ge-probability: ❨57❩. (function).
+        • *note poisson-mu-ci: ❨34❩. (function).
+        • *note poisson-probability: ❨84❩. (function).
+        • *note poisson-test-one-sample: ❨73❩. (function).
+        • *note random-normal: ❨27❩. (function).
+        • *note random-pick: ❨39❩. (function).
+        • *note random-sample: ❨75❩. (function).
+        • *note round-float: ❨83❩. (function).
+        • *note sample-range: ❨22❩. (function).
+        • *note sd: ❨74❩. (function).
+        • *note sign-test: ❨43❩. (function).
+        • *note sign-test-on-sequences: ❨66❩. (function).
+        • *note spearman-rank-correlation: ❨46❩. (function).
+        • *note square: ❨15❩. (macro).
+        • *note standard-deviation: ❨89❩. (function).
+        • *note standard-error-of-the-mean: ❨38❩. (function).
+        • *note t-distribution: ❨62❩. (function).
+        • *note t-significance: ❨81❩. (function).
+        • *note t-test-one-sample: ❨29❩. (function).
+        • *note t-test-one-sample-on-sequence: ❨68❩. (function).
+        • *note t-test-one-sample-sse: ❨40❩. (function).
+        • *note t-test-paired: ❨18❩. (function).
+        • *note t-test-paired-on-sequences: ❨45❩. (function).
+        • *note t-test-paired-sse: ❨14❩. (function).
+        • *note t-test-two-sample: ❨25❩. (function).
+        • *note t-test-two-sample-on-sequences: ❨72❩. (function).
+        • *note t-test-two-sample-sse: ❨78❩. (function).
+        • *note test-variables: ❨47❩. (macro).
+        • *note variance: ❨24❩. (function).
+        • *note wilcoxon-signed-rank-test: ❨31❩. (function).
+        • *note wilcoxon-signed-rank-test-on-sequences: ❨65❩.
+          (function).
+        • *note z: ❨42❩. (function).
+        • *note z-test: ❨19❩. (function).
+        • *note z-test-on-sequence: ❨88❩. (function).
+*Internals*
+        • *note average-rank: ❨91❩. (function).
+        • *note beta-incomplete: ❨102❩. (function).
+        • *note binomial-le-probability: ❨94❩. (function).
+        • *note error-function: ❨96❩. (function).
+        • *note error-function-complement: ❨93❩. (function).
+        • *note factorial: ❨100❩. (function).
+        • *note find-critical-value: ❨99❩. (function).
+        • *note gamma-incomplete: ❨98❩. (function).
+        • *note gamma-ln: ❨97❩. (function).
+        • *note round-up: ❨92❩. (function).
+        • *note safe-exp: ❨95❩. (function).
+        • *note sign: ❨101❩. (function).
+        • *note underflow-goes-to-zero: ❨103❩. (macro).
+
+
+File: statistics.info,  Node: The statistics/nu-statistics․lisp file,  Next: The statistics/ls-statistics․lisp file,  Prev: The statistics/lh-statistics․lisp file,  Up: Lisp files
+
+2.1.3 statistics/nu-statistics.lisp
+-----------------------------------
+
+*Source*
+     *note statistics.asd: ❨2❩.
+*Parent Component*
+     *note statistics: ❨1❩. (system).
+*Packages*
+     *note nu.statistics: ❨9❩.
+*Public Interface*
+        • *note *central-sample-moments-default-degree*: ❨163❩. (special
+          variable).
+        • *note add: ❨129❩. (generic function).
+        • *note as-alist: ❨241❩. (method).
+        • *note central-m2: ❨168❩. (generic function).
+        • *note central-m3: ❨134❩. (generic function).
+        • *note central-m4: ❨118❩. (generic function).
+        • *note central-sample-moments: ❨146❩. (generic function).
+        • *note central-sample-moments: ❨150❩. (structure).
+        • *note central-sample-moments-degree: ❨141❩. (function).
+        • *note cross-tabulate: ❨122❩. (function).
+        • *note empirical-quantile: ❨123❩. (function).
+        • *note empirical-quantile-probabilities: ❨142❩. (function).
+        • *note empty-accumulator: ❨124❩. (condition).
+        • *note ensure-sorted-reals: ❨174❩. (generic function).
+        • *note ensure-sorted-vector: ❨155❩. (function).
+        • *note information-not-collected-in-accumulator: ❨143❩.
+          (condition).
+        • *note kurtosis: ❨160❩. (generic function).
+        • *note make-sparse-counter: ❨156❩. (function).
+        • *note mean: ❨171❩. (generic function).
+        • *note median: ❨115❩. (generic function).
+        • *note not-enough-elements-in-accumulator: ❨164❩. (condition).
+        • *note num=: ❨245❩. (method).
+        • *note pool: ❨111❩. (function).
+        • *note print-object: ❨235❩. (method).
+        • *note print-object: ❨240❩. (method).
+        • *note quantile: ❨137❩. (generic function).
+        • *note quantiles: ❨157❩. (generic function).
+        • *note sd: ❨125❩. (generic function).
+        • *note skewness: ❨165❩. (generic function).
+        • *note sorted-reals: ❨104❩. (structure).
+        • *note sorted-reals-elements: ❨121❩. (function).
+        • *note sparse-counter: ❨127❩. (structure).
+        • *note sparse-counter-count: ❨107❩. (function).
+        • *note sparse-counter-table: ❨144❩. (reader).
+        • *note tabulate: ❨178❩. (function).
+        • *note tally: ❨108❩. (generic function).
+        • *note variance: ❨112❩. (generic function).
+        • *note weighted-quantiles: ❨145❩. (function).
+*Internals*
+        • *note &sorted-reals: ❨213❩. (macro).
+        • *note &sorted-reals-r/o: ❨202❩. (macro).
+        • *note central-sample-moments-m: ❨194❩. (reader).
+        • *note (setf central-sample-moments-m): ❨195❩. (writer).
+        • *note central-sample-moments-p: ❨204❩. (function).
+        • *note central-sample-moments-s2: ❨191❩. (reader).
+        • *note (setf central-sample-moments-s2): ❨192❩. (writer).
+        • *note central-sample-moments-s3: ❨189❩. (reader).
+        • *note (setf central-sample-moments-s3): ❨190❩. (writer).
+        • *note central-sample-moments-s4: ❨187❩. (reader).
+        • *note (setf central-sample-moments-s4): ❨188❩. (writer).
+        • *note central-sample-moments-w: ❨206❩. (function).
+        • *note (setf central-sample-moments-w): ❨207❩. (function).
+        • *note copy-central-sample-moments: ❨197❩. (function).
+        • *note copy-sorted-reals: ❨215❩. (function).
+        • *note copy-sparse-counter: ❨203❩. (function).
+        • *note copy-tally-mixin: ❨184❩. (function).
+        • *note define-central-sample-moment: ❨183❩. (macro).
+        • *note make-central-sample-moments: ❨208❩. (function).
+        • *note make-sorted-reals: ❨210❩. (function).
+        • *note make-sparse-counter%: ❨205❩. (function).
+        • *note make-tally-mixin: ❨200❩. (function).
+        • *note pool2: ❨181❩. (generic function).
+        • *note sort-reals: ❨216❩. (function).
+        • *note sorted-reals-ordered-elements: ❨179❩. (reader).
+        • *note (setf sorted-reals-ordered-elements): ❨180❩. (writer).
+        • *note sorted-reals-p: ❨193❩. (function).
+        • *note sorted-reals-unordered-elements: ❨211❩. (reader).
+        • *note (setf sorted-reals-unordered-elements): ❨212❩. (writer).
+        • *note sparse-counter-p: ❨214❩. (function).
+        • *note tally-mixin: ❨198❩. (structure).
+        • *note tally-mixin-p: ❨209❩. (function).
+        • *note tally-mixin-w: ❨185❩. (reader).
+        • *note (setf tally-mixin-w): ❨186❩. (writer).
+        • *note weighted-empirical-quantile: ❨196❩. (function).
+        • *note weighted-quantile-p-table: ❨201❩. (function).
+
+
+File: statistics.info,  Node: The statistics/ls-statistics․lisp file,  Next: The statistics/pkgdcl․lisp file,  Prev: The statistics/nu-statistics․lisp file,  Up: Lisp files
+
+2.1.4 statistics/ls-statistics.lisp
+-----------------------------------
+
+*Source*
+     *note statistics.asd: ❨2❩.
+*Parent Component*
+     *note statistics: ❨1❩. (system).
+*Packages*
+     *note ls.statistics: ❨11❩.
+*Public Interface*
+        • *note fivenum: ❨218❩. (function).
+        • *note interquartile-range: ❨219❩. (function).
+        • *note mean: ❨220❩. (function).
+        • *note variance: ❨217❩. (function).
+
+
+File: statistics.info,  Node: The statistics/pkgdcl․lisp file,  Prev: The statistics/ls-statistics․lisp file,  Up: Lisp files
+
+2.1.5 statistics/pkgdcl.lisp
+----------------------------
+
+*Source*
+     *note statistics.asd: ❨2❩.
+*Parent Component*
+     *note statistics: ❨1❩. (system).
+*Packages*
+     *note statistics-1: ❨10❩.
+
+
+File: statistics.info,  Node: Static files,  Prev: Lisp files,  Up: Files
+
+2.2 Static
+==========
+
+* Menu:
+
+* The statistics/license file::
+
+
+File: statistics.info,  Node: The statistics/license file,  Prev: Static files,  Up: Static files
+
+2.2.1 statistics/license
+------------------------
+
+*Source*
+     *note statistics.asd: ❨2❩.
+*Parent Component*
+     *note statistics: ❨1❩. (system).
+
+
+File: statistics.info,  Node: Packages,  Next: Definitions,  Prev: Files,  Up: Top
+
+3 Packages
+**********
+
+Packages are listed by definition order.
+
+* Menu:
+
+* The lh․statistics package::
+* The nu․statistics package::
+* The statistics-1 package::
+* The ls․statistics package::
+
+
+File: statistics.info,  Node: The lh․statistics package,  Next: The nu․statistics package,  Prev: Packages,  Up: Packages
+
+3.1 lh.statistics
+=================
+
+The formulas and methods used are largely taken from Bernard Rosner,
+*Fundamentals of Biostatistics* 5th Edition.  ’Rosner x’ is a page
+number.  Some numeric functions were taken from CLASP, a 1994 common
+lisp package that implemented some of the statistical functions from
+*Numeric recipes in C* For CLASP functions, see copyright notice below.
+
+   These abreviations used in function and variable names:
+ci = confidence interval
+cdf = cumulative density function
+ge = greater than or equal to
+le = less than or equal to
+pdf = probability density function
+sd = standard deviation
+rxc = rows by columns
+sse = sample size estimate
+*Source*
+     *note lh-statistics.lisp: ❨4❩.
+*Use List*
+     common-lisp.
+*Public Interface*
+        • *note bin-and-count: ❨61❩. (function).
+        • *note binomial-cumulative-probability: ❨63❩. (function).
+        • *note binomial-ge-probability: ❨80❩. (function).
+        • *note binomial-probability: ❨82❩. (function).
+        • *note binomial-probability-ci: ❨52❩. (function).
+        • *note binomial-test-one-sample: ❨36❩. (function).
+        • *note binomial-test-one-sample-sse: ❨16❩. (function).
+        • *note binomial-test-paired-sse: ❨35❩. (function).
+        • *note binomial-test-two-sample: ❨85❩. (function).
+        • *note binomial-test-two-sample-sse: ❨90❩. (function).
+        • *note chi-square: ❨60❩. (function).
+        • *note chi-square-cdf: ❨79❩. (function).
+        • *note chi-square-test-for-trend: ❨13❩. (function).
+        • *note chi-square-test-one-sample: ❨12❩. (function).
+        • *note chi-square-test-rxc: ❨71❩. (function).
+        • *note choose: ❨54❩. (function).
+        • *note coefficient-of-variation: ❨51❩. (function).
+        • *note convert-to-standard-normal: ❨70❩. (function).
+        • *note correlation-coefficient: ❨55❩. (function).
+        • *note correlation-sse: ❨87❩. (function).
+        • *note correlation-test-two-sample: ❨23❩. (function).
+        • *note correlation-test-two-sample-on-sequences: ❨32❩.
+          (function).
+        • *note f-significance: ❨67❩. (function).
+        • *note f-test: ❨30❩. (function).
+        • *note false-discovery-correction: ❨33❩. (function).
+        • *note fisher-exact-test: ❨21❩. (function).
+        • *note fisher-z-transform: ❨56❩. (function).
+        • *note geometric-mean: ❨26❩. (function).
+        • *note linear-regression: ❨86❩. (function).
+        • *note mcnemars-test: ❨64❩. (function).
+        • *note mean: ❨69❩. (function).
+        • *note mean-sd-n: ❨58❩. (function).
+        • *note median: ❨49❩. (function).
+        • *note mode: ❨41❩. (function).
+        • *note normal-mean-ci: ❨37❩. (function).
+        • *note normal-mean-ci-on-sequence: ❨17❩. (function).
+        • *note normal-pdf: ❨77❩. (function).
+        • *note normal-sd-ci: ❨44❩. (function).
+        • *note normal-sd-ci-on-sequence: ❨53❩. (function).
+        • *note normal-variance-ci: ❨20❩. (function).
+        • *note normal-variance-ci-on-sequence: ❨28❩. (function).
+        • *note percentile: ❨76❩. (function).
+        • *note permutations: ❨48❩. (function).
+        • *note phi: ❨59❩. (function).
+        • *note poisson-cumulative-probability: ❨50❩. (function).
+        • *note poisson-ge-probability: ❨57❩. (function).
+        • *note poisson-mu-ci: ❨34❩. (function).
+        • *note poisson-probability: ❨84❩. (function).
+        • *note poisson-test-one-sample: ❨73❩. (function).
+        • *note random-normal: ❨27❩. (function).
+        • *note random-pick: ❨39❩. (function).
+        • *note random-sample: ❨75❩. (function).
+        • *note round-float: ❨83❩. (function).
+        • *note sample-range: ❨22❩. (function).
+        • *note sd: ❨74❩. (function).
+        • *note sign-test: ❨43❩. (function).
+        • *note sign-test-on-sequences: ❨66❩. (function).
+        • *note spearman-rank-correlation: ❨46❩. (function).
+        • *note square: ❨15❩. (macro).
+        • *note standard-deviation: ❨89❩. (function).
+        • *note standard-error-of-the-mean: ❨38❩. (function).
+        • *note t-distribution: ❨62❩. (function).
+        • *note t-significance: ❨81❩. (function).
+        • *note t-test-one-sample: ❨29❩. (function).
+        • *note t-test-one-sample-on-sequence: ❨68❩. (function).
+        • *note t-test-one-sample-sse: ❨40❩. (function).
+        • *note t-test-paired: ❨18❩. (function).
+        • *note t-test-paired-on-sequences: ❨45❩. (function).
+        • *note t-test-paired-sse: ❨14❩. (function).
+        • *note t-test-two-sample: ❨25❩. (function).
+        • *note t-test-two-sample-on-sequences: ❨72❩. (function).
+        • *note t-test-two-sample-sse: ❨78❩. (function).
+        • *note test-variables: ❨47❩. (macro).
+        • *note variance: ❨24❩. (function).
+        • *note wilcoxon-signed-rank-test: ❨31❩. (function).
+        • *note wilcoxon-signed-rank-test-on-sequences: ❨65❩.
+          (function).
+        • *note z: ❨42❩. (function).
+        • *note z-test: ❨19❩. (function).
+        • *note z-test-on-sequence: ❨88❩. (function).
+*Internals*
+        • *note average-rank: ❨91❩. (function).
+        • *note beta-incomplete: ❨102❩. (function).
+        • *note binomial-le-probability: ❨94❩. (function).
+        • *note error-function: ❨96❩. (function).
+        • *note error-function-complement: ❨93❩. (function).
+        • *note factorial: ❨100❩. (function).
+        • *note find-critical-value: ❨99❩. (function).
+        • *note gamma-incomplete: ❨98❩. (function).
+        • *note gamma-ln: ❨97❩. (function).
+        • *note round-up: ❨92❩. (function).
+        • *note safe-exp: ❨95❩. (function).
+        • *note sign: ❨101❩. (function).
+        • *note underflow-goes-to-zero: ❨103❩. (macro).
+
+
+File: statistics.info,  Node: The nu․statistics package,  Next: The statistics-1 package,  Prev: The lh․statistics package,  Up: Packages
+
+3.2 nu.statistics
+=================
+
+*Source*
+     *note nu-statistics.lisp: ❨5❩.
+*Use List*
+        • alexandria.
+        • anaphora.
+        • common-lisp.
+        • let-plus.
+        • num-utils.arithmetic.
+        • num-utils.num=.
+        • num-utils.utilities.
+*Public Interface*
+        • *note *central-sample-moments-default-degree*: ❨163❩. (special
+          variable).
+        • *note add: ❨129❩. (generic function).
+        • *note central-m2: ❨168❩. (generic function).
+        • *note central-m3: ❨134❩. (generic function).
+        • *note central-m4: ❨118❩. (generic function).
+        • *note central-sample-moments: ❨146❩. (generic function).
+        • *note central-sample-moments: ❨150❩. (structure).
+        • *note central-sample-moments-degree: ❨141❩. (function).
+        • *note cross-tabulate: ❨122❩. (function).
+        • *note empirical-quantile: ❨123❩. (function).
+        • *note empirical-quantile-probabilities: ❨142❩. (function).
+        • *note empty-accumulator: ❨124❩. (condition).
+        • *note ensure-sorted-reals: ❨174❩. (generic function).
+        • *note ensure-sorted-vector: ❨155❩. (function).
+        • *note information-not-collected-in-accumulator: ❨143❩.
+          (condition).
+        • *note kurtosis: ❨160❩. (generic function).
+        • *note make-sparse-counter: ❨156❩. (function).
+        • *note mean: ❨171❩. (generic function).
+        • *note median: ❨115❩. (generic function).
+        • *note not-enough-elements-in-accumulator: ❨164❩. (condition).
+        • *note pool: ❨111❩. (function).
+        • *note quantile: ❨137❩. (generic function).
+        • *note quantiles: ❨157❩. (generic function).
+        • *note sd: ❨125❩. (generic function).
+        • *note skewness: ❨165❩. (generic function).
+        • *note sorted-reals: ❨104❩. (structure).
+        • *note sorted-reals-elements: ❨121❩. (function).
+        • *note sparse-counter: ❨127❩. (structure).
+        • *note sparse-counter-count: ❨107❩. (function).
+        • *note sparse-counter-table: ❨144❩. (reader).
+        • *note tabulate: ❨178❩. (function).
+        • *note tally: ❨108❩. (generic function).
+        • *note variance: ❨112❩. (generic function).
+        • *note weighted-quantiles: ❨145❩. (function).
+*Internals*
+        • *note &sorted-reals: ❨213❩. (macro).
+        • *note &sorted-reals-r/o: ❨202❩. (macro).
+        • *note central-sample-moments-m: ❨194❩. (reader).
+        • *note (setf central-sample-moments-m): ❨195❩. (writer).
+        • *note central-sample-moments-p: ❨204❩. (function).
+        • *note central-sample-moments-s2: ❨191❩. (reader).
+        • *note (setf central-sample-moments-s2): ❨192❩. (writer).
+        • *note central-sample-moments-s3: ❨189❩. (reader).
+        • *note (setf central-sample-moments-s3): ❨190❩. (writer).
+        • *note central-sample-moments-s4: ❨187❩. (reader).
+        • *note (setf central-sample-moments-s4): ❨188❩. (writer).
+        • *note central-sample-moments-w: ❨206❩. (function).
+        • *note (setf central-sample-moments-w): ❨207❩. (function).
+        • *note copy-central-sample-moments: ❨197❩. (function).
+        • *note copy-sorted-reals: ❨215❩. (function).
+        • *note copy-sparse-counter: ❨203❩. (function).
+        • *note copy-tally-mixin: ❨184❩. (function).
+        • *note define-central-sample-moment: ❨183❩. (macro).
+        • *note make-central-sample-moments: ❨208❩. (function).
+        • *note make-sorted-reals: ❨210❩. (function).
+        • *note make-sparse-counter%: ❨205❩. (function).
+        • *note make-tally-mixin: ❨200❩. (function).
+        • *note pool2: ❨181❩. (generic function).
+        • *note sort-reals: ❨216❩. (function).
+        • *note sorted-reals-ordered-elements: ❨179❩. (reader).
+        • *note (setf sorted-reals-ordered-elements): ❨180❩. (writer).
+        • *note sorted-reals-p: ❨193❩. (function).
+        • *note sorted-reals-unordered-elements: ❨211❩. (reader).
+        • *note (setf sorted-reals-unordered-elements): ❨212❩. (writer).
+        • *note sparse-counter-p: ❨214❩. (function).
+        • *note tally-mixin: ❨198❩. (structure).
+        • *note tally-mixin-p: ❨209❩. (function).
+        • *note tally-mixin-w: ❨185❩. (reader).
+        • *note (setf tally-mixin-w): ❨186❩. (writer).
+        • *note weighted-empirical-quantile: ❨196❩. (function).
+        • *note weighted-quantile-p-table: ❨201❩. (function).
+
+
+File: statistics.info,  Node: The statistics-1 package,  Next: The ls․statistics package,  Prev: The nu․statistics package,  Up: Packages
+
+3.3 statistics-1
+================
+
+*Source*
+     *note pkgdcl.lisp: ❨7❩.
+
+
+File: statistics.info,  Node: The ls․statistics package,  Prev: The statistics-1 package,  Up: Packages
+
+3.4 ls.statistics
+=================
+
+*Source*
+     *note ls-statistics.lisp: ❨6❩.
+*Use List*
+     common-lisp.
+*Public Interface*
+        • *note fivenum: ❨218❩. (function).
+        • *note interquartile-range: ❨219❩. (function).
+        • *note mean: ❨220❩. (function).
+        • *note variance: ❨217❩. (function).
+
+
+File: statistics.info,  Node: Definitions,  Next: Indexes,  Prev: Packages,  Up: Top
+
+4 Definitions
+*************
+
+Definitions are sorted by export status, category, package, and then by
+lexicographic order.
+
+* Menu:
+
+* Public Interface::
+* Internals::
+
+
+File: statistics.info,  Node: Public Interface,  Next: Internals,  Prev: Definitions,  Up: Definitions
+
+4.1 Public Interface
+====================
+
+* Menu:
+
+* Public special variables::
+* Public macros::
+* Public ordinary functions::
+* Public generic functions::
+* Public standalone methods::
+* Public conditions::
+* Public structures::
+
+
+File: statistics.info,  Node: Public special variables,  Next: Public macros,  Prev: Public Interface,  Up: Public Interface
+
+4.1.1 Special variables
+-----------------------
+
+ -- Special Variable: *central-sample-moments-default-degree*
+     Default degree for (weighted) central sample moments.
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+
+
+File: statistics.info,  Node: Public macros,  Next: Public ordinary functions,  Prev: Public special variables,  Up: Public Interface
+
+4.1.2 Macros
+------------
+
+ -- Macro: square (x)
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Macro: test-variables (&rest args)
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+
+
+File: statistics.info,  Node: Public ordinary functions,  Next: Public generic functions,  Prev: Public macros,  Up: Public Interface
+
+4.1.3 Ordinary functions
+------------------------
+
+ -- Function: bin-and-count (sequence n)
+     Make N equal width bins and count the number of elements of
+     sequence that belong in each.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: binomial-cumulative-probability (n k p)
+     Return P(X<k) for X a binomial random variable with parameters n &
+     p.  Bionomial expecations for fewer than k events in N trials, each
+     having probability p.  This is also known as probability mass
+     function (PMF), the probability of getting exactly k successes in n
+     independent Bernoulli trials.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: binomial-ge-probability (n k p)
+     The probability of k or more occurances in N events, each with
+     probability p.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: binomial-probability (n k p)
+     Return P(X=k) for X a binomial random variable with parameters n &
+     p.  Binomial expectations for seeing k events in N trials, each
+     having probability p.  Use the Poisson approximation if N>100 and
+     P<0.01.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: binomial-probability-ci (n p alpha &key exact?)
+     Confidence intervals on a binomial probability.  If a binomial
+     probability of p has been observed in N trials, what is the 1-alpha
+     confidence interval around p?  Approximate (using normal theory
+     approximation) when npq >= 10 unless told otherwise
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: binomial-test-one-sample (p-hat n p &key tails exact?)
+     The significance of a one sample test for the equality of an
+     observed probability p-hat to an expected probability p under a
+     binomial distribution with N observations.  Use the normal theory
+     approximation if n*p*(1-p) > 10 (unless the exact flag is true).
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: binomial-test-one-sample-sse (p-estimated p-null &key
+          alpha 1-beta tails)
+     Returns the number of subjects needed to test whether an observed
+     probability is significantly different from a particular binomial
+     null hypothesis with a significance alpha and a power 1-beta.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: binomial-test-paired-sse (pd pa &key alpha 1-beta tails)
+     Sample size estimate for the McNemar (discordant pairs) test.  Pd
+     is the projected proportion of discordant pairs among all pairs,
+     and Pa is the projected proportion of type A pairs among discordant
+     pairs.  alpha, 1-beta and tails are as above.  Returns the number
+     of individuals necessary; that is twice the number of matched pairs
+     necessary.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: binomial-test-two-sample (p-hat1 n1 p-hat2 n2 &key tails
+          exact?)
+     Are the observed probabilities of an event (p-hat1 and p-hat2) in
+     N1/N2 trials different?  The normal theory method implemented here.
+     The exact test is Fisher’s contingency table method, below.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: binomial-test-two-sample-sse (p1 p2 &key alpha
+          sample-ratio 1-beta tails)
+     The number of subjects needed to test if two binomial probabilities
+     are different at a given significance alpha and power 1-beta.  The
+     sample sizes can be unequal; the p2 sample is sample-sse-ratio *
+     the size of the p1 sample.  It can be a one tailed or two tailed
+     test.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: central-sample-moments-degree (central-sample-moments)
+     Return the degree of CENTRAL-SAMPLE-MOMENTS.
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+ -- Function: chi-square (dof percentile)
+     ;; Returns the point which is the indicated percentile in the Chi
+     Square distribution with dof degrees of freedom.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: chi-square-cdf (x dof)
+     Chi-square-cdf computes the left hand tail area under the chi
+     square distribution under dof degrees of freedom up to X.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: chi-square-test-for-trend (row1-counts row2-counts
+          &optional scores)
+     This test works on a 2xk table and assesses if there is an
+     increasing or decreasing trend.  Arguments are equal sized lists
+     counts.  Optionally, provide a list of scores, which represent some
+     numeric attribute of the group.  If not provided, scores are
+     assumed to be 1 to k.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: chi-square-test-one-sample (variance n sigma-squared &key
+          tails)
+     The significance of a one sample Chi square test for the variance
+     of a normal distribution.  Variance is the observed variance, N is
+     the number of observations, and sigma-squared is the test variance.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: chi-square-test-rxc (contingency-table)
+     Takes contingency-table, an RxC array, and returns the significance
+     of the relationship between the row variable and the column
+     variable.  Any difference in proportion will cause this test to be
+     significant – consider using the test for trend instead if you are
+     looking for a consistent change.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: choose (n k)
+     How may ways to take n things taken k at a time, when order doesn’t
+     matter
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: coefficient-of-variation (sequence)
+     Return coefficient of variation
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: convert-to-standard-normal (x mu sigma)
+     Convert X from a Normal distribution with mean mu and variance
+     sigma to standard normal
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: correlation-coefficient (points)
+     Pearson correlation
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: correlation-sse (rho &key alpha 1-beta)
+     Returns the size of a sample necessary to find a correlation of
+     expected value rho with significance alpha and power 1-beta.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: correlation-test-two-sample (r1 n1 r2 n2 &key tails)
+     Test if two correlation coefficients are different.  Users Fisher’s
+     Z test.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: correlation-test-two-sample-on-sequences (points1 points2
+          &key tails)
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: cross-tabulate (sequence1 sequence2 &key test)
+     Cross-tabulate two sequences (using a SPARSE-COUNTER with the given
+     TEST). TEST is used to compare conses.
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+ -- Function: empirical-quantile (sorted-vector q)
+     Return the empirical quantile of a vector of real numbers, sorted
+     in ascending order (not checked).  Uses a 0.5 correction.
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+ -- Function: empirical-quantile-probabilities (n)
+     Probabilities that correspond to the empirical quantiles of a
+     vector of length N. That is to say,
+
+     (== (quantiles sample (empirical-quantile-probabilities (length
+     sample)))
+     sample)
+
+     for any vector SAMPLE.
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+ -- Function: ensure-sorted-vector (object)
+     Return the elements of OBJECT as a vector (or reals) sorted in
+     ascending order.
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+ -- Function: f-significance (f-statistic numerator-dof denominator-dof
+          &optional one-tailed-p)
+     Adopted from CLASP, but changed to handle F < 1 correctly in the
+     one-tailed case.  The ‘f-statistic’ must be a positive number.  The
+     degrees of freedom arguments must be positive integers.  The
+     ‘one-tailed-p’ argument is treated as a boolean.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: f-test (variance1 n1 variance2 n2 &key tails)
+     F test for the equality of two variances
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: false-discovery-correction (p-values &key rate)
+     A multiple testing correction that is less conservative than
+     Bonferroni.  Takes a list of p-values and a false discovery rate,
+     and returns the number of p-values that are likely to be good
+     enough to reject the null at that rate.  Returns a second value
+     which is the p-value cutoff.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: fisher-exact-test (contingency-table &key tails)
+     Fisher’s exact test.  Gives a p value for a particular 2x2
+     contingency table
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: fisher-z-transform (r)
+     Transforms the correlation coefficient to an approximately normal
+     distribution.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: fivenum (x &key tukey)
+     By default, returns the five number summary (min, 1st quartile,
+     median, 3rd quartile, max) of the elements X. If the keyword :tukey
+     is set to a non-nil value, Tukey’s fivenum summary is computed
+     instead.
+     *Package*
+          *note ls.statistics: ❨11❩.
+     *Source*
+          *note ls-statistics.lisp: ❨6❩.
+ -- Function: geometric-mean (sequence &optional base)
+     Returns the geometric mean of SEQUENCE
+     The geometric mean is a mean or average, which indicates the
+     central tendency or typical value of a set of numbers by using the
+     product of their values (as opposed to the arithmetic mean which
+     uses their sum)
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: interquartile-range (x)
+     Returns the interquartile range of the elements of X.
+     *Package*
+          *note ls.statistics: ❨11❩.
+     *Source*
+          *note ls-statistics.lisp: ❨6❩.
+ -- Function: linear-regression (points)
+     Computes the regression equation for a least squares fit of a line
+     to a sequence of points (each a list of two numbers, e.g.  ’((1.0
+     0.1) (2.0 0.2))) and report the intercept, slope, correlation
+     coefficient r, R^2, and the significance of the difference of the
+     slope from 0.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: make-sparse-counter (&key test)
+     Create a sparse counter.  Elements are compared with TEST (should
+     be accepted by HASH-TABLE).
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+ -- Function: mcnemars-test (a-discordant-count b-discordant-count &key
+          exact?)
+     McNemar’s test for correlated proportions, used for longitudinal
+     studies.  Look only at the number of discordant pairs (one
+     treatment is effective and the other is not).  If the two
+     treatments are A and B, a-discordant-count is the number where A
+     worked and B did not, and b-discordant-count is the number where B
+     worked and A did not.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: mean (sequence)
+     Returns the mean of SEQUENCE
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: mean (object &key weights)
+     Return the mean of OBJECT. OBJECT must be either a sequence of
+     numbers, a sequence of BOOLEAN or a DISTRIBUTION object.
+
+     A sequence of BOOLEAN is converted to a BIT-VECTOR and the mean of
+     it returned.  This gives you the ratio of TRUE/FALSE values in the
+     sequence (which is most often interpreted as a probability).
+
+     For samples (numeric-vectors), normalized by the weight-1 (and thus
+     unbiased if certain assumptions hold, eg weights that count
+     frequencies.
+     *Package*
+          *note ls.statistics: ❨11❩.
+     *Source*
+          *note ls-statistics.lisp: ❨6❩.
+ -- Function: mean-sd-n (sequence)
+     A combined calculation that is often useful.  Takes a sequence and
+     returns three values: mean, standard deviation and N.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: median (sequence)
+     Returns the median of SEQUENCE
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: mode (sequence)
+     Returns two values: a list of the modes and the number of times
+     they occur
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: normal-mean-ci (mean sd n alpha)
+     Confidence interval for the mean of a normal distribution.
+
+     The 1-alpha percent confidence interval on the mean of a normal
+     distribution with parameters mean, sd & n.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: normal-mean-ci-on-sequence (sequence alpha)
+     The 1-alpha confidence interval on the mean of a sequence of
+     numbers drawn from a Normal distribution.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: normal-pdf (x mu sigma)
+     The probability density function (PDF) for a normal distribution
+     with mean mu and variance sigma at point x.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: normal-sd-ci (sd n alpha)
+     The 1-alpha confidence interval on the standard deviation of a
+     sequence of numbers drawn from a Normal distribution.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: normal-sd-ci-on-sequence (sequence alpha)
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: normal-variance-ci (variance n alpha)
+     The 1-alpha confidence interval on the variance of a sequence of
+     numbers drawn from a Normal distribution.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: normal-variance-ci-on-sequence (sequence alpha)
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: percentile (sequence percent)
+     Return an element from SEQUENCE at percentile PERCENT This function
+     is also known as quantile.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: permutations (n k)
+     How many ways to take n things taken k at a time, when order
+     matters
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: phi (x)
+     the CDF of standard normal distribution
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: poisson-cumulative-probability (mu k)
+     Probability of seeing fewer than K events over a time period when
+     the expected number events over that time is mu.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: poisson-ge-probability (mu x)
+     Probability of X or more events when expected is mu.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: poisson-mu-ci (x alpha)
+     Confidence interval for the Poisson parameter mu
+
+     Given x observations in a unit of time, what is the 1-alpha
+     confidence interval on the Poisson parameter mu (= lambda*T)?
+
+     Since find-critical-value assumes that the function is monotonic
+     increasing, adjust the value we are looking for taking advantage of
+     reflectiveness
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: poisson-probability (mu k)
+     Probability of seeing k events over a time period when the expected
+     number of events over that time is mu.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: poisson-test-one-sample (observed mu &key tails
+          approximate?)
+     The significance of a one sample test for the equality of an
+     observed number of events (observed) and an expected number mu
+     under the poisson distribution.  Normal theory approximation is not
+     that great, so don’t use it unless told.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: pool (&rest accumulators)
+     Pool ACCUMULATORS.
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+ -- Function: random-normal (&key mean sd)
+     Returns a random number with mean and standard-distribution as
+     specified.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: random-pick (sequence)
+     Random selection from sequence
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: random-sample (n sequence)
+     Return a random sample of size N from sequence, without
+     replacement.  If N is equal to or greater than the length of the
+     sequence, return the entire sequence.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: round-float (x &key precision)
+     Rounds a floating point number to a specified number of digits
+     precision.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: sample-range (sequence)
+     Return the difference between the largest and smallest values in
+     SEQUENCE
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: sd (sequence)
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: sign-test (plus-count minus-count &key exact? tails)
+     Really just a special case of the binomial one sample test with p =
+     1/2.  The normal theory version has a correction factor to make it
+     a better approximation.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: sign-test-on-sequences (sequence1 sequence2 &key exact?
+          tails)
+     Same as SIGN-TEST, but takes two sequences and tests whether the
+     entries in one are different (greater or less) than the other.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: sorted-reals-elements (sorted-reals)
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+ -- Function: sparse-counter-count (sparse-counter object)
+     Return the count for OBJECT.
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+ -- Reader: sparse-counter-table (instance)
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+     *Target Slot*
+          *note table: ❨128❩.
+ -- Function: spearman-rank-correlation (points)
+     Spearman rank correlation computes the relationship between a pair
+     of variables when one or both are either ordinal or have a
+     distribution that is far from normal.  It takes a list of points
+     (same format as linear-regression) and returns the spearman rank
+     correlation coefficient and its significance.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: standard-deviation (sequence)
+     Return the standard deviation of SEQUENCE
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: standard-error-of-the-mean (sequence)
+     Return the estimated standard deviation obtained from a set of
+     sample means from repeated samples
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: t-distribution (dof percentile)
+     Returns the point which is the indicated percentile in the T
+     distribution with dof degrees of freedom
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: t-significance (t-statistic dof &key tails)
+     Adopted from CLASP 1.4.3, http://eksl-www.cs.umass.edu/clasp.html
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: t-test-one-sample (x-bar sd n mu &key tails)
+     The significance of a one sample T test for the mean of a normal
+     distribution with unknown variance.  X-bar is the observed mean, sd
+     is the observed standard deviation, N is the number of observations
+     and mu is the test mean.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: t-test-one-sample-on-sequence (sequence mu &key tails)
+     The significance of a one sample T test for the mean of a normal
+     sequence of numbers with unknown variance.  X-bar is the observed
+     mean, sd is the observed standard deviation, N is the number of
+     observations and mu is the test mean.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: t-test-one-sample-sse (mu mu-null variance &key alpha
+          1-beta tails)
+     Returns the number of subjects needed to test whether the mean of a
+     normally distributed sample mu is different from a null hypothesis
+     mean mu-null and variance variance, with alpha, 1-beta and tails as
+     specified.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: t-test-paired (d-bar sd n &key tails)
+     The significance of a paired t test for the means of two normal
+     distributions in a longitudinal study.  D-bar is the mean
+     difference, sd is the standard deviation of the differences, N is
+     the number of pairs.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: t-test-paired-on-sequences (before after &key tails)
+     The significance of a paired t test for means of two normal
+     distributions in a longitudinal study.  Before is a sequence of
+     before values, after is the sequence of paired after values (which
+     must be the same length as the before sequence).
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: t-test-paired-sse (difference-mu difference-variance &key
+          alpha 1-beta tails)
+     Returns the number of subjects needed to test whether the
+     differences with mean difference-mu and variance
+     difference-variance, with alpha, 1-beta and tails as specified.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: t-test-two-sample (x-bar1 sd1 n1 x-bar2 sd2 n2 &key
+          variances-equal? variance-significance-cutoff tails)
+     The significance of the difference of two means (x-bar1 and x-bar2)
+     with standard deviations sd1 and sd2, and sample sizes n1 and n2
+     respectively.  The form of the two sample t test depends on whether
+     the sample variances are equal or not.  If the variable
+     variances-equal?  is :test, then we use an F test and the
+     variance-significance-cutoff to determine if they are equal.  If
+     the variances are equal, then we use the two sample t test for
+     equal variances.  If they are not equal, we use the Satterthwaite
+     method, which has good type I error properties (at the loss of some
+     power).
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: t-test-two-sample-on-sequences (sequence1 sequence2 &key
+          variance-significance-cutoff tails)
+     The significance of the difference of two means of SEQUENCE1 and
+     SEQUENCE2 with standard deviations sd1 and sd2, and sample sizes n1
+     and n2 respectively.  The form of the two sample t test depends on
+     whether the sample variances are equal or not.  If the variable
+     variances-equal?  is :test, then we use an F test and the
+     variance-significance-cutoff to determine if they are equal.  If
+     the variances are equal, then we use the two sample t test for
+     equal variances.  If they are not equal, we use the Satterthwaite
+     method.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: t-test-two-sample-sse (mu1 variance1 mu2 variance2 &key
+          sample-ratio alpha 1-beta tails)
+     Returns the number of subjects needed to test whether the mean mu1
+     of a normally distributed sample (with variance variance1) is
+     different from a second sample with mean mu2 and variance
+     variance2, with alpha, 1-beta and tails as specified.  It is also
+     possible to set a sample size ratio of sample 1 to sample 2.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: tabulate (sequence &key test)
+     Tabulate a sequence (using a SPARSE-COUNTER with the given TEST).
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+ -- Function: variance (sequence)
+     Return variance of SEQUENCE
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: variance (object &key weights biased?)
+     Variance of OBJECT. For samples, normalized by the weight-1 (and
+     thus unbiased if certain assumptions hold, e.g.  weights that count
+     frequencies).
+
+     Note that alexandria’s default for variance will return biased
+     variance.  We change that here for consistency.  If you want a
+     biased variance use alexandria:variance directly.
+     *Package*
+          *note ls.statistics: ❨11❩.
+     *Source*
+          *note ls-statistics.lisp: ❨6❩.
+ -- Function: weighted-quantiles (values weights qs)
+     Calculate quantiles QS of weighted observations.  Uses a 0.5
+     correction.
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+ -- Function: wilcoxon-signed-rank-test (differences &optional tails)
+     A test on the ranking of positive and negative differences (are the
+     positive differences significantly larger/smaller than the negative
+     ones).  Assumes a continuous and symmetric distribution of
+     differences, although not a normal one.  This is the normal theory
+     approximation, which is only valid when N > 15.  This test is
+     equivalent to the Mann-Whitney test.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: wilcoxon-signed-rank-test-on-sequences (sequence1
+          sequence2 &optional tails)
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: z (percentile &key epsilon)
+     The inverse normal function, P(X<Zu) = u where X is distributed as
+     the standard normal.  Uses binary search.(
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: z-test (x-bar n &key mu sigma tails)
+     The significance of a one sample Z test for the mean of a normal
+     distribution with known variance.  mu is the null hypothesis mean,
+     x-bar is the observed mean, sigma is the standard deviation and N
+     is the number of observations.  If tails is :both, the significance
+     of a difference between x-bar and mu.  If tails is :positive, the
+     significance of x-bar is greater than mu, and if tails is
+     :negative, the significance of x-bar being less than mu.  Returns a
+     p value.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: z-test-on-sequence (sequence &key mu sigma tails)
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+
+
+File: statistics.info,  Node: Public generic functions,  Next: Public standalone methods,  Prev: Public ordinary functions,  Up: Public Interface
+
+4.1.4 Generic functions
+-----------------------
+
+ -- Generic Function: add (accumulator object &key weight)
+     Add OBJECT to ACCUMULATOR. Return OBJECT. NILs are ignored by the
+     accumulator, unless a specialized method decides otherwise.
+     Keywords may be used to specify additional information (eg weight).
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+     *Methods*
+           -- Method: add ((accumulator *note sparse-counter: ❨127❩.)
+                    object &key weight)
+               Increments the count of OBJECT in SPARSE-COUNTER,
+               optionally with a weight
+           -- Method: add ((accumulator *note sorted-reals: ❨104❩.)
+                    object &key)
+           -- Method: add ((moments *note central-sample-moments:
+                    ❨150❩.) (y real) &key weight)
+           -- Method: add (accumulator (object null) &key)
+ -- Generic Function: central-m2 (object &key weights)
+     Second central moment.  For samples, normalized by the total weight
+     (and thus not the unbiased estimator, see VARIANCE).
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+     *Methods*
+           -- Method: central-m2 (object &key weights)
+           -- Method: central-m2 ((object *note central-sample-moments:
+                    ❨150❩.) &key weights)
+ -- Generic Function: central-m3 (object &key weights)
+     Third central moment.
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+     *Methods*
+           -- Method: central-m3 (object &key weights)
+           -- Method: central-m3 ((object *note central-sample-moments:
+                    ❨150❩.) &key weights)
+ -- Generic Function: central-m4 (object &key weights)
+     Fourth central moment.
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+     *Methods*
+           -- Method: central-m4 (object &key weights)
+           -- Method: central-m4 ((object *note central-sample-moments:
+                    ❨150❩.) &key weights)
+ -- Generic Function: central-sample-moments (object &key degree
+          weights)
+     Return a CENTRAL-SAMPLE-MOMENTS object that allows the calculation
+     of the central sample moments of OBJECT up to the given DEGREE.
+
+     When WEIGHTS are given, they need to be a sequence of matching
+     length.
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+     *Methods*
+           -- Method: central-sample-moments ((object null) &key degree
+                    weights)
+           -- Method: central-sample-moments ((moments *note
+                    central-sample-moments: ❨150❩.) &key degree weights)
+           -- Method: central-sample-moments ((sequence sequence) &key
+                    degree weights)
+ -- Generic Function: ensure-sorted-reals (object)
+     Return the contents of OBJECT as a SORTED-REALS.
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+     *Methods*
+           -- Method: ensure-sorted-reals ((sorted-reals *note
+                    sorted-reals: ❨104❩.))
+           -- Method: ensure-sorted-reals ((array array))
+           -- Method: ensure-sorted-reals ((list list))
+ -- Generic Function: kurtosis (object &key weights)
+     Kurtosis FIXME talk about bias, maybe implement unbiased?
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+     *Methods*
+           -- Method: kurtosis (object &key weights)
+           -- Method: kurtosis ((object *note central-sample-moments:
+                    ❨150❩.) &key weights)
+ -- Generic Function: mean (object &key weights)
+     The mean of elements in OBJECT.
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+     *Methods*
+           -- Method: mean (object &key weights)
+           -- Method: mean ((object *note central-sample-moments:
+                    ❨150❩.) &key weights)
+ -- Generic Function: median (object)
+     Median of OBJECT.
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+     *Methods*
+           -- Method: median ((sample sequence))
+               Returns median of SAMPLE. SAMPLE must be a sequence of
+               real numbers.
+           -- Method: median (object)
+ -- Generic Function: quantile (object q)
+     Return an element at quantile Q. May be an interpolation or an
+     approximation, depending on OBJECT and Q. NOTE: Extensions should
+     define methods for QUANTILES, not QUANTILE.
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+     *Methods*
+           -- Method: quantile ((object sequence) q)
+           -- Method: quantile ((object r-univariate) q)
+           -- Method: quantile (object q)
+ -- Generic Function: quantiles (object qs)
+     Multiple quantiles (see QUANTILE). NOTE: Extensions should define
+     methods for QUANTILES, not QUANTILE.
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+     *Methods*
+           -- Method: quantiles ((object sequence) qs)
+           -- Method: quantiles ((accumulator *note sorted-reals:
+                    ❨104❩.) q)
+ -- Generic Function: sd (object &key weights)
+     Standard deviation.  For samples, the square root of the unbiased
+     estimator (see VARIANCE).
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+     *Methods*
+           -- Method: sd (object &key weights)
+ -- Generic Function: skewness (object &key weights)
+     Skewness FIXME talk about bias, maybe implement unbiased?
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+     *Methods*
+           -- Method: skewness (object &key weights)
+           -- Method: skewness ((object *note central-sample-moments:
+                    ❨150❩.) &key weights)
+ -- Generic Function: tally (accumulator)
+     The total weight of elements in ACCUMULATOR.
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+     *Methods*
+           -- Method: tally ((accumulator *note sparse-counter: ❨127❩.))
+               Return the total ’weight’ of the accumulator
+           -- Method: tally ((accumulator *note tally-mixin: ❨198❩.))
+ -- Generic Function: variance (object &key weights)
+     Variance of OBJECT. For samples, normalized by the weight-1 (and
+     thus unbiased if certain assumptions hold, eg weights that count
+     frequencies).
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+     *Methods*
+           -- Method: variance (object &key weights)
+           -- Method: variance ((object *note central-sample-moments:
+                    ❨150❩.) &key weights)
+
+
+File: statistics.info,  Node: Public standalone methods,  Next: Public conditions,  Prev: Public generic functions,  Up: Public Interface
+
+4.1.5 Standalone methods
+------------------------
+
+ -- Method: as-alist ((object *note sparse-counter: ❨127❩.))
+     Return (OBJECT .  COUNT) pairs as an alist.
+     *Package*
+          num-utils.utilities.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+ -- Method: num= ((a *note central-sample-moments: ❨150❩.) (b *note
+          central-sample-moments: ❨150❩.) &optional tolerance)
+     *Package*
+          num-utils.num=.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+ -- Method: print-object ((acc *note sorted-reals: ❨104❩.) stream)
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+ -- Method: print-object ((sparse-counter *note sparse-counter: ❨127❩.)
+          stream)
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+
+
+File: statistics.info,  Node: Public conditions,  Next: Public structures,  Prev: Public standalone methods,  Up: Public Interface
+
+4.1.6 Conditions
+----------------
+
+ -- Condition: empty-accumulator
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+     *Direct superclasses*
+          error.
+ -- Condition: information-not-collected-in-accumulator
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+     *Direct superclasses*
+          error.
+ -- Condition: not-enough-elements-in-accumulator
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+     *Direct superclasses*
+          error.
+
+
+File: statistics.info,  Node: Public structures,  Prev: Public conditions,  Up: Public Interface
+
+4.1.7 Structures
+----------------
+
+ -- Structure: central-sample-moments
+     Central sample moments calculated on-line/single-pass.
+
+     M weighted mean
+     S2 weighted sum of squared deviations from the mean, not calculated
+     when NIL S3 weighted sum of cubed deviations from the mean, not
+     calculated when NIL S4 weighted sum of 4th power deviations from
+     the mean, not calculated when NIL
+
+     Allows on-line, numerically stable calculation of moments.  See
+     cite{bennett2009numerically} and cite{pebay2008formulas} for the
+     description of the algorithm.  M_2, ..., M_4 in the paper are s2,
+     ..., s4 in the code.
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+     *Direct superclasses*
+          *note tally-mixin: ❨198❩.
+     *Direct methods*
+             • *note add: ❨132❩.
+             • *note central-m2: ❨170❩.
+             • *note central-m3: ❨136❩.
+             • *note central-m4: ❨120❩.
+             • *note central-sample-moments: ❨148❩.
+             • *note kurtosis: ❨162❩.
+             • *note mean: ❨173❩.
+             • *note num=: ❨245❩.
+             • *note pool2: ❨182❩.
+             • *note skewness: ❨167❩.
+             • *note variance: ❨114❩.
+     *Direct slots*
+           -- Slot: m
+               *Type*
+                    real
+               *Initform*
+                    0.0d0
+               *Readers*
+                    *note central-sample-moments-m: ❨194❩.
+               *Writers*
+                    *note (setf central-sample-moments-m): ❨195❩.
+           -- Slot: s2
+               *Type*
+                    (or (real 0) null)
+               *Initform*
+                    0.0d0
+               *Readers*
+                    *note central-sample-moments-s2: ❨191❩.
+               *Writers*
+                    *note (setf central-sample-moments-s2): ❨192❩.
+           -- Slot: s3
+               *Type*
+                    (or real null)
+               *Initform*
+                    0.0d0
+               *Readers*
+                    *note central-sample-moments-s3: ❨189❩.
+               *Writers*
+                    *note (setf central-sample-moments-s3): ❨190❩.
+           -- Slot: s4
+               *Type*
+                    (or (real 0) null)
+               *Initform*
+                    0.0d0
+               *Readers*
+                    *note central-sample-moments-s4: ❨187❩.
+               *Writers*
+                    *note (setf central-sample-moments-s4): ❨188❩.
+ -- Structure: sorted-reals
+     Accumulator which sorts elements.  ELEMENTS return the sorted
+     elements.
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+     *Direct superclasses*
+          structure-object.
+     *Direct methods*
+             • *note add: ❨131❩.
+             • *note ensure-sorted-reals: ❨175❩.
+             • *note print-object: ❨235❩.
+             • *note quantiles: ❨159❩.
+     *Direct slots*
+           -- Slot: ordered-elements
+               *Type*
+                    vector
+               *Initform*
+                    #()
+               *Readers*
+                    *note sorted-reals-ordered-elements: ❨179❩.
+               *Writers*
+                    *note (setf sorted-reals-ordered-elements): ❨180❩.
+           -- Slot: unordered-elements
+               *Type*
+                    list
+               *Readers*
+                    *note sorted-reals-unordered-elements: ❨211❩.
+               *Writers*
+                    *note (setf sorted-reals-unordered-elements): ❨212❩.
+ -- Structure: sparse-counter
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+     *Direct superclasses*
+          structure-object.
+     *Direct methods*
+             • *note add: ❨130❩.
+             • *note as-alist: ❨241❩.
+             • *note print-object: ❨240❩.
+             • *note tally: ❨109❩.
+     *Direct slots*
+           -- Slot: table
+               *Type*
+                    hash-table
+               *Readers*
+                    *note sparse-counter-table: ❨144❩.
+               *Writers*
+                    This slot is read-only.
+
+
+File: statistics.info,  Node: Internals,  Prev: Public Interface,  Up: Definitions
+
+4.2 Internals
+=============
+
+* Menu:
+
+* Private macros::
+* Private ordinary functions::
+* Private generic functions::
+* Private structures::
+
+
+File: statistics.info,  Node: Private macros,  Next: Private ordinary functions,  Prev: Internals,  Up: Internals
+
+4.2.1 Macros
+------------
+
+ -- Macro: &sorted-reals (ordered-elements unordered-elements)
+     LET+ form for slots of the structure SORTED-REALS.
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+ -- Macro: &sorted-reals-r/o (ordered-elements unordered-elements)
+     LET+ form for slots of the structure SORTED-REALS. Read-only.
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+ -- Macro: define-central-sample-moment (function (variable degree)
+          &body body)
+     FIXME documentation, factor out general part
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+ -- Macro: underflow-goes-to-zero (&body body)
+     Protects against floating point underflow errors and sets the value
+     to 0.0 instead.
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+
+
+File: statistics.info,  Node: Private ordinary functions,  Next: Private generic functions,  Prev: Private macros,  Up: Internals
+
+4.2.2 Ordinary functions
+------------------------
+
+ -- Function: average-rank (value sorted-values)
+     Average rank calculation for non-parametric tests.  Ranks are 1
+     based, but lisp is 0 based, so add 1!
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: beta-incomplete (a b x)
+     Adopted from CLASP 1.4.3, http://eksl-www.cs.umass.edu/clasp.html
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: binomial-le-probability (n k p)
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Reader: central-sample-moments-m (instance)
+ -- Writer: (setf central-sample-moments-m) (instance)
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+     *Target Slot*
+          *note m: ❨151❩.
+ -- Function: central-sample-moments-p (object)
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+ -- Reader: central-sample-moments-s2 (instance)
+ -- Writer: (setf central-sample-moments-s2) (instance)
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+     *Target Slot*
+          *note s2: ❨152❩.
+ -- Reader: central-sample-moments-s3 (instance)
+ -- Writer: (setf central-sample-moments-s3) (instance)
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+     *Target Slot*
+          *note s3: ❨153❩.
+ -- Reader: central-sample-moments-s4 (instance)
+ -- Writer: (setf central-sample-moments-s4) (instance)
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+     *Target Slot*
+          *note s4: ❨154❩.
+ -- Function: central-sample-moments-w (instance)
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+ -- Function: (setf central-sample-moments-w) (instance)
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+ -- Function: copy-central-sample-moments (instance)
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+ -- Function: copy-sorted-reals (instance)
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+ -- Function: copy-sparse-counter (instance)
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+ -- Function: copy-tally-mixin (instance)
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+ -- Function: error-function (x)
+     Adopted from CLASP 1.4.3, http://eksl-www.cs.umass.edu/clasp.html
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: error-function-complement (x)
+     Adopted from CLASP 1.4.3, http://eksl-www.cs.umass.edu/clasp.html
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: factorial (number)
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: find-critical-value (p-function p-value &optional
+          x-tolerance y-tolerance)
+     Adopted from CLASP 1.4.3, http://eksl-www.cs.umass.edu/clasp.html
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: gamma-incomplete (a x)
+     Adopted from CLASP 1.4.3, http://eksl-www.cs.umass.edu/clasp.html
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: gamma-ln (x)
+     Adopted from CLASP 1.4.3, http://eksl-www.cs.umass.edu/clasp.html
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: make-central-sample-moments (&key w m s2 s3 s4)
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+ -- Function: make-sorted-reals (&key ordered-elements
+          unordered-elements)
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+ -- Function: make-sparse-counter% (&key table)
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+ -- Function: make-tally-mixin (&key w)
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+ -- Function: round-up (x)
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: safe-exp (x)
+     Eliminates floating point underflow for the exponential function.
+     Instead, it just returns 0.0d0
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: sign (x)
+     *Package*
+          *note lh.statistics: ❨8❩.
+     *Source*
+          *note lh-statistics.lisp: ❨4❩.
+ -- Function: sort-reals (sequence)
+     Return a SORTED-REALS structure.
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+ -- Reader: sorted-reals-ordered-elements (instance)
+ -- Writer: (setf sorted-reals-ordered-elements) (instance)
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+     *Target Slot*
+          *note ordered-elements: ❨105❩.
+ -- Function: sorted-reals-p (object)
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+ -- Reader: sorted-reals-unordered-elements (instance)
+ -- Writer: (setf sorted-reals-unordered-elements) (instance)
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+     *Target Slot*
+          *note unordered-elements: ❨106❩.
+ -- Function: sparse-counter-p (object)
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+ -- Function: tally-mixin-p (object)
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+ -- Reader: tally-mixin-w (instance)
+ -- Writer: (setf tally-mixin-w) (instance)
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+     *Target Slot*
+          *note w: ❨199❩.
+ -- Function: weighted-empirical-quantile (sorted-reals p-table q)
+     Return the empirical quantile of a vector of real numbers, sorted
+     in ascending order (not checked).  Uses a 0.5 correction.
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+ -- Function: weighted-quantile-p-table (weights)
+     Return table of probability brackets for weighted quantile
+     calculations., built from the weights (which should be positive
+     reals, not checked).  Uses a 0.5 correction.
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+
+
+File: statistics.info,  Node: Private generic functions,  Next: Private structures,  Prev: Private ordinary functions,  Up: Internals
+
+4.2.3 Generic functions
+-----------------------
+
+ -- Generic Function: pool2 (accumulator1 accumulator2)
+     Pool two accumulators.  When they are of a different type, the
+     resulting accumulator will be downgraded to the level afforded by
+     the information available in the accumulators.
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+     *Methods*
+           -- Method: pool2 ((moments-a *note central-sample-moments:
+                    ❨150❩.) (moments-b *note central-sample-moments:
+                    ❨150❩.))
+
+
+File: statistics.info,  Node: Private structures,  Prev: Private generic functions,  Up: Internals
+
+4.2.4 Structures
+----------------
+
+ -- Structure: tally-mixin
+     Mixin structure that contains a tally.  Not exported.  W is the
+     total weight.
+     *Package*
+          *note nu.statistics: ❨9❩.
+     *Source*
+          *note nu-statistics.lisp: ❨5❩.
+     *Direct superclasses*
+          structure-object.
+     *Direct subclasses*
+          *note central-sample-moments: ❨150❩.
+     *Direct methods*
+          *note tally: ❨110❩.
+     *Direct slots*
+           -- Slot: w
+               *Type*
+                    (real 0)
+               *Initform*
+                    0
+               *Readers*
+                    *note tally-mixin-w: ❨185❩.
+               *Writers*
+                    *note (setf tally-mixin-w): ❨186❩.
+
+
+File: statistics.info,  Node: Indexes,  Prev: Definitions,  Up: Top
+
+Appendix A Indexes
+******************
+
+* Menu:
+
+* Concept index::
+* Function index::
+* Variable index::
+* Data type index::
+
+
+File: statistics.info,  Node: Concept index,  Next: Function index,  Prev: Indexes,  Up: Indexes
+
+A.1 Concepts
+============
+
+
+File: statistics.info,  Node: Function index,  Next: Variable index,  Prev: Concept index,  Up: Indexes
+
+A.2 Functions
+=============
+
+ [index ]
+* Menu:
+
+* &sorted-reals:                         Private macros.      (line   6)
+* &sorted-reals-r/o:                     Private macros.      (line  12)
+* (setf central-sample-moments-m):       Private ordinary functions.
+                                                              (line  25)
+* (setf central-sample-moments-s2):      Private ordinary functions.
+                                                              (line  38)
+* (setf central-sample-moments-s3):      Private ordinary functions.
+                                                              (line  46)
+* (setf central-sample-moments-s4):      Private ordinary functions.
+                                                              (line  54)
+* (setf central-sample-moments-w):       Private ordinary functions.
+                                                              (line  66)
+* (setf sorted-reals-ordered-elements):  Private ordinary functions.
+                                                              (line 172)
+* (setf sorted-reals-unordered-elements): Private ordinary functions.
+                                                              (line 185)
+* (setf tally-mixin-w):                  Private ordinary functions.
+                                                              (line 203)
+* add:                                   Public generic functions.
+                                                              (line   6)
+* add <1>:                               Public generic functions.
+                                                              (line  15)
+* add <2>:                               Public generic functions.
+                                                              (line  19)
+* add <3>:                               Public generic functions.
+                                                              (line  21)
+* add <4>:                               Public generic functions.
+                                                              (line  23)
+* as-alist:                              Public standalone methods.
+                                                              (line   6)
+* average-rank:                          Private ordinary functions.
+                                                              (line   6)
+* beta-incomplete:                       Private ordinary functions.
+                                                              (line  13)
+* bin-and-count:                         Public ordinary functions.
+                                                              (line   6)
+* binomial-cumulative-probability:       Public ordinary functions.
+                                                              (line  13)
+* binomial-ge-probability:               Public ordinary functions.
+                                                              (line  23)
+* binomial-le-probability:               Private ordinary functions.
+                                                              (line  19)
+* binomial-probability:                  Public ordinary functions.
+                                                              (line  30)
+* binomial-probability-ci:               Public ordinary functions.
+                                                              (line  39)
+* binomial-test-one-sample:              Public ordinary functions.
+                                                              (line  48)
+* binomial-test-one-sample-sse:          Public ordinary functions.
+                                                              (line  57)
+* binomial-test-paired-sse:              Public ordinary functions.
+                                                              (line  66)
+* binomial-test-two-sample:              Public ordinary functions.
+                                                              (line  77)
+* binomial-test-two-sample-sse:          Public ordinary functions.
+                                                              (line  86)
+* central-m2:                            Public generic functions.
+                                                              (line  24)
+* central-m2 <1>:                        Public generic functions.
+                                                              (line  32)
+* central-m2 <2>:                        Public generic functions.
+                                                              (line  33)
+* central-m3:                            Public generic functions.
+                                                              (line  35)
+* central-m3 <1>:                        Public generic functions.
+                                                              (line  42)
+* central-m3 <2>:                        Public generic functions.
+                                                              (line  43)
+* central-m4:                            Public generic functions.
+                                                              (line  45)
+* central-m4 <1>:                        Public generic functions.
+                                                              (line  52)
+* central-m4 <2>:                        Public generic functions.
+                                                              (line  53)
+* central-sample-moments:                Public generic functions.
+                                                              (line  55)
+* central-sample-moments <1>:            Public generic functions.
+                                                              (line  67)
+* central-sample-moments <2>:            Public generic functions.
+                                                              (line  69)
+* central-sample-moments <3>:            Public generic functions.
+                                                              (line  71)
+* central-sample-moments-degree:         Public ordinary functions.
+                                                              (line  97)
+* central-sample-moments-m:              Private ordinary functions.
+                                                              (line  24)
+* central-sample-moments-p:              Private ordinary functions.
+                                                              (line  32)
+* central-sample-moments-s2:             Private ordinary functions.
+                                                              (line  37)
+* central-sample-moments-s3:             Private ordinary functions.
+                                                              (line  45)
+* central-sample-moments-s4:             Private ordinary functions.
+                                                              (line  53)
+* central-sample-moments-w:              Private ordinary functions.
+                                                              (line  61)
+* chi-square:                            Public ordinary functions.
+                                                              (line 103)
+* chi-square-cdf:                        Public ordinary functions.
+                                                              (line 110)
+* chi-square-test-for-trend:             Public ordinary functions.
+                                                              (line 117)
+* chi-square-test-one-sample:            Public ordinary functions.
+                                                              (line 128)
+* chi-square-test-rxc:                   Public ordinary functions.
+                                                              (line 137)
+* choose:                                Public ordinary functions.
+                                                              (line 147)
+* coefficient-of-variation:              Public ordinary functions.
+                                                              (line 154)
+* convert-to-standard-normal:            Public ordinary functions.
+                                                              (line 160)
+* copy-central-sample-moments:           Private ordinary functions.
+                                                              (line  71)
+* copy-sorted-reals:                     Private ordinary functions.
+                                                              (line  76)
+* copy-sparse-counter:                   Private ordinary functions.
+                                                              (line  81)
+* copy-tally-mixin:                      Private ordinary functions.
+                                                              (line  86)
+* correlation-coefficient:               Public ordinary functions.
+                                                              (line 167)
+* correlation-sse:                       Public ordinary functions.
+                                                              (line 173)
+* correlation-test-two-sample:           Public ordinary functions.
+                                                              (line 180)
+* correlation-test-two-sample-on-sequences: Public ordinary functions.
+                                                              (line 187)
+* cross-tabulate:                        Public ordinary functions.
+                                                              (line 193)
+* define-central-sample-moment:          Private macros.      (line  18)
+* empirical-quantile:                    Public ordinary functions.
+                                                              (line 200)
+* empirical-quantile-probabilities:      Public ordinary functions.
+                                                              (line 207)
+* ensure-sorted-reals:                   Public generic functions.
+                                                              (line  73)
+* ensure-sorted-reals <1>:               Public generic functions.
+                                                              (line  80)
+* ensure-sorted-reals <2>:               Public generic functions.
+                                                              (line  82)
+* ensure-sorted-reals <3>:               Public generic functions.
+                                                              (line  83)
+* ensure-sorted-vector:                  Public ordinary functions.
+                                                              (line 220)
+* error-function:                        Private ordinary functions.
+                                                              (line  91)
+* error-function-complement:             Private ordinary functions.
+                                                              (line  97)
+* f-significance:                        Public ordinary functions.
+                                                              (line 227)
+* f-test:                                Public ordinary functions.
+                                                              (line 237)
+* factorial:                             Private ordinary functions.
+                                                              (line 103)
+* false-discovery-correction:            Public ordinary functions.
+                                                              (line 243)
+* find-critical-value:                   Private ordinary functions.
+                                                              (line 108)
+* fisher-exact-test:                     Public ordinary functions.
+                                                              (line 253)
+* fisher-z-transform:                    Public ordinary functions.
+                                                              (line 260)
+* fivenum:                               Public ordinary functions.
+                                                              (line 267)
+* Function, (setf central-sample-moments-m): Private ordinary functions.
+                                                              (line  26)
+* Function, (setf central-sample-moments-s2): Private ordinary functions.
+                                                              (line  39)
+* Function, (setf central-sample-moments-s3): Private ordinary functions.
+                                                              (line  47)
+* Function, (setf central-sample-moments-s4): Private ordinary functions.
+                                                              (line  55)
+* Function, (setf central-sample-moments-w): Private ordinary functions.
+                                                              (line  67)
+* Function, (setf sorted-reals-ordered-elements): Private ordinary functions.
+                                                              (line 173)
+* Function, (setf sorted-reals-unordered-elements): Private ordinary functions.
+                                                              (line 186)
+* Function, (setf tally-mixin-w):        Private ordinary functions.
+                                                              (line 204)
+* Function, average-rank:                Private ordinary functions.
+                                                              (line   7)
+* Function, beta-incomplete:             Private ordinary functions.
+                                                              (line  14)
+* Function, bin-and-count:               Public ordinary functions.
+                                                              (line   7)
+* Function, binomial-cumulative-probability: Public ordinary functions.
+                                                              (line  14)
+* Function, binomial-ge-probability:     Public ordinary functions.
+                                                              (line  24)
+* Function, binomial-le-probability:     Private ordinary functions.
+                                                              (line  20)
+* Function, binomial-probability:        Public ordinary functions.
+                                                              (line  31)
+* Function, binomial-probability-ci:     Public ordinary functions.
+                                                              (line  40)
+* Function, binomial-test-one-sample:    Public ordinary functions.
+                                                              (line  49)
+* Function, binomial-test-one-sample-sse: Public ordinary functions.
+                                                              (line  59)
+* Function, binomial-test-paired-sse:    Public ordinary functions.
+                                                              (line  67)
+* Function, binomial-test-two-sample:    Public ordinary functions.
+                                                              (line  79)
+* Function, binomial-test-two-sample-sse: Public ordinary functions.
+                                                              (line  88)
+* Function, central-sample-moments-degree: Public ordinary functions.
+                                                              (line  98)
+* Function, central-sample-moments-m:    Private ordinary functions.
+                                                              (line  25)
+* Function, central-sample-moments-p:    Private ordinary functions.
+                                                              (line  33)
+* Function, central-sample-moments-s2:   Private ordinary functions.
+                                                              (line  38)
+* Function, central-sample-moments-s3:   Private ordinary functions.
+                                                              (line  46)
+* Function, central-sample-moments-s4:   Private ordinary functions.
+                                                              (line  54)
+* Function, central-sample-moments-w:    Private ordinary functions.
+                                                              (line  62)
+* Function, chi-square:                  Public ordinary functions.
+                                                              (line 104)
+* Function, chi-square-cdf:              Public ordinary functions.
+                                                              (line 111)
+* Function, chi-square-test-for-trend:   Public ordinary functions.
+                                                              (line 119)
+* Function, chi-square-test-one-sample:  Public ordinary functions.
+                                                              (line 130)
+* Function, chi-square-test-rxc:         Public ordinary functions.
+                                                              (line 138)
+* Function, choose:                      Public ordinary functions.
+                                                              (line 148)
+* Function, coefficient-of-variation:    Public ordinary functions.
+                                                              (line 155)
+* Function, convert-to-standard-normal:  Public ordinary functions.
+                                                              (line 161)
+* Function, copy-central-sample-moments: Private ordinary functions.
+                                                              (line  72)
+* Function, copy-sorted-reals:           Private ordinary functions.
+                                                              (line  77)
+* Function, copy-sparse-counter:         Private ordinary functions.
+                                                              (line  82)
+* Function, copy-tally-mixin:            Private ordinary functions.
+                                                              (line  87)
+* Function, correlation-coefficient:     Public ordinary functions.
+                                                              (line 168)
+* Function, correlation-sse:             Public ordinary functions.
+                                                              (line 174)
+* Function, correlation-test-two-sample: Public ordinary functions.
+                                                              (line 181)
+* Function, correlation-test-two-sample-on-sequences: Public ordinary functions.
+                                                              (line 189)
+* Function, cross-tabulate:              Public ordinary functions.
+                                                              (line 194)
+* Function, empirical-quantile:          Public ordinary functions.
+                                                              (line 201)
+* Function, empirical-quantile-probabilities: Public ordinary functions.
+                                                              (line 208)
+* Function, ensure-sorted-vector:        Public ordinary functions.
+                                                              (line 221)
+* Function, error-function:              Private ordinary functions.
+                                                              (line  92)
+* Function, error-function-complement:   Private ordinary functions.
+                                                              (line  98)
+* Function, f-significance:              Public ordinary functions.
+                                                              (line 229)
+* Function, f-test:                      Public ordinary functions.
+                                                              (line 238)
+* Function, factorial:                   Private ordinary functions.
+                                                              (line 104)
+* Function, false-discovery-correction:  Public ordinary functions.
+                                                              (line 244)
+* Function, find-critical-value:         Private ordinary functions.
+                                                              (line 110)
+* Function, fisher-exact-test:           Public ordinary functions.
+                                                              (line 254)
+* Function, fisher-z-transform:          Public ordinary functions.
+                                                              (line 261)
+* Function, fivenum:                     Public ordinary functions.
+                                                              (line 268)
+* Function, gamma-incomplete:            Private ordinary functions.
+                                                              (line 116)
+* Function, gamma-ln:                    Private ordinary functions.
+                                                              (line 122)
+* Function, geometric-mean:              Public ordinary functions.
+                                                              (line 277)
+* Function, interquartile-range:         Public ordinary functions.
+                                                              (line 287)
+* Function, linear-regression:           Public ordinary functions.
+                                                              (line 293)
+* Function, make-central-sample-moments: Private ordinary functions.
+                                                              (line 128)
+* Function, make-sorted-reals:           Private ordinary functions.
+                                                              (line 134)
+* Function, make-sparse-counter:         Public ordinary functions.
+                                                              (line 303)
+* Function, make-sparse-counter%:        Private ordinary functions.
+                                                              (line 139)
+* Function, make-tally-mixin:            Private ordinary functions.
+                                                              (line 144)
+* Function, mcnemars-test:               Public ordinary functions.
+                                                              (line 311)
+* Function, mean:                        Public ordinary functions.
+                                                              (line 322)
+* Function, mean <1>:                    Public ordinary functions.
+                                                              (line 328)
+* Function, mean-sd-n:                   Public ordinary functions.
+                                                              (line 343)
+* Function, median:                      Public ordinary functions.
+                                                              (line 350)
+* Function, mode:                        Public ordinary functions.
+                                                              (line 356)
+* Function, normal-mean-ci:              Public ordinary functions.
+                                                              (line 363)
+* Function, normal-mean-ci-on-sequence:  Public ordinary functions.
+                                                              (line 372)
+* Function, normal-pdf:                  Public ordinary functions.
+                                                              (line 379)
+* Function, normal-sd-ci:                Public ordinary functions.
+                                                              (line 386)
+* Function, normal-sd-ci-on-sequence:    Public ordinary functions.
+                                                              (line 393)
+* Function, normal-variance-ci:          Public ordinary functions.
+                                                              (line 398)
+* Function, normal-variance-ci-on-sequence: Public ordinary functions.
+                                                              (line 405)
+* Function, percentile:                  Public ordinary functions.
+                                                              (line 410)
+* Function, permutations:                Public ordinary functions.
+                                                              (line 417)
+* Function, phi:                         Public ordinary functions.
+                                                              (line 424)
+* Function, poisson-cumulative-probability: Public ordinary functions.
+                                                              (line 430)
+* Function, poisson-ge-probability:      Public ordinary functions.
+                                                              (line 437)
+* Function, poisson-mu-ci:               Public ordinary functions.
+                                                              (line 443)
+* Function, poisson-probability:         Public ordinary functions.
+                                                              (line 456)
+* Function, poisson-test-one-sample:     Public ordinary functions.
+                                                              (line 464)
+* Function, pool:                        Public ordinary functions.
+                                                              (line 473)
+* Function, random-normal:               Public ordinary functions.
+                                                              (line 479)
+* Function, random-pick:                 Public ordinary functions.
+                                                              (line 486)
+* Function, random-sample:               Public ordinary functions.
+                                                              (line 492)
+* Function, round-float:                 Public ordinary functions.
+                                                              (line 500)
+* Function, round-up:                    Private ordinary functions.
+                                                              (line 149)
+* Function, safe-exp:                    Private ordinary functions.
+                                                              (line 154)
+* Function, sample-range:                Public ordinary functions.
+                                                              (line 507)
+* Function, sd:                          Public ordinary functions.
+                                                              (line 514)
+* Function, sign:                        Private ordinary functions.
+                                                              (line 161)
+* Function, sign-test:                   Public ordinary functions.
+                                                              (line 519)
+* Function, sign-test-on-sequences:      Public ordinary functions.
+                                                              (line 528)
+* Function, sort-reals:                  Private ordinary functions.
+                                                              (line 166)
+* Function, sorted-reals-elements:       Public ordinary functions.
+                                                              (line 535)
+* Function, sorted-reals-ordered-elements: Private ordinary functions.
+                                                              (line 172)
+* Function, sorted-reals-p:              Private ordinary functions.
+                                                              (line 180)
+* Function, sorted-reals-unordered-elements: Private ordinary functions.
+                                                              (line 185)
+* Function, sparse-counter-count:        Public ordinary functions.
+                                                              (line 540)
+* Function, sparse-counter-p:            Private ordinary functions.
+                                                              (line 193)
+* Function, sparse-counter-table:        Public ordinary functions.
+                                                              (line 546)
+* Function, spearman-rank-correlation:   Public ordinary functions.
+                                                              (line 553)
+* Function, standard-deviation:          Public ordinary functions.
+                                                              (line 563)
+* Function, standard-error-of-the-mean:  Public ordinary functions.
+                                                              (line 569)
+* Function, t-distribution:              Public ordinary functions.
+                                                              (line 576)
+* Function, t-significance:              Public ordinary functions.
+                                                              (line 583)
+* Function, t-test-one-sample:           Public ordinary functions.
+                                                              (line 589)
+* Function, t-test-one-sample-on-sequence: Public ordinary functions.
+                                                              (line 598)
+* Function, t-test-one-sample-sse:       Public ordinary functions.
+                                                              (line 608)
+* Function, t-test-paired:               Public ordinary functions.
+                                                              (line 617)
+* Function, t-test-paired-on-sequences:  Public ordinary functions.
+                                                              (line 626)
+* Function, t-test-paired-sse:           Public ordinary functions.
+                                                              (line 636)
+* Function, t-test-two-sample:           Public ordinary functions.
+                                                              (line 645)
+* Function, t-test-two-sample-on-sequences: Public ordinary functions.
+                                                              (line 661)
+* Function, t-test-two-sample-sse:       Public ordinary functions.
+                                                              (line 676)
+* Function, tabulate:                    Public ordinary functions.
+                                                              (line 686)
+* Function, tally-mixin-p:               Private ordinary functions.
+                                                              (line 198)
+* Function, tally-mixin-w:               Private ordinary functions.
+                                                              (line 203)
+* Function, variance:                    Public ordinary functions.
+                                                              (line 692)
+* Function, variance <1>:                Public ordinary functions.
+                                                              (line 698)
+* Function, weighted-empirical-quantile: Private ordinary functions.
+                                                              (line 211)
+* Function, weighted-quantile-p-table:   Private ordinary functions.
+                                                              (line 218)
+* Function, weighted-quantiles:          Public ordinary functions.
+                                                              (line 710)
+* Function, wilcoxon-signed-rank-test:   Public ordinary functions.
+                                                              (line 717)
+* Function, wilcoxon-signed-rank-test-on-sequences: Public ordinary functions.
+                                                              (line 729)
+* Function, z:                           Public ordinary functions.
+                                                              (line 734)
+* Function, z-test:                      Public ordinary functions.
+                                                              (line 741)
+* Function, z-test-on-sequence:          Public ordinary functions.
+                                                              (line 754)
+* gamma-incomplete:                      Private ordinary functions.
+                                                              (line 115)
+* gamma-ln:                              Private ordinary functions.
+                                                              (line 121)
+* Generic Function, add:                 Public generic functions.
+                                                              (line   7)
+* Generic Function, central-m2:          Public generic functions.
+                                                              (line  25)
+* Generic Function, central-m3:          Public generic functions.
+                                                              (line  36)
+* Generic Function, central-m4:          Public generic functions.
+                                                              (line  46)
+* Generic Function, central-sample-moments: Public generic functions.
+                                                              (line  57)
+* Generic Function, ensure-sorted-reals: Public generic functions.
+                                                              (line  74)
+* Generic Function, kurtosis:            Public generic functions.
+                                                              (line  85)
+* Generic Function, mean:                Public generic functions.
+                                                              (line  95)
+* Generic Function, median:              Public generic functions.
+                                                              (line 105)
+* Generic Function, pool2:               Private generic functions.
+                                                              (line   7)
+* Generic Function, quantile:            Public generic functions.
+                                                              (line 116)
+* Generic Function, quantiles:           Public generic functions.
+                                                              (line 128)
+* Generic Function, sd:                  Public generic functions.
+                                                              (line 139)
+* Generic Function, skewness:            Public generic functions.
+                                                              (line 148)
+* Generic Function, tally:               Public generic functions.
+                                                              (line 158)
+* Generic Function, variance:            Public generic functions.
+                                                              (line 168)
+* geometric-mean:                        Public ordinary functions.
+                                                              (line 276)
+* interquartile-range:                   Public ordinary functions.
+                                                              (line 286)
+* kurtosis:                              Public generic functions.
+                                                              (line  84)
+* kurtosis <1>:                          Public generic functions.
+                                                              (line  91)
+* kurtosis <2>:                          Public generic functions.
+                                                              (line  92)
+* linear-regression:                     Public ordinary functions.
+                                                              (line 292)
+* Macro, &sorted-reals:                  Private macros.      (line   7)
+* Macro, &sorted-reals-r/o:              Private macros.      (line  13)
+* Macro, define-central-sample-moment:   Private macros.      (line  20)
+* Macro, square:                         Public macros.       (line   7)
+* Macro, test-variables:                 Public macros.       (line  12)
+* Macro, underflow-goes-to-zero:         Private macros.      (line  26)
+* make-central-sample-moments:           Private ordinary functions.
+                                                              (line 127)
+* make-sorted-reals:                     Private ordinary functions.
+                                                              (line 132)
+* make-sparse-counter:                   Public ordinary functions.
+                                                              (line 302)
+* make-sparse-counter%:                  Private ordinary functions.
+                                                              (line 138)
+* make-tally-mixin:                      Private ordinary functions.
+                                                              (line 143)
+* mcnemars-test:                         Public ordinary functions.
+                                                              (line 309)
+* mean:                                  Public ordinary functions.
+                                                              (line 321)
+* mean <1>:                              Public ordinary functions.
+                                                              (line 327)
+* mean <2>:                              Public generic functions.
+                                                              (line  94)
+* mean <3>:                              Public generic functions.
+                                                              (line 101)
+* mean <4>:                              Public generic functions.
+                                                              (line 102)
+* mean-sd-n:                             Public ordinary functions.
+                                                              (line 342)
+* median:                                Public ordinary functions.
+                                                              (line 349)
+* median <1>:                            Public generic functions.
+                                                              (line 104)
+* median <2>:                            Public generic functions.
+                                                              (line 111)
+* median <3>:                            Public generic functions.
+                                                              (line 114)
+* Method, add:                           Public generic functions.
+                                                              (line  17)
+* Method, add <1>:                       Public generic functions.
+                                                              (line  21)
+* Method, add <2>:                       Public generic functions.
+                                                              (line  23)
+* Method, add <3>:                       Public generic functions.
+                                                              (line  24)
+* Method, as-alist:                      Public standalone methods.
+                                                              (line   7)
+* Method, central-m2:                    Public generic functions.
+                                                              (line  33)
+* Method, central-m2 <1>:                Public generic functions.
+                                                              (line  35)
+* Method, central-m3:                    Public generic functions.
+                                                              (line  43)
+* Method, central-m3 <1>:                Public generic functions.
+                                                              (line  45)
+* Method, central-m4:                    Public generic functions.
+                                                              (line  53)
+* Method, central-m4 <1>:                Public generic functions.
+                                                              (line  55)
+* Method, central-sample-moments:        Public generic functions.
+                                                              (line  69)
+* Method, central-sample-moments <1>:    Public generic functions.
+                                                              (line  71)
+* Method, central-sample-moments <2>:    Public generic functions.
+                                                              (line  73)
+* Method, ensure-sorted-reals:           Public generic functions.
+                                                              (line  82)
+* Method, ensure-sorted-reals <1>:       Public generic functions.
+                                                              (line  83)
+* Method, ensure-sorted-reals <2>:       Public generic functions.
+                                                              (line  84)
+* Method, kurtosis:                      Public generic functions.
+                                                              (line  92)
+* Method, kurtosis <1>:                  Public generic functions.
+                                                              (line  94)
+* Method, mean:                          Public generic functions.
+                                                              (line 102)
+* Method, mean <1>:                      Public generic functions.
+                                                              (line 104)
+* Method, median:                        Public generic functions.
+                                                              (line 112)
+* Method, median <1>:                    Public generic functions.
+                                                              (line 115)
+* Method, num=:                          Public standalone methods.
+                                                              (line  14)
+* Method, pool2:                         Private generic functions.
+                                                              (line  18)
+* Method, print-object:                  Public standalone methods.
+                                                              (line  19)
+* Method, print-object <1>:              Public standalone methods.
+                                                              (line  23)
+* Method, quantile:                      Public generic functions.
+                                                              (line 125)
+* Method, quantile <1>:                  Public generic functions.
+                                                              (line 126)
+* Method, quantile <2>:                  Public generic functions.
+                                                              (line 127)
+* Method, quantiles:                     Public generic functions.
+                                                              (line 136)
+* Method, quantiles <1>:                 Public generic functions.
+                                                              (line 138)
+* Method, sd:                            Public generic functions.
+                                                              (line 147)
+* Method, skewness:                      Public generic functions.
+                                                              (line 155)
+* Method, skewness <1>:                  Public generic functions.
+                                                              (line 157)
+* Method, tally:                         Public generic functions.
+                                                              (line 165)
+* Method, tally <1>:                     Public generic functions.
+                                                              (line 167)
+* Method, variance:                      Public generic functions.
+                                                              (line 177)
+* Method, variance <1>:                  Public generic functions.
+                                                              (line 179)
+* mode:                                  Public ordinary functions.
+                                                              (line 355)
+* normal-mean-ci:                        Public ordinary functions.
+                                                              (line 362)
+* normal-mean-ci-on-sequence:            Public ordinary functions.
+                                                              (line 371)
+* normal-pdf:                            Public ordinary functions.
+                                                              (line 378)
+* normal-sd-ci:                          Public ordinary functions.
+                                                              (line 385)
+* normal-sd-ci-on-sequence:              Public ordinary functions.
+                                                              (line 392)
+* normal-variance-ci:                    Public ordinary functions.
+                                                              (line 397)
+* normal-variance-ci-on-sequence:        Public ordinary functions.
+                                                              (line 404)
+* num=:                                  Public standalone methods.
+                                                              (line  12)
+* percentile:                            Public ordinary functions.
+                                                              (line 409)
+* permutations:                          Public ordinary functions.
+                                                              (line 416)
+* phi:                                   Public ordinary functions.
+                                                              (line 423)
+* poisson-cumulative-probability:        Public ordinary functions.
+                                                              (line 429)
+* poisson-ge-probability:                Public ordinary functions.
+                                                              (line 436)
+* poisson-mu-ci:                         Public ordinary functions.
+                                                              (line 442)
+* poisson-probability:                   Public ordinary functions.
+                                                              (line 455)
+* poisson-test-one-sample:               Public ordinary functions.
+                                                              (line 462)
+* pool:                                  Public ordinary functions.
+                                                              (line 472)
+* pool2:                                 Private generic functions.
+                                                              (line   6)
+* pool2 <1>:                             Private generic functions.
+                                                              (line  15)
+* print-object:                          Public standalone methods.
+                                                              (line  18)
+* print-object <1>:                      Public standalone methods.
+                                                              (line  21)
+* quantile:                              Public generic functions.
+                                                              (line 115)
+* quantile <1>:                          Public generic functions.
+                                                              (line 124)
+* quantile <2>:                          Public generic functions.
+                                                              (line 125)
+* quantile <3>:                          Public generic functions.
+                                                              (line 126)
+* quantiles:                             Public generic functions.
+                                                              (line 127)
+* quantiles <1>:                         Public generic functions.
+                                                              (line 135)
+* quantiles <2>:                         Public generic functions.
+                                                              (line 136)
+* random-normal:                         Public ordinary functions.
+                                                              (line 478)
+* random-pick:                           Public ordinary functions.
+                                                              (line 485)
+* random-sample:                         Public ordinary functions.
+                                                              (line 491)
+* round-float:                           Public ordinary functions.
+                                                              (line 499)
+* round-up:                              Private ordinary functions.
+                                                              (line 148)
+* safe-exp:                              Private ordinary functions.
+                                                              (line 153)
+* sample-range:                          Public ordinary functions.
+                                                              (line 506)
+* sd:                                    Public ordinary functions.
+                                                              (line 513)
+* sd <1>:                                Public generic functions.
+                                                              (line 138)
+* sd <2>:                                Public generic functions.
+                                                              (line 146)
+* sign:                                  Private ordinary functions.
+                                                              (line 160)
+* sign-test:                             Public ordinary functions.
+                                                              (line 518)
+* sign-test-on-sequences:                Public ordinary functions.
+                                                              (line 526)
+* skewness:                              Public generic functions.
+                                                              (line 147)
+* skewness <1>:                          Public generic functions.
+                                                              (line 154)
+* skewness <2>:                          Public generic functions.
+                                                              (line 155)
+* sort-reals:                            Private ordinary functions.
+                                                              (line 165)
+* sorted-reals-elements:                 Public ordinary functions.
+                                                              (line 534)
+* sorted-reals-ordered-elements:         Private ordinary functions.
+                                                              (line 171)
+* sorted-reals-p:                        Private ordinary functions.
+                                                              (line 179)
+* sorted-reals-unordered-elements:       Private ordinary functions.
+                                                              (line 184)
+* sparse-counter-count:                  Public ordinary functions.
+                                                              (line 539)
+* sparse-counter-p:                      Private ordinary functions.
+                                                              (line 192)
+* sparse-counter-table:                  Public ordinary functions.
+                                                              (line 545)
+* spearman-rank-correlation:             Public ordinary functions.
+                                                              (line 552)
+* square:                                Public macros.       (line   6)
+* standard-deviation:                    Public ordinary functions.
+                                                              (line 562)
+* standard-error-of-the-mean:            Public ordinary functions.
+                                                              (line 568)
+* t-distribution:                        Public ordinary functions.
+                                                              (line 575)
+* t-significance:                        Public ordinary functions.
+                                                              (line 582)
+* t-test-one-sample:                     Public ordinary functions.
+                                                              (line 588)
+* t-test-one-sample-on-sequence:         Public ordinary functions.
+                                                              (line 597)
+* t-test-one-sample-sse:                 Public ordinary functions.
+                                                              (line 606)
+* t-test-paired:                         Public ordinary functions.
+                                                              (line 616)
+* t-test-paired-on-sequences:            Public ordinary functions.
+                                                              (line 625)
+* t-test-paired-sse:                     Public ordinary functions.
+                                                              (line 634)
+* t-test-two-sample:                     Public ordinary functions.
+                                                              (line 643)
+* t-test-two-sample-on-sequences:        Public ordinary functions.
+                                                              (line 659)
+* t-test-two-sample-sse:                 Public ordinary functions.
+                                                              (line 674)
+* tabulate:                              Public ordinary functions.
+                                                              (line 685)
+* tally:                                 Public generic functions.
+                                                              (line 157)
+* tally <1>:                             Public generic functions.
+                                                              (line 164)
+* tally <2>:                             Public generic functions.
+                                                              (line 166)
+* tally-mixin-p:                         Private ordinary functions.
+                                                              (line 197)
+* tally-mixin-w:                         Private ordinary functions.
+                                                              (line 202)
+* test-variables:                        Public macros.       (line  11)
+* underflow-goes-to-zero:                Private macros.      (line  25)
+* variance:                              Public ordinary functions.
+                                                              (line 691)
+* variance <1>:                          Public ordinary functions.
+                                                              (line 697)
+* variance <2>:                          Public generic functions.
+                                                              (line 167)
+* variance <3>:                          Public generic functions.
+                                                              (line 176)
+* variance <4>:                          Public generic functions.
+                                                              (line 177)
+* weighted-empirical-quantile:           Private ordinary functions.
+                                                              (line 210)
+* weighted-quantile-p-table:             Private ordinary functions.
+                                                              (line 217)
+* weighted-quantiles:                    Public ordinary functions.
+                                                              (line 709)
+* wilcoxon-signed-rank-test:             Public ordinary functions.
+                                                              (line 716)
+* wilcoxon-signed-rank-test-on-sequences: Public ordinary functions.
+                                                              (line 727)
+* z:                                     Public ordinary functions.
+                                                              (line 733)
+* z-test:                                Public ordinary functions.
+                                                              (line 740)
+* z-test-on-sequence:                    Public ordinary functions.
+                                                              (line 753)
+
+
+File: statistics.info,  Node: Variable index,  Next: Data type index,  Prev: Function index,  Up: Indexes
+
+A.3 Variables
+=============
+
+ [index ]
+* Menu:
+
+* *central-sample-moments-default-degree*: Public special variables.
+                                                              (line   6)
+* m:                                     Public structures.   (line  38)
+* ordered-elements:                      Public structures.   (line  89)
+* s2:                                    Public structures.   (line  47)
+* s3:                                    Public structures.   (line  56)
+* s4:                                    Public structures.   (line  65)
+* Slot, m:                               Public structures.   (line  39)
+* Slot, ordered-elements:                Public structures.   (line  90)
+* Slot, s2:                              Public structures.   (line  48)
+* Slot, s3:                              Public structures.   (line  57)
+* Slot, s4:                              Public structures.   (line  66)
+* Slot, table:                           Public structures.   (line 119)
+* Slot, unordered-elements:              Public structures.   (line  99)
+* Slot, w:                               Private structures.  (line  21)
+* Special Variable, *central-sample-moments-default-degree*: Public special variables.
+                                                              (line   7)
+* table:                                 Public structures.   (line 118)
+* unordered-elements:                    Public structures.   (line  98)
+* w:                                     Private structures.  (line  20)
+
+
+File: statistics.info,  Node: Data type index,  Prev: Variable index,  Up: Indexes
+
+A.4 Data types
+==============
+
+ [index ]
+* Menu:
+
+* central-sample-moments:                Public structures.   (line   6)
+* Condition, empty-accumulator:          Public conditions.   (line   7)
+* Condition, information-not-collected-in-accumulator: Public conditions.
+                                                              (line  14)
+* Condition, not-enough-elements-in-accumulator: Public conditions.
+                                                              (line  21)
+* empty-accumulator:                     Public conditions.   (line   6)
+* File, lh-statistics.lisp:              The statistics/lh-statistics․lisp file.
+                                                              (line   6)
+* File, license:                         The statistics/license file.
+                                                              (line   6)
+* File, ls-statistics.lisp:              The statistics/ls-statistics․lisp file.
+                                                              (line   6)
+* File, nu-statistics.lisp:              The statistics/nu-statistics․lisp file.
+                                                              (line   6)
+* File, pkgdcl.lisp:                     The statistics/pkgdcl․lisp file.
+                                                              (line   6)
+* File, statistics.asd:                  The statistics/statistics․asd file.
+                                                              (line   6)
+* information-not-collected-in-accumulator: Public conditions.
+                                                              (line  13)
+* lh-statistics.lisp:                    The statistics/lh-statistics․lisp file.
+                                                              (line   6)
+* lh.statistics:                         The lh․statistics package.
+                                                              (line   6)
+* license:                               The statistics/license file.
+                                                              (line   6)
+* ls-statistics.lisp:                    The statistics/ls-statistics․lisp file.
+                                                              (line   6)
+* ls.statistics:                         The ls․statistics package.
+                                                              (line   6)
+* not-enough-elements-in-accumulator:    Public conditions.   (line  20)
+* nu-statistics.lisp:                    The statistics/nu-statistics․lisp file.
+                                                              (line   6)
+* nu.statistics:                         The nu․statistics package.
+                                                              (line   6)
+* Package, lh.statistics:                The lh․statistics package.
+                                                              (line   6)
+* Package, ls.statistics:                The ls․statistics package.
+                                                              (line   6)
+* Package, nu.statistics:                The nu․statistics package.
+                                                              (line   6)
+* Package, statistics-1:                 The statistics-1 package.
+                                                              (line   6)
+* pkgdcl.lisp:                           The statistics/pkgdcl․lisp file.
+                                                              (line   6)
+* sorted-reals:                          Public structures.   (line  74)
+* sparse-counter:                        Public structures.   (line 105)
+* statistics:                            The statistics system.
+                                                              (line   6)
+* statistics-1:                          The statistics-1 package.
+                                                              (line   6)
+* statistics.asd:                        The statistics/statistics․asd file.
+                                                              (line   6)
+* Structure, central-sample-moments:     Public structures.   (line   7)
+* Structure, sorted-reals:               Public structures.   (line  75)
+* Structure, sparse-counter:             Public structures.   (line 106)
+* Structure, tally-mixin:                Private structures.  (line   7)
+* System, statistics:                    The statistics system.
+                                                              (line   6)
+* tally-mixin:                           Private structures.  (line   6)
+
+
+
+Tag Table:
+Node: Top912
+Node: Copying2108
+Node: Systems2292
+Node: The statistics system2500
+Ref: ❨1❩2616
+Node: Files4441
+Node: Lisp files4671
+Node: The statistics/statistics․asd file5005
+Ref: ❨2❩5225
+Node: The statistics/lh-statistics․lisp file5379
+Ref: ❨4❩5637
+Node: The statistics/nu-statistics․lisp file11287
+Ref: ❨5❩11549
+Node: The statistics/ls-statistics․lisp file16410
+Ref: ❨6❩16665
+Node: The statistics/pkgdcl․lisp file17048
+Ref: ❨7❩17240
+Node: Static files17393
+Node: The statistics/license file17535
+Ref: ❨3❩17687
+Node: Packages17794
+Node: The lh․statistics package18080
+Ref: ❨8❩18246
+Node: The nu․statistics package24456
+Ref: ❨9❩24638
+Node: The statistics-1 package29395
+Ref: ❨10❩29575
+Node: The ls․statistics package29618
+Ref: ❨11❩29764
+Node: Definitions30072
+Node: Public Interface30328
+Node: Public special variables30667
+Ref: ❨163❩30906
+Node: Public macros31080
+Ref: ❨15❩31266
+Ref: ❨47❩31419
+Node: Public ordinary functions31534
+Ref: ❨61❩31763
+Ref: ❨63❩32031
+Ref: ❨80❩32511
+Ref: ❨82❩32756
+Ref: ❨52❩33157
+Ref: ❨36❩33607
+Ref: ❨16❩34095
+Ref: ❨35❩34489
+Ref: ❨85❩35066
+Ref: ❨90❩35489
+Ref: ❨141❩35968
+Ref: ❨60❩36174
+Ref: ❨79❩36450
+Ref: ❨13❩36787
+Ref: ❨12❩37290
+Ref: ❨71❩37674
+Ref: ❨54❩38137
+Ref: ❨51❩38388
+Ref: ❨70❩38593
+Ref: ❨55❩38852
+Ref: ❨87❩39045
+Ref: ❨23❩39361
+Ref: ❨32❩39657
+Ref: ❨122❩39832
+Ref: ❨123❩40114
+Ref: ❨142❩40413
+Ref: ❨155❩40806
+Ref: ❨67❩41116
+Ref: ❨30❩41561
+Ref: ❨33❩41783
+Ref: ❨21❩42267
+Ref: ❨56❩42507
+Ref: ❨218❩42748
+Ref: ❨26❩43144
+Ref: ❨219❩43569
+Ref: ❨86❩43784
+Ref: ❨156❩44246
+Ref: ❨64❩44554
+Ref: ❨69❩45066
+Ref: ❨220❩45255
+Ref: ❨58❩45903
+Ref: ❨49❩46180
+Ref: ❨41❩46360
+Ref: ❨37❩46606
+Ref: ❨17❩46960
+Ref: ❨77❩47225
+Ref: ❨44❩47498
+Ref: ❨53❩47795
+Ref: ❨20❩47961
+Ref: ❨28❩48254
+Ref: ❨76❩48412
+Ref: ❨48❩48664
+Ref: ❨59❩48879
+Ref: ❨50❩49090
+Ref: ❨57❩49373
+Ref: ❨34❩49583
+Ref: ❨84❩50089
+Ref: ❨73❩50406
+Ref: ❨111❩50815
+Ref: ❨27❩50996
+Ref: ❨39❩51231
+Ref: ❨75❩51422
+Ref: ❨83❩51755
+Ref: ❨22❩51991
+Ref: ❨74❩52217
+Ref: ❨43❩52398
+Ref: ❨66❩52773
+Ref: ❨121❩53076
+Ref: ❨107❩53249
+Ref: ❨144❩53441
+Ref: ❨46❩53657
+Ref: ❨89❩54142
+Ref: ❨38❩54355
+Ref: ❨62❩54623
+Ref: ❨81❩54907
+Ref: ❨29❩55151
+Ref: ❨68❩55580
+Ref: ❨40❩56039
+Ref: ❨18❩56439
+Ref: ❨45❩56849
+Ref: ❨14❩57325
+Ref: ❨25❩57754
+Ref: ❨72❩58620
+Ref: ❨78❩59416
+Ref: ❨178❩59913
+Ref: ❨24❩60132
+Ref: ❨217❩60332
+Ref: ❨145❩60856
+Ref: ❨31❩61123
+Ref: ❨65❩61729
+Ref: ❨42❩61885
+Ref: ❨19❩62170
+Ref: ❨88❩62855
+Node: Public generic functions62970
+Ref: ❨129❩63227
+Ref: ❨130❩63679
+Ref: ❨131❩63889
+Ref: ❨132❩64009
+Ref: ❨133❩64068
+Ref: ❨168❩64123
+Ref: ❨169❩64438
+Ref: ❨170❩64556
+Ref: ❨134❩64611
+Ref: ❨135❩64822
+Ref: ❨136❩64940
+Ref: ❨118❩64995
+Ref: ❨119❩65207
+Ref: ❨120❩65325
+Ref: ❨146❩65409
+Ref: ❨147❩65862
+Ref: ❨148❩66000
+Ref: ❨149❩66107
+Ref: ❨174❩66158
+Ref: ❨175❩66451
+Ref: ❨176❩66509
+Ref: ❨177❩66565
+Ref: ❨160❩66618
+Ref: ❨161❩66863
+Ref: ❨162❩66979
+Ref: ❨171❩67028
+Ref: ❨172❩67243
+Ref: ❨173❩67355
+Ref: ❨115❩67393
+Ref: ❨116❩67594
+Ref: ❨117❩67731
+Ref: ❨137❩67773
+Ref: ❨138❩68143
+Ref: ❨139❩68200
+Ref: ❨140❩68242
+Ref: ❨157❩68286
+Ref: ❨158❩68583
+Ref: ❨159❩68684
+Ref: ❨125❩68731
+Ref: ❨126❩69009
+Ref: ❨165❩69062
+Ref: ❨166❩69307
+Ref: ❨167❩69423
+Ref: ❨108❩69465
+Ref: ❨109❩69721
+Ref: ❨110❩69859
+Ref: ❨112❩69912
+Ref: ❨113❩70253
+Ref: ❨114❩70369
+Node: Public standalone methods70370
+Ref: ❨241❩70627
+Ref: ❨245❩70920
+Ref: ❨235❩71091
+Ref: ❨240❩71244
+Node: Public conditions71304
+Ref: ❨124❩71506
+Ref: ❨143❩71720
+Ref: ❨164❩71928
+Node: Public structures72087
+Ref: ❨150❩72260
+Ref: ❨151❩73563
+Ref: ❨152❩73868
+Ref: ❨153❩74189
+Ref: ❨154❩74506
+Ref: ❨104❩74832
+Ref: ❨105❩75349
+Ref: ❨106❩75680
+Ref: ❨127❩75954
+Ref: ❨128❩76363
+Node: Internals76570
+Node: Private macros76798
+Ref: ❨213❩77005
+Ref: ❨202❩77242
+Ref: ❨183❩77513
+Ref: ❨103❩77724
+Node: Private ordinary functions77933
+Ref: ❨91❩78166
+Ref: ❨102❩78430
+Ref: ❨94❩78661
+Ref: ❨194❩78823
+Ref: ❨195❩78878
+Ref: ❨204❩79089
+Ref: ❨191❩79252
+Ref: ❨192❩79308
+Ref: ❨189❩79521
+Ref: ❨190❩79577
+Ref: ❨187❩79790
+Ref: ❨188❩79846
+Ref: ❨206❩80060
+Ref: ❨207❩80231
+Ref: ❨197❩80398
+Ref: ❨215❩80555
+Ref: ❨203❩80714
+Ref: ❨184❩80870
+Ref: ❨96❩81017
+Ref: ❨93❩81246
+Ref: ❨100❩81464
+Ref: ❨99❩81677
+Ref: ❨98❩81899
+Ref: ❨97❩82111
+Ref: ❨208❩82358
+Ref: ❨210❩82557
+Ref: ❨205❩82719
+Ref: ❨200❩82873
+Ref: ❨92❩83014
+Ref: ❨95❩83155
+Ref: ❨101❩83399
+Ref: ❨216❩83549
+Ref: ❨179❩83754
+Ref: ❨180❩83814
+Ref: ❨193❩84030
+Ref: ❨211❩84199
+Ref: ❨212❩84261
+Ref: ❨214❩84481
+Ref: ❨209❩84632
+Ref: ❨185❩84783
+Ref: ❨186❩84827
+Ref: ❨196❩85057
+Ref: ❨201❩85355
+Node: Private generic functions85653
+Ref: ❨181❩85895
+Ref: ❨182❩86391
+Node: Private structures86392
+Ref: ❨198❩86556
+Ref: ❨199❩86987
+Node: Indexes87248
+Node: Concept index87444
+Node: Function index87571
+Node: Variable index142560
+Node: Data type index144190
+
+End Tag Table
+
+
+Local Variables:
+coding: utf-8
+End:

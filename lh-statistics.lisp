@@ -66,10 +66,9 @@
 
 (declaim (optimize (speed 3) (safety 1) (debug 1)))
 
-(defpackage :statistics
-  (:nicknames :stats)
+(uiop:define-package :lh.statistics
   (:use :common-lisp)
-  (:export #:mean #:median #:mode #:geometric-mean #:range #:percentile
+  (:export #:mean #:median #:mode #:geometric-mean #:sample-range #:percentile
            #:variance #:standard-deviation #:sd #:coefficient-of-variation
            #:standard-error-of-the-mean #:permutations #:choose
            #:binomial-probability #:binomial-cumulative-probability
@@ -112,7 +111,7 @@ These abreviations used in function and variable names:
    sse = sample size estimate"))
 
 
-(in-package :statistics)
+(in-package :lh.statistics)
 
 ;;;;; Macros
 
@@ -255,7 +254,7 @@ The geometric mean is a mean or average, which indicates the central tendency or
 ;;; Measures of spread
 
 ;; Rosner 18
-(defun range (sequence)
+(defun sample-range (sequence)
   "Return the difference between the largest and smallest values in SEQUENCE"
   (test-variables (sequence :numseq))
   (- (reduce #'max sequence) (reduce #'min sequence)))
@@ -458,7 +457,7 @@ This function is also known as quantile."
 
 ;; Rosner 193 (approximate) & 194 (exact)
 (defun binomial-probability-ci (n p alpha &key exact?)
-  ";; Confidence intervals on a binomial probability.  If a binomial probability of p has been observed in N trials, what is the 1-alpha confidence interval around p?  Approximate (using normal theory approximation) when npq >= 10 unless told otherwise"
+  "Confidence intervals on a binomial probability.  If a binomial probability of p has been observed in N trials, what is the 1-alpha confidence interval around p?  Approximate (using normal theory approximation) when npq >= 10 unless told otherwise"
   (test-variables (n :posint) (p :prob) (alpha :prob))
   (if (and (> (* n p (- 1 p)) 10) (not exact?))
       (let ((difference (* (z (- 1 (/ alpha 2)))
