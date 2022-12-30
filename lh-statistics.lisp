@@ -1233,7 +1233,7 @@ is treated as a boolean."
 (defun round-float (x &key (precision 5))
   "Rounds a floating point number to a specified number of digits precision."
   (test-variables (x number) (precision :posint))
-  (/ (round x (expt 10 (- precision))) (expt 10 precision)))
+  (/ (fround x (expt 10 (- precision))) (expt 10 precision)))
 
 
 ;;; Benjamini Y and Hochberg Y. "Controlling the false discovery
