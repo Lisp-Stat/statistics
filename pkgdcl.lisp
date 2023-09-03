@@ -1,5 +1,6 @@
 ;;; -*- Mode: LISP; Base: 10; Syntax: ANSI-Common-Lisp; Package: ORG.TFEB.CLC-USER -*-
-;;; Copyright (c) 2022 by Symbolics Pte. Ltd. All rights reserved.
+;;; Copyright (c) 2022,2023 by Symbolics Pte. Ltd. All rights reserved.
+;;; SPDX-License-identifier: MS-PL
 (in-package :org.tfeb.clc-user)
 
 ;;; Top level package
@@ -8,7 +9,8 @@
 ;;; https://github.com/rpav/defpackage-plus#versioning
 
 (defpackage :statistics-1
-  (:use)
+  (:use #:let-plus)
+  (:extends :ls.statistics)
   (:extends/excluding :lh.statistics
 		      #:sd
 		      #:standard-deviation
@@ -22,6 +24,6 @@
   #+ignore
   (:extends/including :cl-mathstats
 		      #:anova-one-way-variables
-		      #:anova-two-way-variables)
-  (:extends :ls.statistics))
+		      #:anova-two-way-variables))
+
 

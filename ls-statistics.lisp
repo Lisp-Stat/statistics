@@ -1,9 +1,9 @@
 ;;; -*- Mode: LISP; Base: 10; Syntax: ANSI-Common-Lisp; Package: CL-USER -*-
-;;; Copyright (c) 2022 by Symbolics Pte. Ltd. All rights reserved.
+;;; Copyright (c) 2022,2023 by Symbolics Pte. Ltd. All rights reserved.
+;;; SPDX-License-identifier: MS-PL
 
 (uiop:define-package #:ls.statistics
-    (:use #:cl)
-  (:import-from #:let-plus #:let+)
+  (:use #:cl #:let-plus)
   (:import-from #:nu.statistics
 		#:quantiles
 		#:ensure-sorted-reals
@@ -11,7 +11,11 @@
   (:export #:interquartile-range
 	   #:fivenum
 	   #:mean
-	   #:variance))
+	   #:variance
+
+	   ;; Random sampling
+	   #:random-sample
+	   #:map-random-below))
 	   ;; #:quantile))
 
 (in-package #:ls.statistics)

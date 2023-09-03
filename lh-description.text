@@ -53,5 +53,5 @@ Significance test functions
  from chi-square-cdf in various ways depending on the problem).
 
 Utilities
- random-sample, random-pick, bin-and-count, fishers-z-transform,
+ random-pick, bin-and-count, fishers-z-transform,
  mean-sd-n, square, choose, permutations, round-float

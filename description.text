@@ -1,7 +1,7 @@
 This system is a consolidation of three Common Lisp statistics libraries:
 
 - Tamas Papp's library, focusing on central moments
-- Larry Hungers general statistical library
+- Larry Hunters general statistical library
 - Gary Warren King's (GWK) general statistical library, cl-mathstats
 
 As of Q3 2022, CL-MATHSTATS is usable with Lisp-Stat, but not

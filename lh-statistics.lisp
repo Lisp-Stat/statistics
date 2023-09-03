@@ -60,7 +60,7 @@
 ;;;   from chi-square-cdf in various ways depending on the problem).
 
 ;;;  Utilities
-;;;   random-sample, random-pick, bin-and-count, fishers-z-transform,
+;;;   random-pick, bin-and-count, fishers-z-transform,
 ;;;   mean-sd-n, square, choose, permutations, round-float
 
 
@@ -94,7 +94,7 @@
            #:correlation-sse #:linear-regression #:correlation-coefficient
            #:correlation-test-two-sample
            #:correlation-test-two-sample-on-sequences #:spearman-rank-correlation
-           #:t-significance #:f-significance #:random-sample #:random-pick #:test-variables
+           #:t-significance #:f-significance #:random-pick #:test-variables
            #:bin-and-count #:fisher-z-transform #:mean-sd-n #:square
            #:round-float #:false-discovery-correction
            #:random-normal)
@@ -1171,16 +1171,17 @@ is treated as a boolean."
 ;;;
 ;;; Utilities of potential external use
 ;;;
-
+#|
 (defun random-sample (n sequence)
-  "Return a random sample of size N from sequence, without replacement.  If N is equal to or greater than the length of the sequence, return the entire sequence."
+  "Return a random sample of size N from sequence, without replacement.  If N is equal to or greater than the length of the sequence, return the entire sequence.
+DERECATED in favour of ls-statistics:random-sample"
   (test-variables (n integer) (sequence sequence))
   (cond ((null sequence) nil)
         ((<= n 0) nil)
         ((< (length sequence) n) sequence)
         (t (let ((one (random-pick sequence)))
              (cons one (random-sample (1- n) (remove one sequence :count 1)))))))
-
+|#
 (defun random-pick (sequence)
   "Random selection from sequence"
   (test-variables (sequence sequence))
@@ -1194,7 +1195,7 @@ is treated as a boolean."
 
 (defun bin-and-count (sequence n)
   "Make N equal width bins and count the number of elements of sequence that belong in each."
-  (let* ((min  (reduce #'min sequence))
+  (let* ((min (reduce #'min sequence))
          (increment (/ (- (reduce #'max sequence) min) n))
          (bins (make-array n :initial-element 0)))
     (dotimes (bin n bins)

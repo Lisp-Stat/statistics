@@ -1,9 +1,10 @@
 ;;; -*- Mode: LISP; Base: 10; Syntax: ANSI-Common-lisp; Package: ASDF -*-
-;;; Copyright (c) 2022 by Symbolics Pte. Ltd. All rights reserved.
+;;; Copyright (c) 2022, 2023 by Symbolics Pte. Ltd. All rights reserved.
+;;; SPDX-License-identifier: MS-PL
 
-(defsystem #:statistics
+(defsystem "statistics"
   :name "Statistics functions"
-  :version     "1.0.0"
+  :version     "1.1.0"
   :license     :MS-PL
   :author      "Steve Nunez <steve@symbolics.tech>"
   :long-name   "Consolidated Common Lisp statistical functions"
@@ -25,9 +26,10 @@
 	       (:file "lh-statistics")
 	       (:file "nu-statistics")
 	       (:file "ls-statistics")
+	       (:file "random-sample")
 	       (:file "pkgdcl")))
 
-(defsystem #:statistics/lh
+(defsystem "statistics/lh"
   :name "Larry Hunter's statistics library"
   :version     "1.0.5"
   :license     :MIT
@@ -38,7 +40,7 @@
   :components ((:static-file #:LH-LICENSE)
 	       (:file "lh-statistics")))
 
-(defsystem #:statistics/tests
+(defsystem "statistics/tests"
   :version "1.0.0"
   :description "Unit tests for Lisp-Stat's statistics system"
   :author "Steve Nunez <steve@symbolics.tech>"
