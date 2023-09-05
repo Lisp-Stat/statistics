@@ -8,6 +8,7 @@
 		#:quantiles
 		#:ensure-sorted-reals
 		#:sorted-reals-elements)
+  (:import-from #:alexandria #:random-elt #:shuffle)
   (:export #:interquartile-range
 	   #:fivenum
 	   #:mean
