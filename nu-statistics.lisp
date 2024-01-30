@@ -1277,8 +1277,7 @@ for any vector SAMPLE."
 ;;   (values (e- object mean) mean))
 
 ;; (defun aggregate (sequence n function)
-;;   "Aggregate groups of N consecutive elements of SEQUENCE (vector preferred)
-;; using FUNCTION.
+;;   "Aggregate groups of N consecutive elements of SEQUENCE (vector preferred) using FUNCTION.
 
 ;; Example: (aggregate #(1 2 3 5 7 13) 2 #'mean) => #(1.5d0 4.0d0 10.0d0)."
 ;;   (map 'vector function
