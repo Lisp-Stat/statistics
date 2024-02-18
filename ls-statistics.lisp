@@ -7,11 +7,13 @@
   (:import-from #:nu.statistics
 		#:quantiles
 		#:ensure-sorted-reals
-		#:sorted-reals-elements)
-  (:import-from #:alexandria #:random-elt #:shuffle)
+		#:sorted-reals-elements
+		#:sd)
+  (:import-from #:alexandria #:random-elt #:shuffle #:if-let)
   (:export #:interquartile-range
 	   #:fivenum
 	   #:mean
+	   #:scale
 	   #:variance))
 	   ;; #:quantile))
 
@@ -64,3 +66,26 @@ Note that alexandria's default for variance will return biased variance.  We cha
     (t (alexandria:variance object :biased biased?))))	;no bias to be consistent with nu.statistics
 
 ;; Should quantile be empirical-quantile or quantile?  Probably nu.statistics should be updated to use distributions.  If so, what about mean and variance?
+
+
+;; TODO: test for scale = T and then use root-mean-square
+;; Note: the dispatch on distributions has not been tested
+(defun scale (x &key (center (mean x)) (scale (sd x)))
+  "Return (x - x̄) / s where X̄ is the mean and S is the standard deviation
+
+Modeled on the R scale function.
+See https://stat.ethz.ch/R-manual/R-devel/library/base/html/scale.html
+"
+  (typecase x
+    (distributions::r-rayleigh (distributions:scale x))
+    (distributions::r-t (distributions:scale x))
+    (t (when (and (not center) (not scale))
+	 (return-from scale x))
+     (if (not center)
+	 (setf center 0))
+     (if (not scale)
+	 (setf scale 1))
+     (values (nu:e/ (nu:e- x center)
+		    scale)
+	     center scale))))
+
