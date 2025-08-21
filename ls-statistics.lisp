@@ -49,10 +49,10 @@ For samples (numeric-vectors), normalized by the weight-1 (and thus unbiased if 
     (nu:simple-boolean-vector      (nu.statistics:mean (nu:as-bit-vector object)))
     (t (nu.statistics:mean object :weights weights))))
 
-(defun variance (object &key weights (biased? nil))
+(defun variance (object &key weights)
   "Variance of OBJECT.  For samples, normalized by the weight-1 (and thus unbiased if certain assumptions hold, e.g. weights that count frequencies).
 
-Note that alexandria's default for variance will return biased variance.  We change that here for consistency.  If you want a biased variance use alexandria:variance directly."
+Note that alexandria's default for variance will return biased variance.  If you want a biased variance use alexandria:variance directly."
   (typecase object
     (distributions::r-univariate   (distributions:variance object))
     (nu:simple-boolean-vector      (nu.statistics:variance (nu:as-bit-vector object)))
@@ -82,5 +82,4 @@ See https://stat.ethz.ch/R-manual/R-devel/library/base/html/scale.html
      (values (nu:e/ (nu:e- x center)
 		    scale)
 	     center scale))))
-
 
