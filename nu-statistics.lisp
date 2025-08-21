@@ -480,8 +480,15 @@ for any vector SAMPLE."
                (add it (cons s1 s2))) sequence1 sequence2)))
 
 
-
-;;; NOTE: Papp: old code below
+
+;;; NOTE: This code supports the implementation of single-pass,
+;;; parallelizable correlation, variance, etc.  See the papers at the
+;;; very end of the file.  I suspect Papp was encountering performance
+;;; problems and attempted to fix them using these online algorithms,
+;;; then found another way to do so (LLA?).  It looks like some of
+;;; this may have made it into the code above.  Looking at R, Python
+;;; and Julia, the consensus appears to be that using BLAS is the best
+;;; approach for performance
 
 ;;; Generic interface
 
@@ -1155,6 +1162,8 @@ for any vector SAMPLE."
 ;;   "Sample correlation between A and B.  Means will be used when provided."
 ;;   (/ (sample-cov a b :a-mean a-mean :b-mean b-mean)
 ;;      (sample-sd a a-mean) (sample-sd b b-mean)))
+
+
 
 ;;; sensible behavior for sequences and arrays
 

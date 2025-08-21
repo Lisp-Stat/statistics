@@ -5,10 +5,7 @@
 
 ;;; Top level package
 
-;;; Versioned using the mechanism suggested in defpackage+
-;;; https://github.com/rpav/defpackage-plus#versioning
-
-(defpackage :statistics-1
+(defpackage :statistics
   (:use #:let-plus)
   (:extends :ls.statistics)
   (:extends/excluding :lh.statistics
