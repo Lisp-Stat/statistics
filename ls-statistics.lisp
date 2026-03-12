@@ -8,10 +8,6 @@
 		               #:ensure-sorted-reals
 		               #:sorted-reals-elements
 		               #:sd)
-  #+nil
-  (:import-from #:alexandria #:random-elt
-		             #:shuffle
-			     #:if-let)
   (:export #:interquartile-range
 	   #:fivenum
 	   #:mean

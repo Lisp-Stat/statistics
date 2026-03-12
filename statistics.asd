@@ -4,7 +4,7 @@
 
 (defsystem "statistics"
   :name "Statistics functions"
-  :version     "1.3.2"
+  :version     "1.3.3"
   :license     :MS-PL
   :author      "Steve Nunez <steve@symbolics.tech>"
   :long-name   "Consolidated Common Lisp statistical functions"
