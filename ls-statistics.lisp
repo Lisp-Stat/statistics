@@ -1,21 +1,23 @@
 ;;; -*- Mode: LISP; Base: 10; Syntax: ANSI-Common-Lisp; Package: CL-USER -*-
-;;; Copyright (c) 2022,2024,2025 by Symbolics Pte. Ltd. All rights reserved.
+;;; Copyright (c) 2022,2024-2026 by Symbolics Pte. Ltd. All rights reserved.
 ;;; SPDX-License-identifier: MS-PL
 
 (uiop:define-package #:ls.statistics
   (:use #:cl #:let-plus)
-  (:import-from #:nu.statistics
-		#:quantiles
-		#:ensure-sorted-reals
-		#:sorted-reals-elements
-		#:sd)
-  (:import-from #:alexandria #:random-elt #:shuffle #:if-let)
+  (:import-from #:online-stats #:quantiles
+		               #:ensure-sorted-reals
+		               #:sorted-reals-elements
+		               #:sd)
+  #+nil
+  (:import-from #:alexandria #:random-elt
+		             #:shuffle
+			     #:if-let)
   (:export #:interquartile-range
 	   #:fivenum
 	   #:mean
 	   #:scale
 	   #:variance))
-	   ;; #:quantile))
+
 
 (in-package #:ls.statistics)
 
@@ -32,8 +34,8 @@
 	     (l (length sorted))
 	     (left (subseq sorted 0 (floor (/ (1+ l) 2))))
 	     (right (subseq sorted (floor (/ l 2)) l))
-	     (hinge-left (nu.statistics:median left))
-	     (hinge-right (nu.statistics:median right)))
+	     (hinge-left (online-stats:median left))
+	     (hinge-right (online-stats:median right)))
         (vector mn hinge-left md hinge-right mx))
       (quantiles x '(0 0.25 0.5 0.75 1))))
 
@@ -46,8 +48,8 @@ For samples (numeric-vectors), normalized by the weight-1 (and thus unbiased if 
   ;; If optimisation is needed, See: https://hal.archives-ouvertes.fr/hal-01770939/
   (typecase object
     (distributions::r-univariate   (distributions:mean object))
-    (nu:simple-boolean-vector      (nu.statistics:mean (nu:as-bit-vector object)))
-    (t (nu.statistics:mean object :weights weights))))
+    (nu:simple-boolean-vector      (online-stats:mean (nu:as-bit-vector object)))
+    (t (online-stats:mean object :weights weights))))
 
 (defun variance (object &key weights)
   "Variance of OBJECT.  For samples, normalized by the weight-1 (and thus unbiased if certain assumptions hold, e.g. weights that count frequencies).
@@ -55,11 +57,11 @@ For samples (numeric-vectors), normalized by the weight-1 (and thus unbiased if 
 Note that alexandria's default for variance will return biased variance.  If you want a biased variance use alexandria:variance directly."
   (typecase object
     (distributions::r-univariate   (distributions:variance object))
-    (nu:simple-boolean-vector      (nu.statistics:variance (nu:as-bit-vector object)))
-    (t (nu.statistics:variance object :weights weights))))
+    (nu:simple-boolean-vector      (online-stats:variance (nu:as-bit-vector object)))
+    (t (online-stats:variance object :weights weights))))
 
 
-;; Should quantile be empirical-quantile or quantile?  Probably nu.statistics should be updated to use distributions.  If so, what about mean and variance?
+;; Should quantile be empirical-quantile or quantile?  Probably online-stats should be updated to use distributions.  If so, what about mean and variance?
 
 
 ;; TODO: test for scale = T and then use root-mean-square

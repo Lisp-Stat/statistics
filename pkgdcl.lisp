@@ -1,5 +1,5 @@
 ;;; -*- Mode: LISP; Base: 10; Syntax: ANSI-Common-Lisp; Package: ORG.TFEB.CLC-USER -*-
-;;; Copyright (c) 2022,2023 by Symbolics Pte. Ltd. All rights reserved.
+;;; Copyright (c) 2022,2023,2026 by Symbolics Pte. Ltd. All rights reserved.
 ;;; SPDX-License-identifier: MS-PL
 (in-package :org.tfeb.clc-user)
 
@@ -8,14 +8,14 @@
 (defpackage :statistics
   (:use #:let-plus)
   (:extends :ls.statistics)
-  (:extends/excluding :lh.statistics
+  (:extends/excluding #:lh.statistics
 		      #:sd
 		      #:standard-deviation
 		      #:mean
 		      #:variance
 		      #:median
 		      #:square)
-  (:extends/excluding :nu.statistics
+  (:extends/excluding #:online-stats
 		      #:mean
 		      #:variance)
   #+ignore

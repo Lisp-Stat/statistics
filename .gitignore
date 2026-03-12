@@ -1,0 +1,10 @@
+# Ignore Mac system files
+.DS_Store
+
+# Emacs backup and crash recovery files
+*~
+*.~[0-9]*~
+\#*\#
+
+.github
+

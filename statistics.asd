@@ -1,10 +1,10 @@
 ;;; -*- Mode: LISP; Base: 10; Syntax: ANSI-Common-lisp; Package: ASDF -*-
-;;; Copyright (c) 2022, 2024, 2025 by Symbolics Pte. Ltd. All rights reserved.
+;;; Copyright (c) 2022, 2024-2026 by Symbolics Pte. Ltd. All rights reserved.
 ;;; SPDX-License-identifier: MS-PL
 
 (defsystem "statistics"
   :name "Statistics functions"
-  :version     "1.3.1"
+  :version     "1.3.2"
   :license     :MS-PL
   :author      "Steve Nunez <steve@symbolics.tech>"
   :long-name   "Consolidated Common Lisp statistical functions"
@@ -19,12 +19,11 @@
                #:distributions
                #:let-plus
 	       #:num-utils
-	       ;; #:cl-mathstats
 	       #:org.tfeb.conduit-packages)
   :in-order-to ((test-op (test-op statistics/tests)))
   :components ((:static-file #:LICENSE)
 	       (:file "lh-statistics")
-	       (:file "nu-statistics")
+	       (:file "online")
 	       (:file "ls-statistics")
 	       (:file "pkgdcl")))
 

@@ -1,7 +1,7 @@
 ;;; -*- Mode: LISP; Base: 10; Syntax: ANSI-Common-Lisp; Package: CL-USER -*-
-;;; Copyright (c) 2022 by Symbolics Pte. Ltd. All rights reserved.
+;;; Copyright (c) 2022, 2026 by Symbolics Pte. Ltd. All rights reserved.
 
-(uiop:define-package #:nu.statistics
+(uiop:define-package #:online-stats
   (:use #:cl
         #:anaphora
         #:alexandria
@@ -47,7 +47,7 @@
    #:tabulate
    #:cross-tabulate))
 
-(in-package :nu.statistics)
+(in-package :online-stats)
 
 
 ;;; Generic interface for accumulators
@@ -483,12 +483,30 @@ for any vector SAMPLE."
 
 ;;; NOTE: This code supports the implementation of single-pass,
 ;;; parallelizable correlation, variance, etc.  See the papers at the
-;;; very end of the file.  I suspect Papp was encountering performance
-;;; problems and attempted to fix them using these online algorithms,
-;;; then found another way to do so (LLA?).  It looks like some of
-;;; this may have made it into the code above.  Looking at R, Python
-;;; and Julia, the consensus appears to be that using BLAS is the best
-;;; approach for performance
+;;; very end of the file.
+
+;;; Implements streaming statistical algorithms for online/single-pass
+;;; computation, including covariance matrices, autocovariance for
+;;; time series, histogram accumulators with various binning
+;;; strategies (Scott's rule, quantile-based), and sparse accumulator
+;;; arrays for multi-dimensional data. It features numerically stable
+;;; algorithms from West (1979) and Bennett et al. (2009) for
+;;; computing weighted means and variances in a single pass. The code
+;;; also includes infrastructure for pooling partial results from
+;;; distributed computations, circular buffers for sliding window
+;;; statistics, and various accumulator types for different
+;;; statistical measures. This appears to be incomplete work toward
+;;; supporting large-scale, parallel, or real-time statistical
+;;; computation that cannot fit in memory.
+
+;;; SN: The supporting functions for this code are in num-utils/old,
+;;; where Papp placed them, suggesting that this work was an older
+;;; attempt at statistics.  Functions there that would be required
+;;; include:
+
+;;; pretty.lisp
+;;; bins.lisp (for histograms)
+
 
 ;;; Generic interface
 
