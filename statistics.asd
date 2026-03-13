@@ -4,7 +4,7 @@
 
 (defsystem "statistics"
   :name "Statistics functions"
-  :version     "1.3.3"
+  :version     "1.3.4"
   :license     :MS-PL
   :author      "Steve Nunez <steve@symbolics.tech>"
   :long-name   "Consolidated Common Lisp statistical functions"
@@ -24,7 +24,7 @@
   :components ((:static-file #:LICENSE)
 	       (:file "lh-statistics")
 	       (:file "online")
-	       (:file "ls-statistics")
+	       (:file "statistics")
 	       (:file "pkgdcl")))
 
 (defsystem "statistics/lh"

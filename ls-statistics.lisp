@@ -2,7 +2,7 @@
 ;;; Copyright (c) 2022,2024-2026 by Symbolics Pte. Ltd. All rights reserved.
 ;;; SPDX-License-identifier: MS-PL
 
-(uiop:define-package #:ls.statistics
+(uiop:define-package #:statistics
   (:use #:cl #:let-plus)
   (:import-from #:online-stats #:quantiles
 		               #:ensure-sorted-reals
@@ -15,7 +15,9 @@
 	   #:variance))
 
 
-(in-package #:ls.statistics)
+(in-package #:statistics
+
+
 
 (defun interquartile-range (x)
   "Returns the interquartile range of the elements of X."
