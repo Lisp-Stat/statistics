@@ -4,7 +4,7 @@
 
 (defsystem "statistics"
   :name "Statistics functions"
-  :version     "1.3.4"
+  :version     "1.3.5"
   :license     :MS-PL
   :author      "Steve Nunez <steve@symbolics.tech>"
   :long-name   "Consolidated Common Lisp statistical functions"
@@ -22,21 +22,9 @@
 	       #:org.tfeb.conduit-packages)
   :in-order-to ((test-op (test-op statistics/tests)))
   :components ((:static-file #:LICENSE)
-	       (:file "lh-statistics")
 	       (:file "online")
 	       (:file "statistics")
 	       (:file "pkgdcl")))
-
-(defsystem "statistics/lh"
-  :name "Larry Hunter's statistics library"
-  :version     "1.0.5"
-  :license     :MIT
-  :author      "Larry Hunter <Larry.Hunter@CUAnschutz.edu>"
-  :long-name   "Statistical routines"
-  :long-description  #.(uiop:read-file-string
-			(uiop:subpathname *load-pathname* "lh-description.text"))
-  :components ((:static-file #:LH-LICENSE)
-	       (:file "lh-statistics")))
 
 (defsystem "statistics/tests"
   :version "1.0.0"

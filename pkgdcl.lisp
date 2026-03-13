@@ -8,19 +8,9 @@
 (defpackage :statistics
   (:use #:let-plus)
   (:extends :ls.statistics)
-  (:extends/excluding #:lh.statistics
-		      #:sd
-		      #:standard-deviation
-		      #:mean
-		      #:variance
-		      #:median
-		      #:square)
   (:extends/excluding #:online-stats
 		      #:mean
 		      #:variance)
-  #+ignore
-  (:extends/including :cl-mathstats
-		      #:anova-one-way-variables
-		      #:anova-two-way-variables))
+
 
 
