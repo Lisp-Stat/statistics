@@ -1,0 +1,12 @@
+Online statistics provides single-pass, numerically stable computation of
+statistical moments for streaming and large-scale data.  Rather than storing
+observations, it accumulates sufficient summary statistics in a
+CENTRAL-SAMPLE-MOMENTS object, supporting mean, variance, standard deviation,
+skewness, and kurtosis up to the fourth moment.  Partial results from
+independent streams can be combined exactly using POOL, enabling
+straightforward parallelisation.  Quantile estimation is supported through a
+SORTED-REALS accumulator, with both unweighted and weighted variants.
+Frequency counting is provided by a SPARSE-COUNTER, which drives TABULATE and
+CROSS-TABULATE for categorical data.  All accumulators share a common protocol:
+ADD to ingest an observation, TALLY to query the total weight, and POOL to
+merge accumulators.  Algorithms follow Bennett et al. (2009) and West (1979).

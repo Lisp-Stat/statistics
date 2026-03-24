@@ -1,15 +1,28 @@
-This system is a consolidation of three Common Lisp statistics libraries:
+Statistics for Common Lisp provides two complementary subsystems for
+statistical computing, modeled on the separation found in Julia's Statistics.jl
+and OnlineStats.jl.
 
-- Tamas Papp's library, focusing on central moments
-- Larry Hunters general statistical library
-- Gary Warren King's (GWK) general statistical library, cl-mathstats
+STATISTICS/BATCH is the everyday interface, analogous to R's built-in
+stats package or Python's NumPy/SciPy summary functions.  Pass any
+Common Lisp sequence, vector or list, to MEAN, VARIANCE,
+STANDARD-DEVIATION, QUANTILE, MEDIAN, or MODE.  Weighted variants
+accept Julia-style weight objects (FREQUENCY-WEIGHTS,
+ANALYTIC-WEIGHTS, PROBABILITY-WEIGHTS) that carry the appropriate bias
+correction automatically.  Higher-level summaries FIVENUM and SCALE
+work analogously to R's fivenum() and scale().
 
-As of Q3 2022, CL-MATHSTATS is usable with Lisp-Stat, but not
-incorporated.  This is due to it being rather deeply embedded into its
-own ecosystem of utilities libraries (metatilities-base and
-cl-containers and the lift test framework) that have in some cases
-been superseded by alexandria, anaphora or numerical-utilities.  In
-short, we recommend using CL-MATHSTATS when you need to, recognising
-that you'll be hauling in a parallel system of math, statistics and
-utilities.  Long term, we're working to port CL-MATHSTATS on a
-case-by-case basis.
+STATISTICS/ONLINE is for data that cannot or should not be held in memory
+all at once: streaming feeds, distributed computation, or incremental updates.
+Rather than calling a function on a complete dataset, you create an accumulator,
+feed observations into it one at a time with ADD, and extract results at any
+point.  Accumulators for multiple independent partitions can be combined exactly
+with POOL, enabling map-reduce style parallelism with no approximation error.
+This mirrors the workflow of Julia's OnlineStats.jl or Python's
+statsmodels.stats.running.
+
+Both subsystems share a common generic function interface defined in the
+STAT-GENERICS system, so MEAN on a sequence and MEAN on an accumulator are the same
+generic function dispatching to different implementations.  Users loading the
+umbrella STATISTICS system get both subsystems and can move between them freely:
+exploratory work on in-memory data uses batch, production pipelines over streams
+use online, and the same function names work throughout.

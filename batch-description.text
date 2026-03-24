@@ -1,0 +1,13 @@
+Batch statistics provides descriptive statistical functions for fully-realised
+sequences and arrays held in memory.  It implements the standard suite of
+summary statistics — mean, variance, standard deviation, quantiles, median,
+mode, and modes — as methods on Common Lisp sequence types, extending the
+STAT-GENERICS generic function layer.  All moment calculations support
+Julia-style weight objects: FREQUENCY-WEIGHTS for repeated observations,
+ANALYTIC-WEIGHTS for inverse-variance weighting, and PROBABILITY-WEIGHTS for
+survey sampling, each applying the appropriate bias correction denominator.
+Quantile computation uses a 0.5-correction empirical algorithm consistent with
+the online subsystem, ensuring identical results for the same data regardless
+of which subsystem is used.  Higher-level summaries include INTERQUARTILE-RANGE,
+FIVENUM for five-number summaries with optional Tukey hinges, and SCALE for
+mean-centering and standardisation in the style of R's scale().

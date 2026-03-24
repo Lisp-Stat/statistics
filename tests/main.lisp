@@ -4,10 +4,14 @@
 
 #+genera (setf *print-array* t)
 
+;;; Root suite
 (defsuite tests ())
 
-(defun run (&optional interactive?)
-  "Run all tests in the test suite."
-  (run-suite 'tests :use-debugger interactive?))
-
+;;; Test runner
+(defun run-tests (&optional (report-progress t))
+  "Run all statistical test suites. Returns the clunit-report object."
+  (let ((*print-pretty* t)
+        (clunit:*test-output-stream* *standard-output*))
+    (unwind-protect
+         (run-suite 'tests :report-progress report-progress))))
 
