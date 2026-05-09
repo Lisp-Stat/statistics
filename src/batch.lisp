@@ -232,5 +232,5 @@ appearance when ties exist."
 
 
 ;;; Helpful shortcuts
-(defalias iqr interquartile-range)
+;; (defalias iqr interquartile-range)
 
