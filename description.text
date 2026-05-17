@@ -11,7 +11,7 @@ ANALYTIC-WEIGHTS, PROBABILITY-WEIGHTS) that carry the appropriate bias
 correction automatically.  Higher-level summaries FIVENUM and SCALE
 work analogously to R's fivenum() and scale().
 
-STATISTICS/ONLINE is for data that cannot or should not be held in memory
+STATISTICS/STREAMING is for data that cannot or should not be held in memory
 all at once: streaming feeds, distributed computation, or incremental updates.
 Rather than calling a function on a complete dataset, you create an accumulator,
 feed observations into it one at a time with ADD, and extract results at any
