@@ -233,6 +233,6 @@ appearance when ties exist."
 
 
 ;;; Helpful shortcuts
-(defalias iqr interquartile-range)
+(setf (fdefinition 'iqr) #'interquartile-range)
 (export 'iqr)
 
