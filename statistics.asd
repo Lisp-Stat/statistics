@@ -55,6 +55,8 @@
   :bug-tracker    "https://github.com/Lisp-Stat/statistics/issues"
   :depends-on ("statistics/streaming"
                "statistics/batch")
+  :pathname "src/"
+  :components ((:file "pkgdcl"))
   :in-order-to ((test-op (test-op "statistics/tests"))))
 
 (defsystem "statistics/tests"
