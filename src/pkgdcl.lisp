@@ -4,5 +4,8 @@
 
 (uiop:define-package #:statistics
   (:use #:cl #:let-plus)
+  (:import-from #:stat-generics
+                #:mean
+                #:variance)
   (:export #:mean
-	   #:variance))
+	         #:variance))
